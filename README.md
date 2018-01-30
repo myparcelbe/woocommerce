@@ -15,6 +15,6 @@ This WooCommerce extension allows you to export your orders to the MyParcel serv
 - View the status of the shipment in the order details page
 - Add track&trace link to the order confirmation email
 
-A MyParcel API account is required for this plugin! You can create this in your account or contact MyParcel at info@myparcel.nl
+A MyParcel API account is required for this plugin! You can create this in your account or contact MyParcel at info@sendmyparcel.be
 
 Voor de handleinding ga naar: https://myparcelnl.github.io/woocommerce/
