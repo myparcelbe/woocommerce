@@ -210,6 +210,7 @@ class WC_BEPostcode_Fields {
 			'placeholder'	=> __( 'Street name', 'woocommerce-myparcelbe' ),
 			'class'			=> apply_filters( 'nl_custom_address_field_class', array( 'form-row-first' ), $form, 'street_name' ),
 			'required'		=> $required, // Only required for BE
+            'priority'      => 60,
 		);
 
 		// Add house number
@@ -219,6 +220,7 @@ class WC_BEPostcode_Fields {
 			'class'			=> apply_filters( 'nl_custom_address_field_class', array( 'form-row-quart-first' ), $form, 'house_number' ),
 			'required'		=> $required, // Only required for BE
 			'type'			=> 'number',
+            'priority'      => 61,
 		);
 
 		// Add box number
@@ -227,6 +229,7 @@ class WC_BEPostcode_Fields {
 			// 'placeholder'	=> __( 'Box number', 'woocommerce-myparcelbe' ),
 			'class'			=> apply_filters( 'nl_custom_address_field_class', array( 'form-row-quart' ), $form, 'box_number' ),
 			'required'		=> false,
+            'priority'      => 62,
 		);
 
 		// Create new ordering for checkout fields
