@@ -14,22 +14,35 @@ class WooCommerce_MyParcelBE_Assets {
 	 * Load styles & scripts
 	 */
 	public function frontend_scripts_styles ( $hook ) {
-		if ( is_checkout() && isset(WooCommerce_MyParcelBE()->checkout_settings['myparcelbe_checkout']) && is_order_received_page() === false ) {
-			// checkout scripts
-			wp_enqueue_script(
-				'wc-myparcelbe-frontend',
-				WooCommerce_MyParcelBE()->plugin_url() . '/assets/js/wcmp-frontend.js',
-				array( 'jquery' ),
-				WC_MYPARCEL_VERSION
-			);
-			wp_localize_script(
-				'wc-myparcelbe-frontend',
-				'wc_myparcelbe_frontend',
-				array(  
-					'iframe_url' => WooCommerce_MyParcelBE()->plugin_url() . '/includes/views/wcmp-delivery-options.php',
-				)
-			);
-		}
+		if ( ! is_checkout() || is_order_received_page() !== false ) {
+		    return;
+        }
+
+        if ( isset(WooCommerce_MyParcelBE()->checkout_settings['myparcelbe_checkout'])) {
+            // checkout scripts
+            wp_enqueue_script(
+                'wc-myparcelbe-frontend',
+                WooCommerce_MyParcelBE()->plugin_url() . '/assets/js/wcmp-frontend.js',
+                array( 'jquery' ),
+                WC_MYPARCEL_VERSION
+            );
+
+            wp_localize_script(
+                'wc-myparcelbe-frontend',
+                'wc_myparcelbe_frontend',
+                array(
+                    'iframe_url' => WooCommerce_MyParcelBE()->plugin_url() . '/includes/views/wcmp-delivery-options.php',
+                )
+            );
+        } else {
+            wp_enqueue_script(
+                'wc-myparcelbe-no-checkout',
+                WooCommerce_MyParcelBE()->plugin_url() . '/assets/js/wcmp-no-checkout.js',
+                array( 'jquery' ),
+                WC_MYPARCEL_VERSION
+            );
+
+        }
 	}
 
 	/**

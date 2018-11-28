@@ -1,5 +1,10 @@
 jQuery( function( $ ) {
-	var myparcelbe_update_timer = false;
+
+    setTimeout(function () {
+        $(':input.country_to_state').change();
+    }, 200);
+
+    var myparcelbe_update_timer = false;
 	window.myparcelbe_checkout_updating = false;
 	window.myparcelbe_force_update = false;
 	window.myparcelbe_selected_shipping_method = '';
