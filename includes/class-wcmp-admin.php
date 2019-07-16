@@ -445,7 +445,6 @@ class WooCommerce_MyParcelBE_Admin {
 
     public function show_order_delivery_options($order) {
         $delivery_options = WCX_Order::get_meta($order, '_myparcelbe_delivery_options');
-        $shipping_country = WCX_Order::get_prop($order, 'shipping_country');
 
         if ( ! empty($delivery_options) && is_array($delivery_options)) {
             extract($delivery_options);
@@ -462,10 +461,10 @@ class WooCommerce_MyParcelBE_Admin {
             if ( ! empty($time)) {
                 $time = array_shift($time); // take first element in time array
                 if (isset($time['price_comment'])) {
-                    switch($time['price_comment']) {
+                    switch ($time['price_comment']) {
                         case 'standard':
-                            $time_title = __( 'Standard delivery', 'woocommerce-myparcelbe' );
-                        break;
+                            $time_title = __('Standard delivery', 'woocommerce-myparcelbe');
+                            break;
                     }
                 }
                 $time_title = ! empty($time_title) ? "({$time_title})" : '';
@@ -568,8 +567,6 @@ class WooCommerce_MyParcelBE_Admin {
 
         return $shipments;
     }
-
-
 
     /**
      * @snippet       Add Column to Orders Table (e.g. Barcode) - WooCommerce

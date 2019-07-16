@@ -218,7 +218,7 @@ class WooCommerce_MyParcelBE_Settings {
             array(
                 'option_name' => $option_name,
                 'id'          => 'email_tracktrace',
-                'description' => __('Add the Track & Trace code to emails to the customer.<br/><strong>Note!</strong> When you select this option, make sure you have not enabled the Track & Trace email in your MyParcel backend.', 'woocommerce-myparcel')
+                'description' => __('Add the Track & Trace code to emails to the customer.<br/><strong>Note!</strong> When you select this option, make sure you have not enabled the Track & Trace email in your MyParcel BE backend.', 'woocommerce-myparcelbe')
             )
         );
 
