@@ -2,7 +2,7 @@
 Contributors: richardperdaan
 Tags: woocommerce, export, myparcel Belgium
 Requires at least: 3.5.1 & WooCommerce 2.0+
-Tested up to: 5.0.0
+Tested up to: 5.2.0
 Stable tag: trunk
 Requires PHP: 5.4
 License: GPLv3 or later
@@ -87,6 +87,10 @@ function wcmyparcelbe_new_email_text($track_trace_tekst) {
 5. MyParcel BE information on the order details page
 
 == Changelog ==
+
+= 3.1.7 (2019-07-16) =
+* Fix: Search in order grid myparcel shipment
+* Fix: More than 5 products for World shipments
 
 = 3.1.5 (2019-06-20) =
 * Fix: Scrolling of the order overview when an input is clicked

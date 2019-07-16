@@ -47,7 +47,7 @@ msgstr ""
 msgid "Print"
 msgstr ""
 
-#: includes/class-wcmp-admin.php:194 
+#: includes/class-wcmp-admin.php:194
 #: includes/views/wcmp-bulk-options-form.php:163
 msgid "Export to MyParcel BE"
 msgstr ""
@@ -60,7 +60,7 @@ msgstr ""
 msgid "Email return label"
 msgstr ""
 
-#: includes/class-wcmp-admin.php:329 includes/class-wcmp-settings.php:38 
+#: includes/class-wcmp-admin.php:329 includes/class-wcmp-settings.php:38
 #: includes/class-wcmp-settings.php:39
 msgid "MyParcel BE"
 msgstr ""
@@ -69,7 +69,7 @@ msgstr ""
 msgid "Track & Trace"
 msgstr ""
 
-#: includes/class-wcmp-admin.php:373 
+#: includes/class-wcmp-admin.php:373
 #: includes/views/wcmp-order-shipment-summary.php:6
 msgid "Status"
 msgstr ""
@@ -110,7 +110,7 @@ msgstr ""
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
-#: includes/class-wcmp-export.php:104 includes/class-wcmp-export.php:114 
+#: includes/class-wcmp-export.php:104 includes/class-wcmp-export.php:114
 #: includes/class-wcmp-export.php:122 includes/class-wcmp-export.php:137
 msgid "You have not selected any orders!"
 msgstr ""
@@ -119,7 +119,7 @@ msgstr ""
 msgid "MyParcelbe shipment created:"
 msgstr ""
 
-#: includes/class-wcmp-export.php:246 includes/class-wcmp-export.php:292 
+#: includes/class-wcmp-export.php:246 includes/class-wcmp-export.php:292
 #: includes/class-wcmp-export.php:325 includes/class-wcmp-export.php:344
 msgid "Unknown error"
 msgstr ""
@@ -141,7 +141,7 @@ msgstr ""
 msgid "Unknown"
 msgstr ""
 
-#: includes/class-wcmp-export.php:1055 
+#: includes/class-wcmp-export.php:1055
 #: includes/views/wcmp-bulk-options-form.php:90
 msgid "Order"
 msgstr ""
@@ -234,34 +234,34 @@ msgstr ""
 msgid "bpost pickup"
 msgstr ""
 
-#: includes/class-wcmp-bepostcode-fields.php:258 
-#: includes/class-wcmp-bepostcode-fields.php:433 
+#: includes/class-wcmp-bepostcode-fields.php:258
+#: includes/class-wcmp-bepostcode-fields.php:433
 #: includes/class-wcmp-bepostcode-fields.php:459
 msgid "Street name"
 msgstr ""
 
-#: includes/class-wcmp-bepostcode-fields.php:266 
-#: includes/class-wcmp-bepostcode-fields.php:749 
+#: includes/class-wcmp-bepostcode-fields.php:266
+#: includes/class-wcmp-bepostcode-fields.php:749
 #: includes/class-wcmp-bepostcode-fields.php:750
 msgid "No."
 msgstr ""
 
-#: includes/class-wcmp-bepostcode-fields.php:275 
-#: includes/class-wcmp-bepostcode-fields.php:443 
-#: includes/class-wcmp-bepostcode-fields.php:469 
-#: includes/class-wcmp-bepostcode-fields.php:490 
+#: includes/class-wcmp-bepostcode-fields.php:275
+#: includes/class-wcmp-bepostcode-fields.php:443
+#: includes/class-wcmp-bepostcode-fields.php:469
+#: includes/class-wcmp-bepostcode-fields.php:490
 #: includes/class-wcmp-bepostcode-fields.php:504
 msgid "Suffix"
 msgstr ""
 
-#: includes/class-wcmp-bepostcode-fields.php:438 
-#: includes/class-wcmp-bepostcode-fields.php:464 
-#: includes/class-wcmp-bepostcode-fields.php:486 
+#: includes/class-wcmp-bepostcode-fields.php:438
+#: includes/class-wcmp-bepostcode-fields.php:464
+#: includes/class-wcmp-bepostcode-fields.php:486
 #: includes/class-wcmp-bepostcode-fields.php:500
 msgid "Number"
 msgstr ""
 
-#: includes/class-wcmp-bepostcode-fields.php:482 
+#: includes/class-wcmp-bepostcode-fields.php:482
 #: includes/class-wcmp-bepostcode-fields.php:496
 msgid "Street"
 msgstr ""
@@ -486,9 +486,9 @@ msgstr ""
 msgid "Select one or more shipping methods for each MyParcel BE package type"
 msgstr ""
 
-#: includes/class-wcmp-settings.php:383 
-#: includes/views/wcmp-order-return-shipment-options.php:6 
-#: includes/views/wcmp-order-shipment-options.php:7 
+#: includes/class-wcmp-settings.php:383
+#: includes/views/wcmp-order-return-shipment-options.php:6
+#: includes/views/wcmp-order-shipment-options.php:7
 #: includes/views/wcmp-order-shipment-summary.php:8
 msgid "Shipment type"
 msgstr ""
@@ -523,9 +523,9 @@ msgid ""
 "a maximum insured value of € 500."
 msgstr ""
 
-#: includes/class-wcmp-settings.php:450 includes/class-wcmp-settings.php:832 
-#: includes/views/wcmp-order-return-shipment-options.php:41 
-#: includes/views/wcmp-order-shipment-options.php:68 
+#: includes/class-wcmp-settings.php:450 includes/class-wcmp-settings.php:832
+#: includes/views/wcmp-order-return-shipment-options.php:41
+#: includes/views/wcmp-order-shipment-options.php:68
 #: includes/views/wcmp-order-shipment-summary.php:16
 msgid "Signature on delivery"
 msgstr ""
@@ -548,8 +548,8 @@ msgstr ""
 msgid "Insured shipment (to €500)"
 msgstr ""
 
-#: includes/class-wcmp-settings.php:490 
-#: includes/views/wcmp-order-return-shipment-options.php:123 
+#: includes/class-wcmp-settings.php:490
+#: includes/views/wcmp-order-return-shipment-options.php:123
 #: includes/views/wcmp-order-shipment-options.php:160
 msgid "Insured amount"
 msgstr ""
@@ -764,7 +764,7 @@ msgstr ""
 msgid "Opening hours"
 msgstr ""
 
-#: includes/class-wcmp-settings.php:780 includes/class-wcmp-settings.php:796 
+#: includes/class-wcmp-settings.php:780 includes/class-wcmp-settings.php:796
 #: includes/class-wcmp-settings.php:812 includes/class-wcmp-settings.php:924
 msgid ""
 "When there is no title, the delivery time will automatically be visible."
@@ -831,18 +831,18 @@ msgstr ""
 msgid "Return email successfully sent to customer"
 msgstr ""
 
-#: includes/views/wcmp-order-return-shipment-options.php:8 
+#: includes/views/wcmp-order-return-shipment-options.php:8
 #: includes/views/wcmp-order-shipment-options.php:9
 #, php-format
 msgid "Calculated weight: %s kg"
 msgstr ""
 
-#: includes/views/wcmp-order-return-shipment-options.php:62 
+#: includes/views/wcmp-order-return-shipment-options.php:62
 #: includes/views/wcmp-order-shipment-options.php:97
 msgid "Standard insurance up to €500"
 msgstr ""
 
-#: includes/views/wcmp-order-return-shipment-options.php:140 
+#: includes/views/wcmp-order-return-shipment-options.php:140
 #: includes/views/wcmp-order-shipment-options.php:186
 msgid "Save"
 msgstr ""
@@ -855,7 +855,7 @@ msgstr ""
 msgid "Weight:"
 msgstr ""
 
-#: includes/views/wcmp-order-shipment-options.php:175 
+#: includes/views/wcmp-order-shipment-options.php:175
 #: includes/views/wcmp-order-shipment-summary.php:34
 msgid "Custom ID (top left on label)"
 msgstr ""

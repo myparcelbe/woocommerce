@@ -32,6 +32,9 @@ class WooCommerce_MyParcelBE_Admin {
         // Add barcode in order grid
         add_filter('manage_edit-shop_order_columns', array($this, 'barcode_add_new_order_admin_list_column'), 10, 1);
         add_action('manage_shop_order_posts_custom_column', array($this, 'barcode_add_new_order_admin_list_column_content'), 10, 2);
+
+        // Enables to search for shipment details in the order grid
+        add_filter('woocommerce_shop_order_search_fields', array($this, 'woocommerce_search_order_grid'));
     }
 
     public function order_list_shipment_options($order, $hide = true) {
@@ -442,6 +445,7 @@ class WooCommerce_MyParcelBE_Admin {
 
     public function show_order_delivery_options($order) {
         $delivery_options = WCX_Order::get_meta($order, '_myparcelbe_delivery_options');
+        $shipping_country = WCX_Order::get_prop($order, 'shipping_country');
 
         if ( ! empty($delivery_options) && is_array($delivery_options)) {
             extract($delivery_options);
@@ -466,7 +470,6 @@ class WooCommerce_MyParcelBE_Admin {
                 }
                 $time_title = ! empty($time_title) ? "({$time_title})" : '';
             }
-
             printf(
                 '<div class="delivery-date"><strong>%s: </strong>%s %s</div>',
                 __('Delivery date', 'woocommerce-myparcelbe'),
@@ -566,6 +569,8 @@ class WooCommerce_MyParcelBE_Admin {
         return $shipments;
     }
 
+
+
     /**
      * @snippet       Add Column to Orders Table (e.g. Barcode) - WooCommerce
      *
@@ -589,7 +594,7 @@ class WooCommerce_MyParcelBE_Admin {
         global $post;
 
         if ('barcode' === $column) {
-            $order = \WPO\WC\MyParcelBE\Compatibility\WC_Core::get_order($post->ID);
+            $order = WCX::get_order($post->ID);
             echo $this->get_barcode($order);
         }
     }
@@ -614,6 +619,19 @@ class WooCommerce_MyParcelBE_Admin {
 
         return $barcode;
     }
+
+    /**
+     * @param $search_fields
+     *
+     * @return array
+     */
+    public function woocommerce_search_order_grid($search_fields)
+    {
+        $search_fields[] = '_myparcelbe_shipments';
+
+        return $search_fields;
+    }
+
 }
 
 endif; // class_exists

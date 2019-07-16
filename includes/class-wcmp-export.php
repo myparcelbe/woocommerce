@@ -20,6 +20,9 @@ if ( ! class_exists('WooCommerce_MyParcelBE_Export')) :
         // Maximum characters length of item description.
         const DESCRIPTION_MAX_LENGTH = 50;
 
+        // Maximum items for world shipments
+        const MAX_WORLD_SHIPMENT_ITEMS = 5;
+
         public $order_id;
         public $success;
         public $errors;
@@ -806,6 +809,55 @@ if ( ! class_exists('WooCommerce_MyParcelBE_Export')) :
             // Country (=shop base)
             $country = WC()->countries->get_base_country();
 
+        $items = $this->get_item_data($order, $default_hs_code, $country);
+        // Select first 5 arrays when you have more than 5 items
+        if (count($items) > self::MAX_WORLD_SHIPMENT_ITEMS) {
+            $items = array_slice($items, 0, 5);
+        }
+
+        // Get the total weight of the package
+        $weight = (int) round($this->get_parcel_weight($order) * 1000);
+
+        return compact('weight', 'invoice', 'contents', 'items');
+    }
+
+    /**
+     * @param $order
+     * @param $default_hs_code
+     * @param $country
+     *
+     * @return array
+     */
+    public function get_item_data($order, $default_hs_code, $country)
+    {
+        $items = array();
+        foreach ($order->get_items() as $item_id => $item) {
+            $product = $order->get_product_from_item($item);
+            if ( ! empty($product)) {
+                // GitHub issue https://github.com/myparcelnl/woocommerce/issues/190
+                // Description cut after 50 chars
+                $description = $item['name'];
+                if (strlen($description) >= self::DESCRIPTION_MAX_LENGTH) {
+                    $description = substr($item['name'], 0, 47) . '...';
+                }
+                // Amount
+                $amount = (int) (isset($item['qty']) ? $item['qty'] : 1);
+                // Weight (total item weight in grams)
+                $weight = (int) round($this->get_item_weight_kg($item, $order) * 1000);
+                // Item value (in cents)
+                $item_value = array(
+                    'amount'   => (int) round(($item['line_total'] + $item['line_tax']) * 100),
+                    'currency' => WCX_Order::get_prop($order, 'currency'),
+                );
+                // Classification / HS Code
+                $classification = WCX_Product::get_meta($product, '_myparcel_hs_code', true);
+                if (empty($classification)) {
+                    $classification = $default_hs_code;
+                }
+                // add item to item list
+                $items [] = compact('description', 'amount', 'weight', 'item_value', 'classification', 'country');
+            }
+        }
             $items = array();
             foreach ($order->get_items() as $item_id => $item) {
                 $product = $order->get_product_from_item($item);
@@ -831,8 +883,8 @@ if ( ! class_exists('WooCommerce_MyParcelBE_Export')) :
                 }
             }
 
-            return compact('weight', 'invoice', 'contents', 'items');
-        }
+        return $items;
+    }
 
         public function get_shipment_ids($order_ids, $args)
         {
@@ -1372,43 +1424,43 @@ if ( ! class_exists('WooCommerce_MyParcelBE_Export')) :
             return $shipping_method;
         }
 
-        public function get_shipping_class($shipping_method, $found_shipping_classes)
-        {
-            // get most expensive class
-            // adapted from $shipping_method->calculate_shipping()
-            $highest_class_cost = 0;
-            $highest_class      = false;
-            foreach ($found_shipping_classes as $shipping_class => $products) {
-                // Also handles BW compatibility when slugs were used instead of ids
-                $shipping_class_term = get_term_by('slug', $shipping_class, 'product_shipping_class');
-                $shipping_class_term_id = '';
+    public function get_shipping_class($shipping_method, $found_shipping_classes) {
+        // get most expensive class
+        // adapted from $shipping_method->calculate_shipping()
+        $highest_class_cost = 0;
+        $highest_class = false;
 
-                if ($shipping_class_term != null) {
-                    $shipping_class_term_id = $shipping_class_term->term_id;
-                }
+        foreach ( $found_shipping_classes as $shipping_class => $products ) {
+            // Also handles BW compatibility when slugs were used instead of ids
+            $shipping_class_term = get_term_by('slug', $shipping_class, 'product_shipping_class');
+            $shipping_class_term_id = '';
 
-                $class_cost_string   = $shipping_class_term && $shipping_class_term_id
-                    ? $shipping_method->get_option('class_cost_' . $shipping_class_term_id, $shipping_method->get_option('class_cost_' . $shipping_class, ''))
-                    : $shipping_method->get_option('no_class_cost', '');
+            if ($shipping_class_term != null) {
+                $shipping_class_term_id = $shipping_class_term->term_id;
+            }
+
+            $class_cost_string = $shipping_class_term && $shipping_class_term_id
+                ? $shipping_method->get_option('class_cost_' . $shipping_class_term_id, $shipping_method->get_option('class_cost_' . $shipping_class, $shipping_class_term_id))
+                : $shipping_method->get_option('no_class_cost', '');
 
                 if ($class_cost_string === '') {
                     continue;
                 }
 
-                $has_costs  = true;
-                $class_cost = $this->wc_flat_rate_evaluate_cost(
-                    $class_cost_string,
-                    array(
-                        'qty'  => array_sum(wp_list_pluck($products, 'quantity')),
-                        'cost' => array_sum(wp_list_pluck($products, 'line_total'))
-                    ),
-                    $shipping_method
-                );
-                if ($class_cost > $highest_class_cost && ! empty($shipping_class_term_id)) {
-                    $highest_class_cost = $class_cost;
-                    $highest_class      = $shipping_class_term->term_id;
-                }
+            $has_costs = true;
+            $class_cost = $this->wc_flat_rate_evaluate_cost(
+                $class_cost_string,
+                array(
+                    'qty' => array_sum(wp_list_pluck($products, 'quantity')),
+                    'cost' => array_sum(wp_list_pluck($products, 'line_total'))
+                ),
+                $shipping_method
+            );
+            if ($class_cost > $highest_class_cost && ! empty($shipping_class_term_id)) {
+                $highest_class_cost = $class_cost;
+                $highest_class = $shipping_class_term_id;
             }
+        }
 
             return $highest_class;
         }
@@ -1549,239 +1601,14 @@ if ( ! class_exists('WooCommerce_MyParcelBE_Export')) :
                 ));
         }
 
-        public function is_eu_country($country_code)
-        {
-            $euro_countries = array(
-                'AT',
-                'NL',
-                'BG',
-                'CZ',
-                'DK',
-                'EE',
-                'FI',
-                'FR',
-                'DE',
-                'GR',
-                'HU',
-                'IE',
-                'IT',
-                'LV',
-                'LT',
-                'LU',
-                'PL',
-                'PT',
-                'RO',
-                'SK',
-                'SI',
-                'ES',
-                'SE',
-                'MC',
-                'AL',
-                'AD',
-                'BA',
-                'IC',
-                'FO',
-                'GI',
-                'GL',
-                'GG',
-                'JE',
-                'HR',
-                'LI',
-                'MK',
-                'MD',
-                'ME',
-                'UA',
-                'SM',
-                'RS',
-                'VA',
-                'BY'
-            );
+    public function is_eu_country($country_code) {
+        $euro_countries = array('AT','BE','BG','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','PL','PT','RO','SK','SI','ES','SE','MC','AL','AD','BA','IC','FO','GI','GL','GG','JE','HR','LI','MK','MD','ME','UA','SM','RS','VA','BY');
 
             return in_array($country_code, $euro_countries);
         }
 
-        public function is_world_shipment_country($country_code)
-        {
-            $world_shipment_countries = array(
-                'AF',
-                'AQ',
-                'DZ',
-                'VI',
-                'AO',
-                'AG',
-                'AR',
-                'AM',
-                'AW',
-                'AU',
-                'AZ',
-                'BS',
-                'BH',
-                'BD',
-                'BB',
-                'BZ',
-                'BJ',
-                'BM',
-                'BT',
-                'BO',
-                'BW',
-                'BR',
-                'VG',
-                'BN',
-                'BF',
-                'BI',
-                'KH',
-                'CA',
-                'KY',
-                'CF',
-                'CL',
-                'CN',
-                'CO',
-                'KM',
-                'CG',
-                'CD',
-                'CR',
-                'CU',
-                'DJ',
-                'DM',
-                'DO',
-                'EC',
-                'EG',
-                'SV',
-                'GQ',
-                'ER',
-                'ET',
-                'FK',
-                'FJ',
-                'PH',
-                'GF',
-                'PF',
-                'GA',
-                'GB',
-                'GM',
-                'GE',
-                'GH',
-                'GD',
-                'GP',
-                'GT',
-                'GN',
-                'GW',
-                'GY',
-                'HT',
-                'HN',
-                'HK',
-                'IN',
-                'ID',
-                'IS',
-                'IQ',
-                'IR',
-                'IL',
-                'CI',
-                'JM',
-                'JP',
-                'YE',
-                'JO',
-                'CV',
-                'CM',
-                'KZ',
-                'KE',
-                'KG',
-                'KI',
-                'KW',
-                'LA',
-                'LS',
-                'LB',
-                'LR',
-                'LY',
-                'MO',
-                'MG',
-                'MW',
-                'MV',
-                'MY',
-                'ML',
-                'MA',
-                'MQ',
-                'MR',
-                'MU',
-                'MX',
-                'MN',
-                'MS',
-                'MZ',
-                'MM',
-                'NA',
-                'NR',
-                'NP',
-                'NI',
-                'NC',
-                'NZ',
-                'NE',
-                'NG',
-                'KP',
-                'UZ',
-                'OM',
-                'TL',
-                'PK',
-                'PA',
-                'PG',
-                'PY',
-                'PE',
-                'PN',
-                'PR',
-                'QA',
-                'RE',
-                'RU',
-                'RW',
-                'KN',
-                'LC',
-                'VC',
-                'PM',
-                'WS',
-                'ST',
-                'SA',
-                'SN',
-                'SC',
-                'SL',
-                'SG',
-                'SO',
-                'LK',
-                'SD',
-                'SR',
-                'SZ',
-                'SY',
-                'TJ',
-                'TW',
-                'TZ',
-                'TH',
-                'TG',
-                'TO',
-                'TT',
-                'TD',
-                'TN',
-                'TM',
-                'TC',
-                'TV',
-                'UG',
-                'UY',
-                'VU',
-                'VE',
-                'AE',
-                'US',
-                'VN',
-                'ZM',
-                'ZW',
-                'ZA',
-                'KR',
-                'AN',
-                'BQ',
-                'CW',
-                'SX',
-                'XK',
-                'IM',
-                'MT',
-                'CY',
-                'CH',
-                'TR',
-                'NO'
-            );
+    public function is_world_shipment_country($country_code) {
+        $world_shipment_countries = array('AF','AQ','DZ','VI','AO','AG','AR','AM','AW','AU','AZ','BS','BH','BD','BB','BZ','BJ','BM','BT','BO','BW','BR','VG','BN','BF','BI','KH','CA','KY','CF','CL','CN','CO','KM','CG','CD','CR','CU','DJ','DM','DO','EC','EG','SV','GQ','ER','ET','FK','FJ','PH','GB','GF','PF','GA','GM','GE','GH','GD','GP','GT','GN','GW','GY','HT','HN','HK','IN','ID','IS','IQ','IR','IL','CI','JM','JP','YE','JO','CV','CM','KZ','KE','KG','KI','KW','LA','LS','LB','LR','LY','MO','MG','MW','MV','MY','ML','MA','MQ','MR','MU','MX','MN','MS','MZ','MM','NA','NR','NP','NI','NC','NZ','NE','NG','KP','UZ','OM','TL','PK','PA','PG','PY','PE','PN','PR','QA','RE','RU','RW','KN','LC','VC','PM','WS','ST','SA','SN','SC','SL','SG','SO','LK','SD','SR','SZ','SY','TJ','TW','TZ','TH','TG','TO','TT','TD','TN','TM','TC','TV','UG','UY','VU','VE','AE','US','VN','ZM','ZW','ZA','KR','AN','BQ','CW','SX','XK','IM','MT','CY','CH','TR','NO');
 
             return in_array($country_code, $world_shipment_countries);
         }
