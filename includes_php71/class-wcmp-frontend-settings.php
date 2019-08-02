@@ -5,6 +5,7 @@ if ( ! defined('ABSPATH')) exit;  // Exit if accessed directly
 if ( ! class_exists('WooCommerce_MyParcelBE_Frontend_Settings')) :
 
 /**
+ * @deprecated
  * Frontend settings
  */
 class WooCommerce_MyParcelBE_Frontend_Settings {
@@ -14,12 +15,14 @@ class WooCommerce_MyParcelBE_Frontend_Settings {
     const CARRIER_NAME = "Bpost";
     const BASE_URL = "https://api.myparcel.nl/";
 
+    /**
+     * @var \WPO\WC\MyParcelBE\Collections\SettingsCollection
+     */
     private static $settings;
-    private static $general_settings;
 
     function __construct() {
-        self::$settings = WooCommerce_MyParcelBE()->bpost_settings;
-        self::$general_settings = WooCommerce_MyParcelBE()->general_settings;
+        exit ('dit gaat weg als dat kan');
+        self::$settings = WooCommerce_MyParcelBE()->setting_collection;
     }
 
     /**
