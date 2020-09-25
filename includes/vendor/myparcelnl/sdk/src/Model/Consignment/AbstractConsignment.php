@@ -801,12 +801,12 @@ class AbstractConsignment
             $fullStreet .= ' ' . $this->getNumber();
         }
 
-        if ($this->getNumberSuffix()) {
-            $fullStreet .= ' ' . $this->getNumberSuffix();
-        }
-
         if ($this->getBoxNumber()) {
             $fullStreet .= ' ' . splitstreet::BOX_NL . ' ' . $this->getBoxNumber();
+        }
+
+        if ($this->getNumberSuffix()) {
+            $fullStreet .= ' ' . $this->getNumberSuffix();
         }
 
         return trim($fullStreet);
@@ -837,8 +837,8 @@ class AbstractConsignment
         $fullStreet = SplitStreet::splitStreet($fullStreet, $this->local_cc, $this->getCountry());
         $this->setStreet($fullStreet->getStreet());
         $this->setNumber($fullStreet->getNumber());
-        $this->setNumberSuffix($fullStreet->getNumberSuffix());
         $this->setBoxNumber($fullStreet->getBoxNumber());
+        $this->setNumberSuffix($fullStreet->getNumberSuffix());
 
         return $this;
     }
@@ -921,9 +921,7 @@ class AbstractConsignment
      */
     public function setNumberSuffix(?string $numberSuffix): self
     {
-        if ($numberSuffix) {
-            throw new \BadMethodCallException('Number suffix has to be empty in ' . static::class);
-        }
+        $this->number_suffix = $numberSuffix;
 
         return $this;
     }
@@ -1199,7 +1197,7 @@ class AbstractConsignment
      * @param string|null $delivery_date
      *
      * @return \MyParcelNL\Sdk\src\Model\Consignment\AbstractConsignment
-     * @throws \Exception
+     * @throws \BadMethodCallException
      */
     public function setDeliveryDate(?string $delivery_date): self
     {

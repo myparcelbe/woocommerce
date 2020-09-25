@@ -25,7 +25,7 @@ class ValidateStreet
         ')?$~i';
 
     const SPLIT_STREET_REGEX_BE =
-        '~(?P<street>.*?)\s(?P<street_suffix>(?P<number>\d{1,4})\s?(?P<box_separator>' . self::BOX_NL . '?)?[\s-]?(?P<box_number>\w{0,8}$))$~';
+        '~(?P<street>.*?)\s(?P<street_suffix>(?P<number>[0-9\-]{1,8})\s?(?P<box_separator>' . SplitStreet::BOX_NL . ')?\s?(?P<box_number>\d{0,8})\s?(?P<number_suffix>[A-z]{0,4}$)?)$~';
 
     /**
      * @param string      $fullStreet
@@ -36,8 +36,7 @@ class ValidateStreet
      */
     public static function validate(string $fullStreet, string $localCountry, ?string $destinationCountry): bool
     {
-        $result = preg_match(ValidateStreet::getStreetRegexByCountry($localCountry, $destinationCountry), $fullStreet,
-        $matches);
+        $result = preg_match(ValidateStreet::getStreetRegexByCountry($localCountry, $destinationCountry), $fullStreet, $matches);
 
         if (! $result || ! is_array($matches)) {
             // Invalid full street supplied
@@ -62,16 +61,13 @@ class ValidateStreet
     public static function getStreetRegexByCountry(string $local, string $destination): ?string
     {
         if (
-            ($local === AbstractConsignment::CC_NL && $destination === AbstractConsignment::CC_NL) ||
-            ($local === AbstractConsignment::CC_NL && $destination === AbstractConsignment::CC_BE)
+            ($local === AbstractConsignment::CC_BE && $destination === AbstractConsignment::CC_NL) ||
+            ($local === AbstractConsignment::CC_NL && $destination === AbstractConsignment::CC_NL)
         ) {
             return self::SPLIT_STREET_REGEX_NL;
         }
 
-        if (
-            ($local === AbstractConsignment::CC_BE && $destination === AbstractConsignment::CC_BE) ||
-            ($local === AbstractConsignment::CC_BE && $destination === AbstractConsignment::CC_NL)
-        ) {
+        if ($local === AbstractConsignment::CC_BE && $destination === AbstractConsignment::CC_BE) {
             return self::SPLIT_STREET_REGEX_BE;
         }
 

@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ed5429cd1d5143cd362a06225f0de129",
+    "content-hash": "f415a594a2a3239c4ade5d371ae8ca0d",
     "packages": [
         {
             "name": "myparcelnl/sdk",
-            "version": "v3.0.1",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myparcelnl/sdk.git",
-                "reference": "0c3360c4e8e01fff9d417ea400f5a8e3253576c4"
+                "reference": "8d16ed385bf1e5b9c447d96caa609a84733e7e39"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myparcelnl/sdk/zipball/0c3360c4e8e01fff9d417ea400f5a8e3253576c4",
-                "reference": "0c3360c4e8e01fff9d417ea400f5a8e3253576c4",
+                "url": "https://api.github.com/repos/myparcelnl/sdk/zipball/8d16ed385bf1e5b9c447d96caa609a84733e7e39",
+                "reference": "8d16ed385bf1e5b9c447d96caa609a84733e7e39",
                 "shasum": ""
             },
             "require": {
@@ -65,15 +65,18 @@
                 "myparcel",
                 "postnl"
             ],
-            "time": "2019-10-23T12:47:41+00:00"
+            "time": "2020-09-25T09:41:49+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "myparcelnl/sdk": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }
