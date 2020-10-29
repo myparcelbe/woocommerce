@@ -37,7 +37,7 @@ jQuery(function($) {
     /**
      * @type {Boolean}
      */
-    isUsingSplitAddressFields: Boolean(MyParcelDisplaySettings.isUsingSplitAddressFields),
+    isUsingSplitAddressFields: Boolean(Number(MyParcelDisplaySettings.isUsingSplitAddressFields)),
 
     /**
      * @type {String[]}
@@ -160,7 +160,7 @@ jQuery(function($) {
      * @returns {String}
      */
     getSplitField: function() {
-      return MyParcelFrontend.isUsingSplitAddressFields
+      return MyParcelFrontend.hasSplitAddressFields()
         ? MyParcelFrontend.houseNumberField
         : MyParcelFrontend.addressField;
     },
@@ -190,7 +190,7 @@ jQuery(function($) {
      * Get field by name. Will return element with MyParcelFrontend selector: "#<billing|shipping>_<name>".
      *
      * @param {String} name - The part after `shipping/billing` in the id of an element in WooCommerce.
-     * @param {?String} addressType - Address type.
+     * @param {?String} addressType - "shipping" or "billing".
      *
      * @returns {Element}
      */
@@ -306,6 +306,10 @@ jQuery(function($) {
      * @param {Object} address - The new address.
      */
     setAddress: function(address) {
+      if (!address) {
+        return;
+      }
+
       if (address.postalCode) {
         MyParcelFrontend.getField(MyParcelFrontend.postcodeField).value = address.postalCode;
       }
@@ -500,6 +504,10 @@ jQuery(function($) {
      * @param {String} newCountry
      */
     synchronizeAddress: function(event, newCountry) {
+      if (!MyParcelFrontend.isUsingSplitAddressFields) {
+        return;
+      }
+
       var data = $('form').serializeArray();
 
       ['shipping', 'billing'].forEach(function(addressType) {
