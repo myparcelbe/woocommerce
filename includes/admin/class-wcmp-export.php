@@ -632,7 +632,7 @@ class WCMP_Export
             $pgAddress = WCX_Order::get_meta($order, WCMP_Admin::META_PGADDRESS);
 
             if ($pgAddress) {
-                $processedAddress = self::processPGAddress($order, $isUsingMyParcelFields);
+                $processedAddress = self::processPgAddress($order, $isUsingMyParcelFields);
             }
 
             if (!$pgAddress) {
@@ -1372,7 +1372,7 @@ class WCMP_Export
      * @return array
      * @throws Exception
      */
-    public static function processPGAddress(WC_Order $order, bool $isUsingMyParcelFields): array
+    public static function processPgAddress(WC_Order $order, bool $isUsingMyParcelFields): array
     {
         $billingName = method_exists($order, "get_formatted_billing_full_name")
             ? $order->get_formatted_billing_full_name()
