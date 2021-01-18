@@ -1167,7 +1167,7 @@ class WCMP_Export
     public function filterOrderDestinations(array $order_ids): array
     {
         foreach ($order_ids as $key => $order_id) {
-            $order            = WCX::get_order($order_id);
+            $order           = WCX::get_order($order_id);
             $shippingCountry = WCX_Order::get_prop($order, "shipping_country");
 
             if (! WCMP_Country_Codes::isAllowedDestination($shippingCountry)) {
