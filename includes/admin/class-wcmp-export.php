@@ -629,13 +629,13 @@ class WCMP_Export
         ];
 
         if ($shippingCountry) {
-            $pgAddress = WCX_Order::get_meta($order, WCMP_Admin::META_PGADDRESS);
+            $pickupAddress = WCX_Order::get_meta($order, WCMP_Admin::META_PGADDRESS);
 
-            if ($pgAddress) {
-                $processedAddress = self::processPgAddress($order, $isUsingMyParcelFields);
+            if ($pickupAddress) {
+                $processedAddress = self::processPickupAddress($order, $isUsingMyParcelFields);
             }
 
-            if (!$pgAddress) {
+            if (!$pickupAddress) {
                 $processedAddress = self::processAddress($order, $isUsingMyParcelFields);
             }
         } else {
@@ -1372,7 +1372,7 @@ class WCMP_Export
      * @return array
      * @throws Exception
      */
-    public static function processPgAddress(WC_Order $order, bool $isUsingMyParcelFields): array
+    public static function processPickupAddress(WC_Order $order, bool $isUsingMyParcelFields): array
     {
         $billingName = method_exists($order, "get_formatted_billing_full_name")
             ? $order->get_formatted_billing_full_name()
