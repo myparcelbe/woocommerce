@@ -509,6 +509,7 @@ class WCMPBE_Checkout
            "carrierSettings.$carrier.allowPickupLocations"  => [WCMPBE_Settings::SETTING_CARRIER_PICKUP_ENABLED, 'isEnabled', false],
            "carrierSettings.$carrier.allowSaturdayDelivery" => [WCMPBE_Settings::SETTING_CARRIER_SATURDAY_DELIVERY_ENABLED, 'isEnabled', false],
            "carrierSettings.$carrier.allowSignature"        => [WCMPBE_Settings::SETTING_CARRIER_SIGNATURE_ENABLED, 'isEnabled', false],
+           "carrierSettings.$carrier.allowShowDeliveryDate" => [WCMPBE_Settings::SETTING_CARRIER_DELIVERY_DAYS_WINDOW, 'isEnabled', false],
            "carrierSettings.$carrier.priceEveningDelivery"  => [WCMPBE_Settings::SETTING_CARRIER_DELIVERY_EVENING_FEE, 'getPriceByName', true],
            "carrierSettings.$carrier.priceMondayDelivery"   => [WCMPBE_Settings::SETTING_CARRIER_MONDAY_DELIVERY_FEE, 'getPriceByName', true],
            "carrierSettings.$carrier.priceMorningDelivery"  => [WCMPBE_Settings::SETTING_CARRIER_DELIVERY_MORNING_FEE, 'getPriceByName', true],
