@@ -194,7 +194,7 @@ msgstr "Standaard"
 msgid "Default export settings"
 msgstr "Standaard exportinstellingen"
 
-msgid "product_option_hs_code_helpt_text_%stariff_website%s"
+msgid "product_option_hs_code_help_text_tariff_website"
 msgstr ""
 "HS Codes worden gebruikt voor MyParcel wereldzendingen, je kunt de juiste "
 "code vinden op de %ssite van de Belgische douane%s."

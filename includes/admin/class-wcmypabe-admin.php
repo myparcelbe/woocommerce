@@ -786,7 +786,7 @@ class WCMYPABE_Admin
                 'type'        => 'text',
                 'description' => wc_help_tip(
                     sprintf(
-                        __('product_option_hs_code_helpt_text_%stariff_website%s', 'woocommerce-myparcelbe'),
+                        __('product_option_hs_code_help_text_tariff_website', 'woocommerce-myparcelbe'),
                         '<a href="https://eservices.minfin.fgov.be/extTariffBrowser/Browser" target="_blank">',
                         '</a>'
                     )

@@ -193,7 +193,7 @@ msgstr "Default"
 msgid "Default export settings"
 msgstr "Default export settings"
 
-msgid "product_option_hs_code_helpt_text_%stariff_website%s"
+msgid "product_option_hs_code_help_text_tariff_website"
 msgstr ""
 "HS Codes are used for MyParcel world shipments, you can find the "
 "appropriate code on the %ssite of the Belgium Customs%s"

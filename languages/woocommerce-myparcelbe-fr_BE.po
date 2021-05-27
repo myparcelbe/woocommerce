@@ -198,7 +198,7 @@ msgstr "Défaut"
 msgid "Default export settings"
 msgstr "Paramètres d'exportation standards"
 
-msgid "product_option_hs_code_helpt_text_%stariff_website%s"
+msgid "product_option_hs_code_help_text_tariff_website"
 msgstr ""
 "Codes SH sont utilisés pour les livraisons mondiales MyParcel, vous pouvez "
 "trouver le code approprié sur le %ssite de la douane Belge%s."
