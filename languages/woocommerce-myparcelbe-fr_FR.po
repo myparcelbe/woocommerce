@@ -198,6 +198,11 @@ msgstr "Défaut"
 msgid "Default export settings"
 msgstr "Paramètres d'exportation standards"
 
+msgid "product_option_hs_code_helpt_text_%stariff_website%s"
+msgstr ""
+"Codes SH sont utilisés pour les livraisons mondiales MyParcel, vous pouvez "
+"trouver le code approprié sur le %ssite de la douane Belge%s."
+
 msgid "Default HS Code"
 msgstr "Par défaut Code SH"
 
@@ -383,13 +388,6 @@ msgid ""
 msgstr ""
 "Les codes SH sont utilisés pour les envois dans le monde MyParcel, vous "
 "pouvez trouver le code approprié sur le %ssite de la douane néerlandaise%s"
-
-msgid ""
-"HS Codes are used for MyParcel world shipments, you can find the "
-"appropriate code on the site of the Dutch Customs."
-msgstr ""
-"Codes SH sont utilisés pour les livraisons mondiales MyParcel, vous pouvez "
-"trouver le code approprié sur le site de la douane néerlandaise."
 
 msgid ""
 "If you don't want the parcel to be delivered at the neighbours, choose this "
