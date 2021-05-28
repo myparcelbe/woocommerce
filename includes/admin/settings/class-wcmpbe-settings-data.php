@@ -702,8 +702,8 @@ class WCMPBE_Settings_Data
                 'condition' => WCMPBE_Settings::SETTING_CARRIER_DELIVERY_ENABLED,
                 'label'     => __('feature_allow_show_delivery_date_title', 'woocommerce-myparcel'),
                 'type'      => 'toggle',
-                'help_text' => __('feature_allow_show_delivery_date_help_text', 'woocommerce-myparcel'),
                 'default'   => self::ENABLED,
+                'help_text' => __('feature_allow_show_delivery_date_help_text', 'woocommerce-myparcel'),
             ],
             [
                 "name"      => WCMPBE_Settings::SETTING_CARRIER_SIGNATURE_ENABLED,
@@ -793,8 +793,8 @@ class WCMPBE_Settings_Data
                 'condition' => WCMPBE_Settings::SETTING_CARRIER_DELIVERY_ENABLED,
                 'label'     => __('feature_allow_show_delivery_date_title', 'woocommerce-myparcel'),
                 'type'      => 'toggle',
-                'help_text' => __('feature_allow_show_delivery_date_help_text', 'woocommerce-myparcel'),
                 'default'   => self::ENABLED,
+                'help_text' => __('feature_allow_show_delivery_date_help_text', 'woocommerce-myparcel'),
             ],
         ];
     }
