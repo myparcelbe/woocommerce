@@ -414,6 +414,15 @@ class WCMPBE_Settings_Data
                 "help_text" => __("Show Track & Trace trace code and link in My Account.", "woocommerce-myparcelbe"),
             ],
             [
+                "name"      => WCMPBE_Settings::SETTING_SHOW_DELIVERY_DAY,
+                "label"     => __("Show delivery date", "woocommerce-myparcelbe"),
+                "type"      => "toggle",
+                "help_text" => __(
+                    "Show delivery day options allow your customers to see the delivery day in order confirmation and My Account.",
+                    "woocommerce-myparcelbe"
+                ),
+            ],
+            [
                 "name"      => WCMPBE_Settings::SETTING_PROCESS_DIRECTLY,
                 "label"     => __("Process shipments directly", "woocommerce-myparcelbe"),
                 "type"      => "toggle",
@@ -956,15 +965,6 @@ class WCMPBE_Settings_Data
                 "type"      => "toggle",
                 "help_text" => __(
                     "When enabled the checkout will use the MyParcel address fields. This means there will be three separate fields for street name, number and suffix. Want to use the WooCommerce default fields? Leave this option unchecked.",
-                    "woocommerce-myparcelbe"
-                ),
-            ],
-            [
-                "name"      => WCMPBE_Settings::SETTING_SHOW_DELIVERY_DAY,
-                "label"     => __("Show delivery date", "woocommerce-myparcelbe"),
-                "type"      => "toggle",
-                "help_text" => __(
-                    "Show delivery day options allow your customers to see the delivery day in order confirmation and My Account.",
                     "woocommerce-myparcelbe"
                 ),
             ],

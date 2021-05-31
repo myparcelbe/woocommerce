@@ -152,17 +152,17 @@ class WCMPBE_Upgrade_Migration_v4_0_0 extends WCMPBE_Upgrade_Migration
         $bpost = WCMPBE_Settings::SETTINGS_BPOST;
 
         return [
-            "dropoff_days"             => "{$bpost}_" . WCMPBE_Settings::SETTING_CARRIER_DROP_OFF_DAYS,
-            "cutoff_time"              => "{$bpost}_" . WCMPBE_Settings::SETTING_CARRIER_CUTOFF_TIME,
-            "dropoff_delay"            => "{$bpost}_" . WCMPBE_Settings::SETTING_CARRIER_DROP_OFF_DELAY,
-            "allow_show_delivery_date" => '0' !== "{$bpost}_" . WCMPBE_Settings::SETTING_CARRIER_DELIVERY_DAYS_WINDOW,
-            "signature_enabled"        => "{$bpost}_" . WCMPBE_Settings::SETTING_CARRIER_SIGNATURE_ENABLED,
-            "signature_title"          => "{$bpost}_" . WCMPBE_Settings::SETTING_SIGNATURE_TITLE,
-            "signature_fee"            => "{$bpost}_" . WCMPBE_Settings::SETTING_CARRIER_SIGNATURE_FEE,
-            "delivery_enabled"         => "{$bpost}_" . WCMPBE_Settings::SETTING_CARRIER_DELIVERY_ENABLED,
-            "pickup_enabled"           => "{$bpost}_" . WCMPBE_Settings::SETTING_CARRIER_PICKUP_ENABLED,
-            "pickup_title"             => "{$bpost}_" . WCMPBE_Settings::SETTING_CARRIER_PICKUP_TITLE,
-            "pickup_fee"               => "{$bpost}_" . WCMPBE_Settings::SETTING_CARRIER_PICKUP_FEE,
+            "dropoff_days"        => "{$bpost}_" . WCMPBE_Settings::SETTING_CARRIER_DROP_OFF_DAYS,
+            "cutoff_time"         => "{$bpost}_" . WCMPBE_Settings::SETTING_CARRIER_CUTOFF_TIME,
+            "dropoff_delay"       => "{$bpost}_" . WCMPBE_Settings::SETTING_CARRIER_DROP_OFF_DELAY,
+            "deliverydays_window" => "{$bpost}_" . WCMPBE_Settings::SETTING_CARRIER_DELIVERY_DAYS_WINDOW,
+            "signature_enabled"   => "{$bpost}_" . WCMPBE_Settings::SETTING_CARRIER_SIGNATURE_ENABLED,
+            "signature_title"     => "{$bpost}_" . WCMPBE_Settings::SETTING_SIGNATURE_TITLE,
+            "signature_fee"       => "{$bpost}_" . WCMPBE_Settings::SETTING_CARRIER_SIGNATURE_FEE,
+            "delivery_enabled"    => "{$bpost}_" . WCMPBE_Settings::SETTING_CARRIER_DELIVERY_ENABLED,
+            "pickup_enabled"      => "{$bpost}_" . WCMPBE_Settings::SETTING_CARRIER_PICKUP_ENABLED,
+            "pickup_title"        => "{$bpost}_" . WCMPBE_Settings::SETTING_CARRIER_PICKUP_TITLE,
+            "pickup_fee"          => "{$bpost}_" . WCMPBE_Settings::SETTING_CARRIER_PICKUP_FEE,
         ];
     }
 

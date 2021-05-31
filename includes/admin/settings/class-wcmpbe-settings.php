@@ -43,6 +43,7 @@ class WCMPBE_Settings
     public const SETTING_PROCESS_DIRECTLY          = "process_directly";
     public const SETTING_TRACK_TRACE_EMAIL         = "track_trace_email";
     public const SETTING_TRACK_TRACE_MY_ACCOUNT    = "track_trace_my_account";
+    public const SETTING_SHOW_DELIVERY_DAY         = "show_delivery_day";
 
     /**
      * Export defaults
@@ -68,7 +69,6 @@ class WCMPBE_Settings
     public const SETTING_DELIVERY_OPTIONS_POSITION             = "delivery_options_position";
     public const SETTING_DELIVERY_OPTIONS_PRICE_FORMAT         = "delivery_options_price_format";
     public const SETTINGS_SHOW_DELIVERY_OPTIONS_FOR_BACKORDERS = "delivery_options_enabled_for_backorders";
-    public const SETTING_SHOW_DELIVERY_DAY                     = "show_delivery_day";
     public const SETTING_DELIVERY_TITLE                        = "delivery_title";
     public const SETTING_HEADER_DELIVERY_OPTIONS_TITLE         = "header_delivery_options_title";
     public const SETTING_PICKUP_TITLE                          = "pickup_title";

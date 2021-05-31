@@ -294,7 +294,7 @@ if (! class_exists('WCMYPABE')) :
                 require_once('migration/wcmpbe-upgrade-migration-v3-0-4.php');
             }
 
-            if ($this->phpVersionMeets(\WCMYPABE::PHP_VERSION_7_1)) {
+            if ($this->phpVersionMeets(self::PHP_VERSION_7_1)) {
                 // Import the migration class base
                 require_once('migration/wcmpbe-upgrade-migration.php');
 
@@ -309,6 +309,10 @@ if (! class_exists('WCMYPABE')) :
 
                 if (version_compare($installed_version, '4.2.1', '<=')) {
                     require_once('migration/wcmpbe-upgrade-migration-v4-2-1.php');
+                }
+
+                if (version_compare($installed_version, '4.3.4', '<=')) {
+                    require_once('migration/wcmpbe-upgrade-migration-v4-3-4.php');
                 }
             }
         }
