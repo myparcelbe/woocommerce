@@ -582,10 +582,10 @@ class WCMPBE_Settings_Data
             [
                 'name'      => WCMPBE_Settings::SETTING_CARRIER_ALLOW_SHOW_DELIVERY_DATE,
                 'condition' => WCMPBE_Settings::SETTING_CARRIER_DELIVERY_ENABLED,
-                'label'     => __('feature_allow_show_delivery_date_title', 'woocommerce-myparcel'),
+                'label'     => __('feature_allow_show_delivery_date_title', 'woocommerce-myparcelbe'),
                 'type'      => 'toggle',
                 'default'   => self::ENABLED,
-                'help_text' => __('feature_allow_show_delivery_date_help_text', 'woocommerce-myparcel'),
+                'help_text' => __('feature_allow_show_delivery_date_help_text', 'woocommerce-myparcelbe'),
             ],
             [
                 "name"      => WCMPBE_Settings::SETTING_CARRIER_ONLY_RECIPIENT_ENABLED,
@@ -709,10 +709,10 @@ class WCMPBE_Settings_Data
             [
                 'name'      => WCMPBE_Settings::SETTING_CARRIER_ALLOW_SHOW_DELIVERY_DATE,
                 'condition' => WCMPBE_Settings::SETTING_CARRIER_DELIVERY_ENABLED,
-                'label'     => __('feature_allow_show_delivery_date_title', 'woocommerce-myparcel'),
+                'label'     => __('feature_allow_show_delivery_date_title', 'woocommerce-myparcelbe'),
                 'type'      => 'toggle',
                 'default'   => self::ENABLED,
-                'help_text' => __('feature_allow_show_delivery_date_help_text', 'woocommerce-myparcel'),
+                'help_text' => __('feature_allow_show_delivery_date_help_text', 'woocommerce-myparcelbe'),
             ],
             [
                 "name"      => WCMPBE_Settings::SETTING_CARRIER_SIGNATURE_ENABLED,
@@ -800,10 +800,10 @@ class WCMPBE_Settings_Data
             [
                 'name'      => WCMPBE_Settings::SETTING_CARRIER_ALLOW_SHOW_DELIVERY_DATE,
                 'condition' => WCMPBE_Settings::SETTING_CARRIER_DELIVERY_ENABLED,
-                'label'     => __('feature_allow_show_delivery_date_title', 'woocommerce-myparcel'),
+                'label'     => __('feature_allow_show_delivery_date_title', 'woocommerce-myparcelbe'),
                 'type'      => 'toggle',
                 'default'   => self::ENABLED,
-                'help_text' => __('feature_allow_show_delivery_date_help_text', 'woocommerce-myparcel'),
+                'help_text' => __('feature_allow_show_delivery_date_help_text', 'woocommerce-myparcelbe'),
             ],
         ];
     }

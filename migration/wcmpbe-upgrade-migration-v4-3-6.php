@@ -6,14 +6,14 @@ if (! defined('ABSPATH')) {
     exit;
 }
 
-if (class_exists('WCMPBE_Upgrade_Migration_v4_3_4')) {
-    return new WCMPBE_Upgrade_Migration_v4_3_4();
+if (class_exists('WCMPBE_Upgrade_Migration_v4_3_6')) {
+    return new WCMPBE_Upgrade_Migration_v4_3_6();
 }
 
 /**
- * Migrates pre v4.3.4 settings
+ * Migrates pre v4.3.6 settings
  */
-class WCMPBE_Upgrade_Migration_v4_3_4 extends WCMPBE_Upgrade_Migration
+class WCMPBE_Upgrade_Migration_v4_3_6 extends WCMPBE_Upgrade_Migration
 {
     /**
      * @var array
@@ -83,7 +83,7 @@ class WCMPBE_Upgrade_Migration_v4_3_4 extends WCMPBE_Upgrade_Migration
         unset($this->newCheckoutSettings[WCMPBE_Settings::SETTING_SHOW_DELIVERY_DAY]);
     }
 
-    protected function migrateCarrierSettings(): void
+    private function migrateCarrierSettings(): void
     {
         $this->newBpostSettings = $this->migrateSettings(
             self::getCarrierMap(WCMPBE_Settings::SETTINGS_BPOST),
@@ -115,4 +115,4 @@ class WCMPBE_Upgrade_Migration_v4_3_4 extends WCMPBE_Upgrade_Migration
     }
 }
 
-return new WCMPBE_Upgrade_Migration_v4_3_4();
+return new WCMPBE_Upgrade_Migration_v4_3_6();
