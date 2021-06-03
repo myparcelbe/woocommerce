@@ -12,6 +12,8 @@ if (class_exists('WCMPBE_Upgrade_Migration_v4_3_6')) {
 
 /**
  * Migrates pre v4.3.6 settings
+ *  - setting show delivery day is moved from checkout to general
+ *  - per carrier setting delivery days window is moved to new feature allow show delivery date (1 or 0)
  */
 class WCMPBE_Upgrade_Migration_v4_3_6 extends WCMPBE_Upgrade_Migration
 {

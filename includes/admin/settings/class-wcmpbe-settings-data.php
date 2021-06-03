@@ -414,13 +414,10 @@ class WCMPBE_Settings_Data
                 "help_text" => __("Show Track & Trace trace code and link in My Account.", "woocommerce-myparcelbe"),
             ],
             [
-                "name"      => WCMPBE_Settings::SETTING_SHOW_DELIVERY_DAY,
-                "label"     => __("Show delivery date", "woocommerce-myparcelbe"),
-                "type"      => "toggle",
-                "help_text" => __(
-                    "Show delivery day options allow your customers to see the delivery day in order confirmation and My Account.",
-                    "woocommerce-myparcelbe"
-                ),
+                'name'      => WCMPBE_Settings::SETTING_SHOW_DELIVERY_DAY,
+                'label'     => __('setting_show_delivery_day_title', 'woocommerce-myparcelbe'),
+                'type'      => 'toggle',
+                'help_text' => __('setting_show_delivery_day_help_text', 'woocommerce-myparcelbe'),
             ],
             [
                 "name"      => WCMPBE_Settings::SETTING_PROCESS_DIRECTLY,
