@@ -879,11 +879,12 @@ class WCMPBE_Settings_Data
                 ),
             ],
             [
-                "name"      => WCMPBE_Settings::SETTING_HS_CODE,
-                "label"     => __("Default HS Code", "woocommerce-myparcelbe"),
-                "help_text" => __(
-                    "HS Codes are used for MyParcel world shipments, you can find the appropriate code on the site of the Dutch Customs.",
-                    "woocommerce-myparcelbe"
+                'name'      => WCMPBE_Settings::SETTING_HS_CODE,
+                'label'     => __('Default HS Code', 'woocommerce-myparcelbe'),
+                'help_text' => sprintf(
+                    __('product_option_hs_code_help_text_tariff_website', 'woocommerce-myparcelbe'),
+                    '<a href="https://eservices.minfin.fgov.be/extTariffBrowser/Browser" target="_blank">',
+                    '</a>'
                 ),
             ],
             [
