@@ -414,6 +414,12 @@ class WCMPBE_Settings_Data
                 "help_text" => __("Show Track & Trace trace code and link in My Account.", "woocommerce-myparcelbe"),
             ],
             [
+                'name'      => WCMPBE_Settings::SETTING_SHOW_DELIVERY_DAY,
+                'label'     => __('setting_show_delivery_day_title', 'woocommerce-myparcelbe'),
+                'type'      => 'toggle',
+                'help_text' => __('setting_show_delivery_day_help_text', 'woocommerce-myparcelbe'),
+            ],
+            [
                 "name"      => WCMPBE_Settings::SETTING_PROCESS_DIRECTLY,
                 "label"     => __("Process shipments directly", "woocommerce-myparcelbe"),
                 "type"      => "toggle",
@@ -571,12 +577,12 @@ class WCMPBE_Settings_Data
                 "help_text" => __("Number of days you need to process an order.", "woocommerce-myparcelbe"),
             ],
             [
-                "name"      => WCMPBE_Settings::SETTING_CARRIER_DELIVERY_DAYS_WINDOW,
-                "condition" => WCMPBE_Settings::SETTING_CARRIER_DELIVERY_ENABLED,
-                "label"     => __("Show delivery date", "woocommerce-myparcelbe"),
-                "type"      => "toggle",
-                "default"   => self::ENABLED,
-                "help_text" => __("show_delivery_date_help_text", "woocommerce-myparcelbe"),
+                'name'      => WCMPBE_Settings::SETTING_CARRIER_ALLOW_SHOW_DELIVERY_DATE,
+                'condition' => WCMPBE_Settings::SETTING_CARRIER_DELIVERY_ENABLED,
+                'label'     => __('feature_allow_show_delivery_date_title', 'woocommerce-myparcelbe'),
+                'type'      => 'toggle',
+                'default'   => self::ENABLED,
+                'help_text' => __('feature_allow_show_delivery_date_help_text', 'woocommerce-myparcelbe'),
             ],
             [
                 "name"      => WCMPBE_Settings::SETTING_CARRIER_ONLY_RECIPIENT_ENABLED,
@@ -698,12 +704,12 @@ class WCMPBE_Settings_Data
                 "help_text" => __("Number of days you need to process an order.", "woocommerce-myparcelbe"),
             ],
             [
-                "name"      => WCMPBE_Settings::SETTING_CARRIER_DELIVERY_DAYS_WINDOW,
-                "condition" => WCMPBE_Settings::SETTING_CARRIER_DELIVERY_ENABLED,
-                "label"     => __("Show delivery date", "woocommerce-myparcelbe"),
-                "type"      => "toggle",
-                "default"   => self::ENABLED,
-                "help_text" => __("show_delivery_date_help_text", "woocommerce-myparcelbe"),
+                'name'      => WCMPBE_Settings::SETTING_CARRIER_ALLOW_SHOW_DELIVERY_DATE,
+                'condition' => WCMPBE_Settings::SETTING_CARRIER_DELIVERY_ENABLED,
+                'label'     => __('feature_allow_show_delivery_date_title', 'woocommerce-myparcelbe'),
+                'type'      => 'toggle',
+                'default'   => self::ENABLED,
+                'help_text' => __('feature_allow_show_delivery_date_help_text', 'woocommerce-myparcelbe'),
             ],
             [
                 "name"      => WCMPBE_Settings::SETTING_CARRIER_SIGNATURE_ENABLED,
@@ -789,12 +795,12 @@ class WCMPBE_Settings_Data
                 "help_text" => __("Number of days you need to process an order.", "woocommerce-myparcelbe"),
             ],
             [
-                "name"      => WCMPBE_Settings::SETTING_CARRIER_DELIVERY_DAYS_WINDOW,
-                "condition" => WCMPBE_Settings::SETTING_CARRIER_DELIVERY_ENABLED,
-                "label"     => __("Show delivery date", "woocommerce-myparcelbe"),
-                "type"      => "toggle",
-                "default"   => self::ENABLED,
-                "help_text" => __("show_delivery_date_help_text", "woocommerce-myparcelbe"),
+                'name'      => WCMPBE_Settings::SETTING_CARRIER_ALLOW_SHOW_DELIVERY_DATE,
+                'condition' => WCMPBE_Settings::SETTING_CARRIER_DELIVERY_ENABLED,
+                'label'     => __('feature_allow_show_delivery_date_title', 'woocommerce-myparcelbe'),
+                'type'      => 'toggle',
+                'default'   => self::ENABLED,
+                'help_text' => __('feature_allow_show_delivery_date_help_text', 'woocommerce-myparcelbe'),
             ],
         ];
     }
@@ -957,15 +963,6 @@ class WCMPBE_Settings_Data
                 "type"      => "toggle",
                 "help_text" => __(
                     "When enabled the checkout will use the MyParcel address fields. This means there will be three separate fields for street name, number and suffix. Want to use the WooCommerce default fields? Leave this option unchecked.",
-                    "woocommerce-myparcelbe"
-                ),
-            ],
-            [
-                "name"      => WCMPBE_Settings::SETTING_SHOW_DELIVERY_DAY,
-                "label"     => __("Show delivery date", "woocommerce-myparcelbe"),
-                "type"      => "toggle",
-                "help_text" => __(
-                    "Show delivery day options allow your customers to see the delivery day in order confirmation and My Account.",
                     "woocommerce-myparcelbe"
                 ),
             ],

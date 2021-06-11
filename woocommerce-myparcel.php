@@ -4,7 +4,7 @@ Plugin Name: WC MyParcel Belgium
 Plugin URI: https://sendmyparcel.be/
 Description: Export your WooCommerce orders to MyParcel BE (https://sendmyparcel.be/) and print labels directly from the WooCommerce admin
 Author: Richard Perdaan
-Version: 4.3.5
+Version: 4.3.6
 Text Domain: woocommerce-myparcelbe
 
 License: GPLv3 or later
@@ -27,7 +27,7 @@ if (! class_exists('WCMYPABE')) :
         const PHP_VERSION_7_1      = '7.1';
         const PHP_VERSION_REQUIRED = self::PHP_VERSION_7_1;
 
-        public $version = '4.3.5';
+        public $version = '4.3.6';
 
         public $plugin_basename;
 
@@ -294,7 +294,7 @@ if (! class_exists('WCMYPABE')) :
                 require_once('migration/wcmpbe-upgrade-migration-v3-0-4.php');
             }
 
-            if ($this->phpVersionMeets(\WCMYPABE::PHP_VERSION_7_1)) {
+            if ($this->phpVersionMeets(self::PHP_VERSION_7_1)) {
                 // Import the migration class base
                 require_once('migration/wcmpbe-upgrade-migration.php');
 
@@ -309,6 +309,10 @@ if (! class_exists('WCMYPABE')) :
 
                 if (version_compare($installed_version, '4.2.1', '<=')) {
                     require_once('migration/wcmpbe-upgrade-migration-v4-2-1.php');
+                }
+
+                if (version_compare($installed_version, '4.3.6', '<')) {
+                    require_once('migration/wcmpbe-upgrade-migration-v4-3-6.php');
                 }
             }
         }
