@@ -130,15 +130,19 @@ class WCMP_ShipmentOptionsFromOrderAdapter extends AbstractShipmentOptionsAdapte
      */
     private function isInsuranceFromOptions(array $options, ?AbstractShipmentOptionsAdapter $shipmentOptionsAdapter): ?int
     {
-        if (array_key_exists('insured', $options)) {
-            return (int) $options['insured'];
-        }
+	    if (array_key_exists('insured', $options)) {
+		    if ($options['insured']) {
+			    return (int) $options['insured'];
+		    }
 
-        if ($shipmentOptionsAdapter) {
-            return $shipmentOptionsAdapter->getInsurance();
-        }
+		    return self::DEFAULT_INSURANCE;
+	    }
 
-        return self::DEFAULT_INSURANCE;
+	    if ($shipmentOptionsAdapter) {
+		    return $shipmentOptionsAdapter->getInsurance();
+	    }
+
+	    return null;
     }
 
     /**

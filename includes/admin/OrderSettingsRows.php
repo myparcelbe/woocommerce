@@ -148,7 +148,6 @@ class OrderSettingsRows
             ];
         }
 
-
         $rows[] = [
             "name"  => self::OPTION_SHIPMENT_OPTIONS_LABEL_DESCRIPTION,
             "type"  => "text",
