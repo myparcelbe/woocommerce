@@ -645,6 +645,12 @@ class WCMPBE_Settings_Data
     private function get_section_carrier_bpost_export_defaults(): array
     {
         return [
+	        [
+		        "name"      => WCMPBE_Settings::SETTING_CARRIER_DEFAULT_EXPORT_SIGNATURE,
+		        "label"     => __("shipment_options_signature", "woocommerce-myparcelbe"),
+		        "help_text" => __("shipment_options_signature_help_text", "woocommerce-myparcelbe"),
+		        "type"      => "toggle",
+	        ],
             [
                 "name"      => WCMPBE_Settings::SETTING_CARRIER_DEFAULT_EXPORT_INSURED,
                 "label"     => __("shipment_options_insured", "woocommerce-myparcelbe"),
