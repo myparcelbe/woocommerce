@@ -518,6 +518,12 @@ class WCMPBE_Settings_Data
                 "help_text" => __("shipment_options_signature_help_text", "woocommerce-myparcelbe"),
                 "type"      => "toggle",
             ],
+	        [
+		        "name"      => WCMPBE_Settings::SETTING_CARRIER_DEFAULT_EXPORT_LARGE_FORMAT,
+		        "label"     => __("shipment_options_large_format", "woocommerce-myparcelbe"),
+		        "help_text" => __("shipment_options_large_format_help_text", "woocommerce-myparcelbe"),
+		        "type"      => "toggle",
+	        ],
             [
                 "name"      => WCMPBE_Settings::SETTING_CARRIER_DEFAULT_EXPORT_INSURED,
                 "label"     => __("shipment_options_insured", "woocommerce-myparcelbe"),
