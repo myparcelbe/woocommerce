@@ -653,39 +653,40 @@ class WCMPBE_Export
      * @return mixed|void
      * @throws Exception
      */
-    public static function getRecipientFromOrder(WC_Order $order) {
-	    $fullStreet          = WCX_Order::get_prop($order, "shipping_address_1" );
-	    $shippingStreetName  = WCX_Order::has_meta($order, "_shipping_street_name" );
-	    $shippingHouseNumber = WCX_Order::has_meta($order, "_shipping_house_number" );
+    public static function getRecipientFromOrder( WC_Order $order ): void
+    {
+        $fullStreet          = WCX_Order::get_prop( $order, "shipping_address_1" );
+        $shippingStreetName  = WCX_Order::has_meta( $order, "_shipping_street_name" );
+        $shippingHouseNumber = WCX_Order::has_meta( $order, "_shipping_house_number" );
 
-	    if ($shippingStreetName && $shippingHouseNumber ) {
-		    $street = WCX_Order::get_meta($order, "_shipping_street_name" );
-		    $number = WCX_Order::get_meta($order, "_shipping_house_number" );
-		    $suffix = WCX_Order::get_meta($order, "_shipping_house_number_suffix" );
+        if ($shippingStreetName && $shippingHouseNumber) {
+            $street = WCX_Order::get_meta( $order, "_shipping_street_name" );
+            $number = WCX_Order::get_meta( $order, "_shipping_house_number" );
+            $suffix = WCX_Order::get_meta( $order, "_shipping_house_number_suffix" );
 
-		    $fullStreet = $street . ' ' . $number . ' ' . $suffix;
-	    }
+            $fullStreet = $street . ' ' . $number . ' ' . $suffix;
+        }
 
-	    $shipping_name = method_exists($order, "get_formatted_shipping_full_name" )
-		    ? $order->get_formatted_shipping_full_name()
-		    : trim($order->get_shipping_first_name() . " " . $order->get_shipping_last_name() );
+        $shipping_name = method_exists( $order, "get_formatted_shipping_full_name" )
+            ? $order->get_formatted_shipping_full_name()
+            : trim( $order->get_shipping_first_name() . " " . $order->get_shipping_last_name() );
 
-	    $connectEmail = WCMYPABE()->setting_collection->isEnabled(WCMPBE_Settings::SETTING_CONNECT_EMAIL );
-	    $connectPhone = WCMYPABE()->setting_collection->isEnabled(WCMPBE_Settings::SETTING_CONNECT_PHONE );
+        $connectEmail = WCMYPABE()->setting_collection->isEnabled( WCMPBE_Settings::SETTING_CONNECT_EMAIL );
+        $connectPhone = WCMYPABE()->setting_collection->isEnabled( WCMPBE_Settings::SETTING_CONNECT_PHONE );
 
-	    $address = [
-		    "cc"                     => (string) WCX_Order::get_prop($order, "shipping_country" ),
-		    "city"                   => (string) WCX_Order::get_prop($order, "shipping_city" ),
-		    "fullStreet"             => $fullStreet,
-		    "postal_code"            => (string) WCX_Order::get_prop($order, "shipping_postcode" ),
-		    "person"                 => $shipping_name,
-		    "company"                => (string) WCX_Order::get_prop($order, "shipping_company" ),
-		    "email"                  => $connectEmail ? WCX_Order::get_prop($order, "billing_email" ) : "",
-		    "phone"                  => $connectPhone ? WCX_Order::get_prop($order, "billing_phone" ) : "",
-		    "street_additional_info" => WCX_Order::get_prop($order, "shipping_address_2" ),
-	    ];
+        $address = [
+            "cc"                     => (string) WCX_Order::get_prop( $order, "shipping_country" ),
+            "city"                   => (string) WCX_Order::get_prop( $order, "shipping_city" ),
+            "fullStreet"             => $fullStreet,
+            "postal_code"            => (string) WCX_Order::get_prop( $order, "shipping_postcode" ),
+            "person"                 => $shipping_name,
+            "company"                => (string) WCX_Order::get_prop( $order, "shipping_company" ),
+            "email"                  => $connectEmail ? WCX_Order::get_prop( $order, "billing_email" ) : "",
+            "phone"                  => $connectPhone ? WCX_Order::get_prop( $order, "billing_phone" ) : "",
+            "street_additional_info" => WCX_Order::get_prop( $order, "shipping_address_2" ),
+        ];
 
-	    return apply_filters("wc_myparcelbe_recipient", $address, $order );
+        return apply_filters( "wc_myparcelbe_recipient", $address, $order );
     }
 
     /**
