@@ -316,7 +316,8 @@ class WCMPBE_Export_Consignments
      *
      * @throws Exception
      */
-	private function setRecipient(): void {
+	private function setRecipient(): void
+    {
 		$recipient = WCMPBE_Export::getRecipientFromOrder($this->order );
 
 		$this->consignment
