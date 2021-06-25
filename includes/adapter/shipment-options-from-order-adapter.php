@@ -162,10 +162,7 @@ class WCMP_ShipmentOptionsFromOrderAdapter extends AbstractShipmentOptionsAdapte
      *
      * @return string|null
      */
-    private function getLabelDescriptionFromOptions(
-        array $options,
-        ?AbstractShipmentOptionsAdapter $shipmentOptionsAdapter
-    ): ?string
+    private function getLabelDescriptionFromOptions(array $options, ?AbstractShipmentOptionsAdapter $shipmentOptionsAdapter): ?string
     {
         if (array_key_exists('label_description', $options)) {
             return $options['label_description'];

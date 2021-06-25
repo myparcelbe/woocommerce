@@ -194,11 +194,11 @@ class WCMPBE_Export_Consignments
 
             $this->consignment->addItem(
                 (new MyParcelCustomsItem())->setDescription($description)
-                                           ->setAmount($amount)
-                                           ->setWeight($weight)
-                                           ->setItemValue($value)
-                                           ->setCountry($country)
-                                           ->setClassification($this->getHsCode($product))
+                    ->setAmount($amount)
+                    ->setWeight($weight)
+                    ->setItemValue($value)
+                    ->setCountry($country)
+                    ->setClassification($this->getHsCode($product))
             );
         }
     }
@@ -447,9 +447,7 @@ class WCMPBE_Export_Consignments
         // Checks if all parcels must be insured
         if ($isInsuranceActive) {
             // get min price for insurance
-            $insuranceFromPrice = (float)$this->getSetting("{$this->carrier}_" .
-                                                           WCMPBE_Settings::SETTING_CARRIER_DEFAULT_EXPORT_INSURED_FROM_PRICE
-            );
+            $insuranceFromPrice = (float)$this->getSetting("{$this->carrier}_" . WCMPBE_Settings::SETTING_CARRIER_DEFAULT_EXPORT_INSURED_FROM_PRICE);
 
             $insuranceMaxPrice = 500;
 

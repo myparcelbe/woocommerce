@@ -84,7 +84,7 @@ class WCMPBE_Export
 
         if ($orderId && $automaticExport) {
             $export = new self();
-            $export->addShipments([(string) $orderId], 0, false);
+            $export->addShipments([(string)$orderId], 0, false);
         }
     }
 
@@ -92,7 +92,7 @@ class WCMPBE_Export
      * Get the value of a shipment option. Check if it was set manually, through the delivery options for example,
      *  if not get the value of the default export setting for given settingName.
      *
-     * @param mixed  $option      Chosen value.
+     * @param mixed  $option Chosen value.
      * @param string $settingName Name of the setting to fall back to if there is no chosen value.
      *
      * @return mixed
@@ -236,7 +236,7 @@ class WCMPBE_Export
 
         $dialog  = $_REQUEST["dialog"] ?? null;
         $print   = $_REQUEST["print"] ?? null;
-        $offset  = (int) ($_REQUEST["offset"] ?? 0);
+        $offset  = (int)($_REQUEST["offset"] ?? 0);
         $request = $_REQUEST["request"];
 
         /**
@@ -271,7 +271,7 @@ class WCMPBE_Export
                         break;
                 }
             } catch (Exception $e) {
-                $errorMessage = $e->getMessage();
+                $errorMessage   = $e->getMessage();
                 $this->errors[] = "$request: {$errorMessage}";
                 add_option("wcmyparcelbe_admin_error_notices", $errorMessage);
             }
@@ -314,7 +314,7 @@ class WCMPBE_Export
             $array = json_decode(stripslashes($array));
         }
 
-        return (array) $array;
+        return (array)$array;
     }
 
     /**
@@ -455,7 +455,7 @@ class WCMPBE_Export
                     throw new Exception("\$response\[\"body.data.ids\"] empty or not found.");
                 }
             } catch (Exception $e) {
-                $errorMessage = $e->getMessage();
+                $errorMessage            = $e->getMessage();
                 $this->errors[$order_id] = $errorMessage;
                 add_option('wcmyparcelbe_admin_error_notices', $errorMessage);
             }
@@ -478,7 +478,8 @@ class WCMPBE_Export
         array $order_ids = [],
         int $offset = 0,
         string $displayOverride = null
-    ) {
+    )
+    {
         $return = [];
 
         WCMPBE_Log::add("*** downloadOrGetUrlOfLabels() ***");
@@ -517,9 +518,9 @@ class WCMPBE_Export
             WCMPBE_Log::add(" *** Failed label request(not exported yet) ***");
 
             throw new Exception(__(
-                "The selected orders have not been exported to MyParcel yet! ",
-                "woocommerce-myparcelbe"
-            ));
+                                    "The selected orders have not been exported to MyParcel yet! ",
+                                    "woocommerce-myparcelbe"
+                                ));
         }
 
         return $this->downloadOrGetUrlOfLabels(
@@ -541,7 +542,7 @@ class WCMPBE_Export
         }
 
         // cast as array for single exports
-        $order_ids = (array) $order_ids;
+        $order_ids = (array)$order_ids;
         require("views/html-send-return-email-form.php");
         die();
     }
@@ -574,7 +575,7 @@ class WCMPBE_Export
     /**
      * TODO: There are no options being passed right now but these will be necessary for BE.
      *
-     * @param $order_id
+     * @param            $order_id
      * @param array|null $options
      *
      * @return array
@@ -605,7 +606,7 @@ class WCMPBE_Export
             if (! isset($options["insurance"]) && isset($options["insured_amount"])) {
                 if ($options["insured_amount"] > 0) {
                     $options["insurance"] = [
-                        "amount"   => (int) $options["insured_amount"] * 100,
+                        "amount"   => (int)$options["insured_amount"] * 100,
                         "currency" => "EUR",
                     ];
                 }
@@ -617,7 +618,7 @@ class WCMPBE_Export
             $int_options = ["package_type", "delivery_type", "signature", "return "];
             foreach ($options as $key => &$value) {
                 if (in_array($key, $int_options)) {
-                    $value = (int) $value;
+                    $value = (int)$value;
                 }
             }
             // remove frontend insurance option values
@@ -633,7 +634,7 @@ class WCMPBE_Export
 
         // get parent
         $shipment_ids = $this->getShipmentIds(
-            (array) $order_id,
+            (array)$order_id,
             [
                 "exclude_concepts" => true,
                 "only_last"        => true,
@@ -641,7 +642,7 @@ class WCMPBE_Export
         );
 
         if (! empty($shipment_ids)) {
-            $return_shipment_data["parent"] = (int) array_pop($shipment_ids);
+            $return_shipment_data["parent"] = (int)array_pop($shipment_ids);
         }
 
         return $return_shipment_data;
@@ -653,44 +654,44 @@ class WCMPBE_Export
      * @return mixed|void
      * @throws Exception
      */
-    public static function getRecipientFromOrder( WC_Order $order ): void
+    public static function getRecipientFromOrder(WC_Order $order)
     {
-        $fullStreet          = WCX_Order::get_prop( $order, "shipping_address_1" );
-        $shippingStreetName  = WCX_Order::has_meta( $order, "_shipping_street_name" );
-        $shippingHouseNumber = WCX_Order::has_meta( $order, "_shipping_house_number" );
+        $fullStreet          = WCX_Order::get_prop($order, "shipping_address_1");
+        $shippingStreetName  = WCX_Order::has_meta($order, "_shipping_street_name");
+        $shippingHouseNumber = WCX_Order::has_meta($order, "_shipping_house_number");
 
         if ($shippingStreetName && $shippingHouseNumber) {
-            $street = WCX_Order::get_meta( $order, "_shipping_street_name" );
-            $number = WCX_Order::get_meta( $order, "_shipping_house_number" );
-            $suffix = WCX_Order::get_meta( $order, "_shipping_house_number_suffix" );
+            $street = WCX_Order::get_meta($order, "_shipping_street_name");
+            $number = WCX_Order::get_meta($order, "_shipping_house_number");
+            $suffix = WCX_Order::get_meta($order, "_shipping_house_number_suffix");
 
             $fullStreet = $street . ' ' . $number . ' ' . $suffix;
         }
 
-        $shipping_name = method_exists( $order, "get_formatted_shipping_full_name" )
+        $shipping_name = method_exists($order, "get_formatted_shipping_full_name")
             ? $order->get_formatted_shipping_full_name()
-            : trim( $order->get_shipping_first_name() . " " . $order->get_shipping_last_name() );
+            : trim($order->get_shipping_first_name() . " " . $order->get_shipping_last_name());
 
-        $connectEmail = WCMYPABE()->setting_collection->isEnabled( WCMPBE_Settings::SETTING_CONNECT_EMAIL );
-        $connectPhone = WCMYPABE()->setting_collection->isEnabled( WCMPBE_Settings::SETTING_CONNECT_PHONE );
+        $connectEmail = WCMYPABE()->setting_collection->isEnabled(WCMPBE_Settings::SETTING_CONNECT_EMAIL);
+        $connectPhone = WCMYPABE()->setting_collection->isEnabled(WCMPBE_Settings::SETTING_CONNECT_PHONE);
 
         $address = [
-            "cc"                     => (string) WCX_Order::get_prop( $order, "shipping_country" ),
-            "city"                   => (string) WCX_Order::get_prop( $order, "shipping_city" ),
+            "cc"                     => (string)WCX_Order::get_prop($order, "shipping_country"),
+            "city"                   => (string)WCX_Order::get_prop($order, "shipping_city"),
             "fullStreet"             => $fullStreet,
-            "postal_code"            => (string) WCX_Order::get_prop( $order, "shipping_postcode" ),
+            "postal_code"            => (string)WCX_Order::get_prop($order, "shipping_postcode"),
             "person"                 => $shipping_name,
-            "company"                => (string) WCX_Order::get_prop( $order, "shipping_company" ),
-            "email"                  => $connectEmail ? WCX_Order::get_prop( $order, "billing_email" ) : "",
-            "phone"                  => $connectPhone ? WCX_Order::get_prop( $order, "billing_phone" ) : "",
-            "street_additional_info" => WCX_Order::get_prop( $order, "shipping_address_2" ),
+            "company"                => (string)WCX_Order::get_prop($order, "shipping_company"),
+            "email"                  => $connectEmail ? WCX_Order::get_prop($order, "billing_email") : "",
+            "phone"                  => $connectPhone ? WCX_Order::get_prop($order, "billing_phone") : "",
+            "street_additional_info" => WCX_Order::get_prop($order, "shipping_address_2"),
         ];
 
-        return apply_filters( "wc_myparcelbe_recipient", $address, $order );
+        return apply_filters("wc_myparcelbe_recipient", $address, $order);
     }
 
     /**
-     * @param int $order_id
+     * @param int   $order_id
      * @param array $track_traces
      *
      * @internal param $shipment_ids
@@ -849,7 +850,8 @@ class WCMPBE_Export
         // Get pre 4.0.0 package type if it exists.
         if (WCX_Order::has_meta($order, WCMYPABE_Admin::META_SHIPMENT_OPTIONS_LT_4_0_0)) {
             $shipmentOptions = WCX_Order::get_meta($order, WCMYPABE_Admin::META_SHIPMENT_OPTIONS_LT_4_0_0);
-            return (string) WCMPBE_Data::getPackageTypeId($shipmentOptions['package_type']);
+
+            return (string)WCMPBE_Data::getPackageTypeId($shipmentOptions['package_type']);
         }
 
         $packageType = AbstractConsignment::DEFAULT_PACKAGE_TYPE_NAME;
@@ -1102,7 +1104,7 @@ class WCMPBE_Export
     public static function convertWeightToGrams($weight): int
     {
         $weightUnit  = get_option('woocommerce_weight_unit');
-        $floatWeight = (float) $weight;
+        $floatWeight = (float)$weight;
 
         switch ($weightUnit) {
             case 'kg':
@@ -1119,7 +1121,7 @@ class WCMPBE_Export
                 break;
         }
 
-        return (int) ceil($weight);
+        return (int)ceil($weight);
     }
 
     /**
@@ -1347,7 +1349,7 @@ class WCMPBE_Export
     }
 
     /**
-     * @param int               $colloAmount
+     * @param int                 $colloAmount
      * @param MyParcelCollection  $collection
      * @param AbstractConsignment $consignment
      *
@@ -1408,7 +1410,8 @@ class WCMPBE_Export
         $package_type_shipping_methods,
         $shipping_method_id_class,
         $shipping_class
-    ) {
+    )
+    {
         //support WooCommerce flat rate
         // check if we have a match with the predefined methods
         if (in_array($shipping_method_id, $package_type_shipping_methods)) {
@@ -1547,11 +1550,13 @@ class WCMPBE_Export
         OrderSettings $orderSettings,
         MyParcelCollection $collection,
         AbstractConsignment $consignment
-    ): void {
+    ): void
+    {
         $colloAmount = $orderSettings->getColloAmount();
 
         if ($colloAmount > 1) {
             $this->addMultiCollo($orderSettings, $collection, $consignment);
+
             return;
         }
 
