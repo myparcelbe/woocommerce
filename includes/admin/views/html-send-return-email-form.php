@@ -38,7 +38,6 @@ $target_url = wp_nonce_url(
                     continue;
                 }
 
-                $recipient     = WCMPBE_Export::getRecipientFromOrder($order);
                 $package_types = WCMPBE_Data::getPackageTypes();
                 ?>
                 <tr
@@ -107,42 +106,27 @@ $target_url = wp_nonce_url(
                                         </tfoot>
                                     </table>
                                 </td>
-                                <td>
-                                    <?php
-                                    if (WCMPBE_Data::isHomeCountry($shipping_country)
-                                    && (empty($recipient['street']) || empty($recipient['number']))): ?>
-                                    <p>
-                                        <span style="color:red">
-                                            <?php __(
-                                                "This order does not contain valid street and house number data and cannot be exported because of this! This order was probably placed before the MyParcel BE plugin was activated. The address data can still be manually entered in the order screen.",
-                                                "woocommerce-myparcelbe"
-                                            ); ?>
-                                        </span>
-                                    </p>
-                                </td>
                             </tr> <!-- last row -->
-                            <?php else: // required address data is available
-                                // print address
-                                echo '<p>' . $order->get_formatted_shipping_address() . '<br/>' . WCX_Order::get_prop(
-                                        $order,
-                                        'billing_phone'
-                                    ) . '<br/>' . WCX_Order::get_prop($order, 'billing_email') . '</p>';
-                                ?>
-                                </td></tr>
-                                <tr>
-                                    <td
-                                        colspan="2" class="wcmpbe__shipment-options">
-                                        <?php
-                                        $skip_save = true; // dont show save button for each order
-                                        if (isset($dialog) && $dialog === 'shipment') {
-                                            include('html-order-shipment-options.php');
-                                        } else {
-                                            include('html-order-return-shipment-options.php');
-                                        }
-                                        ?>
-                                    </td>
-                                </tr>
-                            <?php endif; ?>
+                            <?php
+                            echo '<p>' . $order->get_formatted_shipping_address() . '<br/>' . WCX_Order::get_prop(
+                                    $order,
+                                    'billing_phone'
+                                ) . '<br/>' . WCX_Order::get_prop($order, 'billing_email') . '</p>';
+                            ?>
+                            </td></tr>
+                            <tr>
+                                <td
+                                    colspan="2" class="wcmpbe__shipment-options">
+                                    <?php
+                                    $skip_save = true; // dont show save button for each order
+                                    if (isset($dialog) && $dialog === 'shipment') {
+                                        include('html-order-shipment-options.php');
+                                    } else {
+                                        include('html-order-return-shipment-options.php');
+                                    }
+                                    ?>
+                                </td>
+                            </tr>
                         </table>
                     </td>
                 </tr>

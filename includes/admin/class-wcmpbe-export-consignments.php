@@ -316,24 +316,20 @@ class WCMPBE_Export_Consignments
      *
      * @throws Exception
      */
-    private function setRecipient(): void
-    {
-        $recipient = WCMPBE_Export::getRecipientFromOrder($this->order);
+	private function setRecipient(): void {
+		$recipient = WCMPBE_Export::getRecipientFromOrder($this->order );
 
-        $this->consignment
-            ->setCountry($recipient['cc'])
-            ->setPerson($recipient['person'])
-            ->setCompany($recipient['company'])
-            ->setStreet($recipient['street'])
-            ->setNumber($recipient['number'] ?? null)
-            ->setNumberSuffix($recipient['number_suffix'] ?? null)
-            ->setStreetAdditionalInfo($recipient['street_additional_info'] ?? null)
-            ->setPostalCode($recipient['postal_code'])
-            ->setCity($recipient['city'])
-            ->setEmail($recipient['email'])
-            ->setPhone($recipient['phone'])
-            ->setSaveRecipientAddress(false);
-    }
+		$this->consignment
+			->setCountry($recipient['cc'] )
+			->setPerson($recipient['person'] )
+			->setCompany($recipient['company'] )
+			->setFullStreet($recipient['fullStreet'] )
+			->setPostalCode($recipient['postal_code'] )
+			->setCity($recipient['city'] )
+			->setEmail($recipient['email'] )
+			->setPhone($recipient['phone'] )
+			->setSaveRecipientAddress(false );
+	}
 
     /**
      * @throws ErrorException
