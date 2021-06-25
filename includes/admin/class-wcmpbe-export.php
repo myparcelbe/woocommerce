@@ -478,8 +478,7 @@ class WCMPBE_Export
         array $order_ids = [],
         int $offset = 0,
         string $displayOverride = null
-    )
-    {
+    ) {
         $return = [];
 
         WCMPBE_Log::add("*** downloadOrGetUrlOfLabels() ***");
@@ -517,10 +516,7 @@ class WCMPBE_Export
         if (empty($shipment_ids)) {
             WCMPBE_Log::add(" *** Failed label request(not exported yet) ***");
 
-            throw new Exception(__(
-                                    "The selected orders have not been exported to MyParcel yet! ",
-                                    "woocommerce-myparcelbe"
-                                ));
+            throw new Exception(__("The selected orders have not been exported to MyParcel yet! ", "woocommerce-myparcelbe"));
         }
 
         return $this->downloadOrGetUrlOfLabels(
