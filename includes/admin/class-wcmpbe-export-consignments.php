@@ -183,22 +183,22 @@ class WCMPBE_Export_Consignments
             }
 
             // Amount
-            $amount = (int) ($item["qty"] ?? self::DEFAULT_PRODUCT_QUANTITY);
+            $amount = (int)($item["qty"] ?? self::DEFAULT_PRODUCT_QUANTITY);
 
             // Weight (total item weight in grams)
             $weight = WCMPBE_Export::convertWeightToGrams($product->get_weight());
 
-            $total = (int) $item["line_total"];
-            $tax   = (int) $item["line_tax"];
+            $total = (int)$item["line_total"];
+            $tax   = (int)$item["line_tax"];
             $value = round(($total + $tax) * 100);
 
             $this->consignment->addItem(
                 (new MyParcelCustomsItem())->setDescription($description)
-                    ->setAmount($amount)
-                    ->setWeight($weight)
-                    ->setItemValue($value)
-                    ->setCountry($country)
-                    ->setClassification($this->getHsCode($product))
+                                           ->setAmount($amount)
+                                           ->setWeight($weight)
+                                           ->setItemValue($value)
+                                           ->setCountry($country)
+                                           ->setClassification($this->getHsCode($product))
             );
         }
     }
@@ -218,8 +218,8 @@ class WCMPBE_Export_Consignments
 
         switch ($this->orderSettings->getPackageType()) {
             case AbstractConsignment::PACKAGE_TYPE_PACKAGE_NAME:
-                $emptyParcelWeight = (float) $this->getSetting(WCMPBE_Settings::SETTING_EMPTY_PARCEL_WEIGHT);
-                $weight += $emptyParcelWeight;
+                $emptyParcelWeight = (float)$this->getSetting(WCMPBE_Settings::SETTING_EMPTY_PARCEL_WEIGHT);
+                $weight            += $emptyParcelWeight;
                 break;
             case AbstractConsignment::PACKAGE_TYPE_DIGITAL_STAMP_NAME:
                 $digitalStampRangeWeight = $this->orderSettings->getDigitalStampRangeWeight();
@@ -251,7 +251,7 @@ class WCMPBE_Export_Consignments
             throw new ErrorException(__("No HS code found in MyParcel BE settings", "woocommerce-myparcelbe"));
         }
 
-        return (int) $hsCode;
+        return (int)$hsCode;
     }
 
     /**
@@ -270,7 +270,7 @@ class WCMPBE_Export_Consignments
 
     /**
      * @param string|null $defaultCountryOfOrigin
-     * @param string|null  $productCountryOfOrigin
+     * @param string|null $productCountryOfOrigin
      *
      * @return string
      */
@@ -308,7 +308,7 @@ class WCMPBE_Export_Consignments
      */
     private function getContents(): int
     {
-        return (int) ($this->getSetting("package_contents") ?? AbstractConsignment::PACKAGE_CONTENTS_COMMERCIAL_GOODS);
+        return (int)($this->getSetting("package_contents") ?? AbstractConsignment::PACKAGE_CONTENTS_COMMERCIAL_GOODS);
     }
 
     /**
@@ -316,21 +316,21 @@ class WCMPBE_Export_Consignments
      *
      * @throws Exception
      */
-	private function setRecipient(): void
+    private function setRecipient(): void
     {
-		$recipient = WCMPBE_Export::getRecipientFromOrder($this->order );
+        $recipient = WCMPBE_Export::getRecipientFromOrder($this->order);
 
-		$this->consignment
-			->setCountry($recipient['cc'] )
-			->setPerson($recipient['person'] )
-			->setCompany($recipient['company'] )
-			->setFullStreet($recipient['fullStreet'] )
-			->setPostalCode($recipient['postal_code'] )
-			->setCity($recipient['city'] )
-			->setEmail($recipient['email'] )
-			->setPhone($recipient['phone'] )
-			->setSaveRecipientAddress(false );
-	}
+        $this->consignment
+            ->setCountry($recipient['cc'])
+            ->setPerson($recipient['person'])
+            ->setCompany($recipient['company'])
+            ->setFullStreet($recipient['fullStreet'])
+            ->setPostalCode($recipient['postal_code'])
+            ->setCity($recipient['city'])
+            ->setEmail($recipient['email'])
+            ->setPhone($recipient['phone'])
+            ->setSaveRecipientAddress(false);
+    }
 
     /**
      * @throws ErrorException
@@ -448,7 +448,7 @@ class WCMPBE_Export_Consignments
         if ($isInsuranceActive) {
             // get min price for insurance
             $insuranceFromPrice = (float)$this->getSetting("{$this->carrier}_" .
-                WCMPBE_Settings::SETTING_CARRIER_DEFAULT_EXPORT_INSURED_FROM_PRICE
+                                                           WCMPBE_Settings::SETTING_CARRIER_DEFAULT_EXPORT_INSURED_FROM_PRICE
             );
 
             $insuranceMaxPrice = 500;
@@ -458,7 +458,7 @@ class WCMPBE_Export_Consignments
             }
 
             // get the order's total price
-            $orderPrice = (float) $this->order->get_total();
+            $orderPrice = (float)$this->order->get_total();
 
             if ($insuranceFromPrice <= $orderPrice) {
                 // returns max allowed insured amount.
@@ -502,7 +502,7 @@ class WCMPBE_Export_Consignments
     {
         $this->consignment
             ->setApiKey($this->apiKey)
-            ->setReferenceId((string) $this->order->get_id())
+            ->setReferenceId((string)$this->order->get_id())
             ->setPackageType($this->getPackageType())
             ->setDeliveryDate($this->getDeliveryDate())
             ->setDeliveryType($this->getDeliveryType())
