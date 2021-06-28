@@ -517,9 +517,9 @@ class WCMPBE_Checkout
            "carrierSettings.$carrier.pricePickup"           => [WCMPBE_Settings::SETTING_CARRIER_PICKUP_FEE, 'getPriceByName', true],
            "carrierSettings.$carrier.priceSaturdayDelivery" => [WCMPBE_Settings::SETTING_CARRIER_SATURDAY_DELIVERY_FEE, 'getPriceByName', true],
            "carrierSettings.$carrier.priceSignature"        => [WCMPBE_Settings::SETTING_CARRIER_SIGNATURE_FEE, 'getPriceByName', false],
-           "cutoffTime"                                     => [WCMPBE_Settings::SETTING_CARRIER_CUTOFF_TIME, 'getStringByName', false],
-           "dropOffDays"                                    => [WCMPBE_Settings::SETTING_CARRIER_DROP_OFF_DAYS, 'getByName', false],
-           "dropOffDelay"                                   => [WCMPBE_Settings::SETTING_CARRIER_DROP_OFF_DELAY, 'getIntegerByName', false],
+           "carrierSettings.$carrier.cutoffTime"            => [WCMPBE_Settings::SETTING_CARRIER_CUTOFF_TIME, 'getStringByName', false],
+           "carrierSettings.$carrier.dropOffDays"           => [WCMPBE_Settings::SETTING_CARRIER_DROP_OFF_DAYS, 'getByName', false],
+           "carrierSettings.$carrier.dropOffDelay"          => [WCMPBE_Settings::SETTING_CARRIER_DROP_OFF_DELAY, 'getIntegerByName', false],
            "fridayCutoffTime"                               => [WCMPBE_Settings::SETTING_CARRIER_FRIDAY_CUTOFF_TIME, 'getStringByName', false],
            "saturdayCutoffTime"                             => [WCMPBE_Settings::SETTING_CARRIER_SATURDAY_CUTOFF_TIME, 'getStringByName', false],
        ];
