@@ -779,41 +779,6 @@ class WCMPBE_Settings_Data
                 "label" => __("dpd_delivery_enabled_option_title", "woocommerce-myparcelbe"),
                 "type"  => "toggle",
             ],
-            [
-                "name"      => WCMPBE_Settings::SETTING_CARRIER_DROP_OFF_DAYS,
-                "condition" => WCMPBE_Settings::SETTING_CARRIER_DELIVERY_ENABLED,
-                "label"     => __("Drop-off days", "woocommerce-myparcelbe"),
-                "callback"  => [WCMPBE_Settings_Callbacks::class, "enhanced_select"],
-                "options"   => $this->getWeekdays(null),
-                "default"   => [2],
-                "help_text" => __("Drop_off_day_dpd_help_text", "woocommerce-myparcelbe"),
-            ],
-            [
-                "name"      => WCMPBE_Settings::SETTING_CARRIER_CUTOFF_TIME,
-                "condition" => WCMPBE_Settings::SETTING_CARRIER_DELIVERY_ENABLED,
-                "label"     => __("Cut-off time", "woocommerce-myparcelbe"),
-                "help_text" => __(
-                    "Time at which you stop processing orders for the day (format: hh:mm)",
-                    "woocommerce-myparcelbe"
-                ),
-                "default"   => "17:00",
-            ],
-            [
-                "name"      => WCMPBE_Settings::SETTING_CARRIER_DROP_OFF_DELAY,
-                "condition" => WCMPBE_Settings::SETTING_CARRIER_DELIVERY_ENABLED,
-                "label"     => __("Drop-off delay", "woocommerce-myparcelbe"),
-                "type"      => "number",
-                "max"       => 14,
-                "help_text" => __("Number of days you need to process an order.", "woocommerce-myparcelbe"),
-            ],
-            [
-                'name'      => WCMPBE_Settings::SETTING_CARRIER_ALLOW_SHOW_DELIVERY_DATE,
-                'condition' => WCMPBE_Settings::SETTING_CARRIER_DELIVERY_ENABLED,
-                'label'     => __('feature_allow_show_delivery_date_title', 'woocommerce-myparcelbe'),
-                'type'      => 'toggle',
-                'default'   => self::ENABLED,
-                'help_text' => __('feature_allow_show_delivery_date_help_text', 'woocommerce-myparcelbe'),
-            ],
         ];
     }
 
