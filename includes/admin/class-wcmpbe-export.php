@@ -661,7 +661,9 @@ class WCMPBE_Export
             $number = WCX_Order::get_meta($order, "_shipping_house_number");
             $suffix = WCX_Order::get_meta($order, "_shipping_house_number_suffix");
 
-            $fullStreet = $street . ' ' . $number . ' ' . $suffix;
+            if ($street && $number) {
+                $fullStreet = $street . ' ' . $number . ' ' . $suffix;
+            }
         }
 
         $shipping_name = method_exists($order, "get_formatted_shipping_full_name")
