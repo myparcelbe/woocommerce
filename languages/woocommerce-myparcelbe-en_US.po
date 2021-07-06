@@ -32,6 +32,24 @@ msgstr ""
 "customer.<br/><strong>Note!</strong> When you select this option, make sure "
 "you have not enabled the Track & Trace email in your MyParcel backend."
 
+msgid "error_woocommerce_not_activated"
+msgstr "%s requires WooCommerce be activated!"
+
+msgid "error_woocommerce_not_installed"
+msgstr "%s requires WooCommerce be installed"
+
+msgid "error_woocommerce_minimum_version"
+msgstr "%s requires a minimum WooCommerce {woocommerce_version} version!"
+
+msgid "error_button_install_woocommerce"
+msgstr "Install WooCommerce"
+
+msgid "error_button_woocommerce_activate"
+msgstr "Activate WooCommerce"
+
+msgid "error_button_turn_off_myparcel_plugin"
+msgstr "Turn off MyParcel plugin"
+
 msgid "Address details are not entered"
 msgstr "Address details are not entered"
 
