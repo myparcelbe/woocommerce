@@ -652,27 +652,28 @@ class WCMPBE_Export
      */
     public static function getRecipientFromOrder(WC_Order $order)
     {
-        $is_using_old_fields = WCX_Order::get_meta($order, "_billing_street_name") || WCX_Order::get_meta($order, "_billing_house_number");
+        $isUsingSeparateFields = WCX_Order::get_meta($order, "_billing_street_name") || WCX_Order::get_meta($order, "_billing_house_number");
 
         $shipping_name =
             method_exists($order, "get_formatted_shipping_full_name") ? $order->get_formatted_shipping_full_name()
                 : trim($order->get_shipping_first_name() . " " . $order->get_shipping_last_name());
 
-        $connectEmail = WCMYPABE()->setting_collection->isEnabled(WCMPBE_Settings::SETTING_CONNECT_EMAIL);
-        $connectPhone = WCMYPABE()->setting_collection->isEnabled(WCMPBE_Settings::SETTING_CONNECT_PHONE);
+        $hasPickupLocation = WCX_Order::get_meta($order, WCMYPABE_Admin::META_DELIVERY_OPTIONS);
+        $connectEmail      = WCMYPABE()->setting_collection->isEnabled(WCMPBE_Settings::SETTING_CONNECT_EMAIL);
+        $connectPhone      = WCMYPABE()->setting_collection->isEnabled(WCMPBE_Settings::SETTING_CONNECT_PHONE);
 
         $address = [
             "cc"                     => (string) WCX_Order::get_prop($order, "shipping_country"),
             "city"                   => (string) WCX_Order::get_prop($order, "shipping_city"),
             "person"                 => $shipping_name,
             "company"                => (string) WCX_Order::get_prop($order, "shipping_company"),
-            "email"                  => $connectEmail ? WCX_Order::get_prop($order, "billing_email") : "",
+            "email"                  => $connectEmail || $hasPickupLocation['isPickup'] ? WCX_Order::get_prop($order, "billing_email") : "",
             "phone"                  => $connectPhone ? WCX_Order::get_prop($order, "billing_phone") : "",
             "street_additional_info" => WCX_Order::get_prop($order, "shipping_address_2"),
         ];
 
         $shipping_country = WCX_Order::get_prop($order, "shipping_country");
-        if ($shipping_country) {
+        if ($shipping_country === "BE" || $shipping_country === "NL" ) {
             // use billing address if old "pakjegemak" (1.5.6 and older)
             $pgAddress = WCX_Order::get_meta($order, WCMYPABE_Admin::META_PGADDRESS);
 
@@ -689,7 +690,7 @@ class WCMPBE_Export
                     "postal_code" => (string) WCX_Order::get_prop($order, "billing_postcode"),
                 ];
 
-                if ($is_using_old_fields) {
+                if ($isUsingSeparateFields) {
                     $address_intl["street"]        = (string) WCX_Order::get_meta($order, "_billing_street_name");
                     $address_intl["number"]        = (string) WCX_Order::get_meta($order, "_billing_house_number");
                     $address_intl["number_suffix"] =
@@ -713,7 +714,7 @@ class WCMPBE_Export
                     "postal_code" => (string) WCX_Order::get_prop($order, "shipping_postcode"),
                 ];
                 // If not using old fields
-                if ($is_using_old_fields) {
+                if ($isUsingSeparateFields) {
                     $address_intl["street"]        = (string) WCX_Order::get_meta($order, "_shipping_street_name");
                     $address_intl["number"]        = (string) WCX_Order::get_meta($order, "_shipping_house_number");
                     $address_intl["number_suffix"] =
@@ -728,8 +729,14 @@ class WCMPBE_Export
 
                     $address_intl["street"]        = (string) $address_parts["street"];
                     $address_intl["number"]        = (string) $address_parts["number"];
-                    $address_intl["number_suffix"] = array_key_exists("number_suffix", $address_parts) // optional
-                        ? (string) $address_parts["number_suffix"] : "";
+                    $address_intl["number_suffix"] = (string) $address_parts["number_suffix"] ?: "";
+
+                    if (! $address_intl["number_suffix"]) {
+                        if (preg_match(self::SUFFIX_CHECK_REG, $address["street_additional_info"])) {
+                            $address_intl["number_suffix"]     = $address["street_additional_info"];
+                            $address["street_additional_info"] = "";
+                        }
+                    }
                 }
             }
         } else {
