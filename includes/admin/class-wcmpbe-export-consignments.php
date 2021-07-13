@@ -3,6 +3,7 @@
 use MyParcelNL\Sdk\src\Adapter\DeliveryOptions\AbstractDeliveryOptionsAdapter as DeliveryOptions;
 use MyParcelNL\Sdk\src\Factory\ConsignmentFactory;
 use MyParcelNL\Sdk\src\Helper\MyParcelCollection;
+use MyParcelNL\Sdk\src\Helper\SplitStreet;
 use MyParcelNL\Sdk\src\Model\Consignment\AbstractConsignment;
 use MyParcelNL\Sdk\src\Model\Consignment\BpostConsignment;
 use MyParcelNL\Sdk\src\Model\MyParcelCustomsItem;
@@ -336,13 +337,14 @@ class WCMPBE_Export_Consignments
             ->setPhone($recipient['phone'])
             ->setSaveRecipientAddress(false);
 
-        $country = $this->consignment->getCountry();
+        $country      = $this->consignment->getCountry();
         $numberSuffix = $recipient['number_suffix'];
 
         if ($country === 'BE' && $bpost) {
-            if ($numberSuffix && preg_match('/^[1-9][0-9]*$/', $numberSuffix)) {
-                $this->consignment->setBoxNumber($numberSuffix);
-            }
+            $numberSuffix = str_ireplace(splitstreet::BOX_SEPARATOR, '', $numberSuffix);
+            $this->consignment->setBoxNumber($numberSuffix);
+
+            return;
         }
 
         $this->consignment->setNumberSuffix($numberSuffix);
