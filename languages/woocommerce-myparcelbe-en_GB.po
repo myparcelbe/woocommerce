@@ -909,8 +909,8 @@ msgstr "Street"
 msgid "Street name"
 msgstr "Street name"
 
-msgid "Suffix"
-msgstr "Suffix"
+msgid "Bus"
+msgstr "Bus."
 
 msgid "The label has been printed."
 msgstr "The label has been printed."

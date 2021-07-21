@@ -4,6 +4,7 @@ use MyParcelNL\Sdk\src\Adapter\DeliveryOptions\AbstractDeliveryOptionsAdapter;
 use MyParcelNL\Sdk\src\Exception\ApiException;
 use MyParcelNL\Sdk\src\Exception\MissingFieldException;
 use MyParcelNL\Sdk\src\Helper\MyParcelCollection;
+use MyParcelNL\Sdk\src\Helper\ValidateStreet;
 use MyParcelNL\Sdk\src\Model\Consignment\AbstractConsignment;
 use MyParcelNL\Sdk\src\Model\Consignment\BpostConsignment;
 use MyParcelNL\Sdk\src\Model\Consignment\PostNLConsignment;
@@ -722,15 +723,14 @@ class WCMPBE_Export
                 } else {
                     // Split the address line 1 into three parts
                     preg_match(
-                        WCMPBE_Postcode_Fields::SPLIT_STREET_REGEX,
+                        ValidateStreet::SPLIT_STREET_REGEX_BE,
                         WCX_Order::get_prop($order, "shipping_address_1"),
                         $address_parts
                     );
 
                     $address_intl["street"]        = (string) $address_parts["street"];
                     $address_intl["number"]        = (string) $address_parts["number"];
-                    $address_intl["number_suffix"] = (string) $address_parts["number_suffix"] ?: "";
-
+                    $address_intl["number_suffix"] = (string) $address_parts["box_number"] ?: (string) $address_parts["number_suffix"] ?: "";
                     if (! $address_intl["number_suffix"]) {
                         if (preg_match(self::SUFFIX_CHECK_REG, $address["street_additional_info"])) {
                             $address_intl["number_suffix"]     = $address["street_additional_info"];

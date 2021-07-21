@@ -5,7 +5,7 @@ use MyParcelNL\Sdk\src\Factory\ConsignmentFactory;
 use MyParcelNL\Sdk\src\Helper\MyParcelCollection;
 use MyParcelNL\Sdk\src\Helper\SplitStreet;
 use MyParcelNL\Sdk\src\Model\Consignment\AbstractConsignment;
-use MyParcelNL\Sdk\src\Model\Consignment\BpostConsignment;
+use MyParcelNL\Sdk\src\Model\Consignment\PostNLConsignment;
 use MyParcelNL\Sdk\src\Model\MyParcelCustomsItem;
 use WPO\WC\MyParcelBE\Compatibility\Order as WCX_Order;
 use WPO\WC\MyParcelBE\Compatibility\Product as WCX_Product;
@@ -320,7 +320,7 @@ class WCMPBE_Export_Consignments
      */
     private function setRecipient(): void
     {
-        $bpost     = $this->carrier === BpostConsignment::CARRIER_NAME;
+        $postnl    = $this->carrier === PostNLConsignment::CARRIER_NAME;
         $recipient = WCMPBE_Export::getRecipientFromOrder($this->order);
 
         $this->consignment
@@ -337,17 +337,16 @@ class WCMPBE_Export_Consignments
             ->setPhone($recipient['phone'])
             ->setSaveRecipientAddress(false);
 
-        $country      = $this->consignment->getCountry();
         $numberSuffix = $recipient['number_suffix'];
 
-        if ($country === 'BE' && $bpost) {
-            $numberSuffix = str_ireplace(splitstreet::BOX_SEPARATOR, '', $numberSuffix);
-            $this->consignment->setBoxNumber($numberSuffix);
+        if ($postnl) {
+            $this->consignment->setNumberSuffix($numberSuffix);
 
             return;
         }
 
-        $this->consignment->setNumberSuffix($numberSuffix);
+        $numberSuffix = str_ireplace(splitstreet::BOX_SEPARATOR, '', $numberSuffix);
+        $this->consignment->setBoxNumber($numberSuffix);
     }
 
     /**

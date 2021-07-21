@@ -914,8 +914,8 @@ msgstr "Straat"
 msgid "Street name"
 msgstr "Straatnaam"
 
-msgid "Suffix"
-msgstr "Toev."
+msgid "Bus"
+msgstr "Bus."
 
 msgid "The label has been printed."
 msgstr "Het label is geprint."

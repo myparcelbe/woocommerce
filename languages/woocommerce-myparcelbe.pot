@@ -27,7 +27,7 @@ msgstr ""
 msgid "How to update your PHP version"
 msgstr ""
 
-#: includes/class-wcmpbe-assets.php:93, includes/admin/class-wcmpbe-export.php:249
+#: includes/class-wcmpbe-assets.php:93, includes/admin/class-wcmpbe-export.php:250
 msgid "You have not selected any orders!"
 msgstr ""
 
@@ -107,135 +107,135 @@ msgstr ""
 msgid "myparcel_shipment_created"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export-consignments.php:252
+#: includes/admin/class-wcmpbe-export-consignments.php:253
 msgid "No HS code found in MyParcel BE settings"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export-consignments.php:359
+#: includes/admin/class-wcmpbe-export-consignments.php:360
 msgid "No API key found in MyParcel BE settings"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:182
+#: includes/admin/class-wcmpbe-export.php:183
 msgid "You have to export the orders to MyParcel BE before you can print the labels!"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:219, includes/admin/class-wcmpbe-export.php:229
+#: includes/admin/class-wcmpbe-export.php:220, includes/admin/class-wcmpbe-export.php:230
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:397
+#: includes/admin/class-wcmpbe-export.php:398
 msgid "%s shipments successfully exported to MyParcel BE"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:519
+#: includes/admin/class-wcmpbe-export.php:520
 msgid "The selected orders have not been exported to MyParcel yet! "
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:565
+#: includes/admin/class-wcmpbe-export.php:566
 msgid "No API key found in MyParcel settings"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:596
+#: includes/admin/class-wcmpbe-export.php:597
 msgid "No e-mail address found in order."
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:995
+#: includes/admin/class-wcmpbe-export.php:1002
 msgid "Unknown"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1058, includes/admin/views/html-send-return-email-form.php:54
+#: includes/admin/class-wcmpbe-export.php:1065, includes/admin/views/html-send-return-email-form.php:54
 msgid "Order"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1082
+#: includes/admin/class-wcmpbe-export.php:1089
 msgid "pending - concept"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1083
+#: includes/admin/class-wcmpbe-export.php:1090
 msgid "pending - registered"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1084
+#: includes/admin/class-wcmpbe-export.php:1091
 msgid "enroute - handed to carrier"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1085
+#: includes/admin/class-wcmpbe-export.php:1092
 msgid "enroute - sorting"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1086
+#: includes/admin/class-wcmpbe-export.php:1093
 msgid "enroute - distribution"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1087
+#: includes/admin/class-wcmpbe-export.php:1094
 msgid "enroute - customs"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1088
+#: includes/admin/class-wcmpbe-export.php:1095
 msgid "delivered - at recipient"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1089
+#: includes/admin/class-wcmpbe-export.php:1096
 msgid "delivered - ready for pickup"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1090
+#: includes/admin/class-wcmpbe-export.php:1097
 msgid "delivered - package picked up"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1091
+#: includes/admin/class-wcmpbe-export.php:1098
 msgid "printed - letter"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1092
+#: includes/admin/class-wcmpbe-export.php:1099
 msgid "printed - digital stamp"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1093
+#: includes/admin/class-wcmpbe-export.php:1100
 msgid "inactive - concept"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1094
+#: includes/admin/class-wcmpbe-export.php:1101
 msgid "inactive - registered"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1095
+#: includes/admin/class-wcmpbe-export.php:1102
 msgid "inactive - enroute - handed to carrier"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1096
+#: includes/admin/class-wcmpbe-export.php:1103
 msgid "inactive - enroute - sorting"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1097
+#: includes/admin/class-wcmpbe-export.php:1104
 msgid "inactive - enroute - distribution"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1098
+#: includes/admin/class-wcmpbe-export.php:1105
 msgid "inactive - enroute - customs"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1099
+#: includes/admin/class-wcmpbe-export.php:1106
 msgid "inactive - delivered - at recipient"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1100
+#: includes/admin/class-wcmpbe-export.php:1107
 msgid "inactive - delivered - ready for pickup"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1101
+#: includes/admin/class-wcmpbe-export.php:1108
 msgid "inactive - delivered - package picked up"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1102
+#: includes/admin/class-wcmpbe-export.php:1109
 msgid "inactive - unknown"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1108
+#: includes/admin/class-wcmpbe-export.php:1115
 msgid "Unknown status"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1545
+#: includes/admin/class-wcmpbe-export.php:1552
 msgid "The order(s) you have selected have invalid shipping countries."
 msgstr ""
 

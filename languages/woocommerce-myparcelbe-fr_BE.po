@@ -928,8 +928,8 @@ msgstr "Rue"
 msgid "Street name"
 msgstr "Rue"
 
-msgid "Suffix"
-msgstr "Extension"
+msgid "Bus"
+msgstr "Bis."
 
 msgid "The label has been printed."
 msgstr "L'étiquette est imprimée."
