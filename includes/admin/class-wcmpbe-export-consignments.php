@@ -338,8 +338,9 @@ class WCMPBE_Export_Consignments
             ->setSaveRecipientAddress(false);
 
         $numberSuffix = $recipient['number_suffix'];
+        $country = $this->consignment->getCountry();
 
-        if ($postnl) {
+        if ($postnl || $country !== 'BE') {
             $this->consignment->setNumberSuffix($numberSuffix);
 
             return;
