@@ -311,8 +311,8 @@ if (! class_exists('WCMYPABE')) :
                     require_once('migration/wcmpbe-upgrade-migration-v4-2-1.php');
                 }
 
-                if (version_compare($installed_version, '4.3.6', '<')) {
-                    require_once('migration/wcmpbe-upgrade-migration-v4-3-6.php');
+                if (version_compare($installed_version, '4.4.0', '<')) {
+                    require_once('migration/wcmpbe-upgrade-migration-v4-4-0.php');
                 }
             }
         }

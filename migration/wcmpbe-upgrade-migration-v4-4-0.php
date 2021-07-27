@@ -6,16 +6,16 @@ if (! defined('ABSPATH')) {
     exit;
 }
 
-if (class_exists('WCMPBE_Upgrade_Migration_v4_3_6')) {
-    return new WCMPBE_Upgrade_Migration_v4_3_6();
+if (class_exists('WCMPBE_Upgrade_Migration_v4_4_0')) {
+    return new WCMPBE_Upgrade_Migration_v4_4_0();
 }
 
 /**
- * Migrates pre v4.3.6 settings
+ * Migrates pre v4.4.0 settings
  *  - setting show delivery day is moved from checkout to general
  *  - per carrier setting delivery days window is moved to new feature allow show delivery date (1 or 0)
  */
-class WCMPBE_Upgrade_Migration_v4_3_6 extends WCMPBE_Upgrade_Migration
+class WCMPBE_Upgrade_Migration_v4_4_0 extends WCMPBE_Upgrade_Migration
 {
     /**
      * @var array
@@ -117,4 +117,4 @@ class WCMPBE_Upgrade_Migration_v4_3_6 extends WCMPBE_Upgrade_Migration
     }
 }
 
-return new WCMPBE_Upgrade_Migration_v4_3_6();
+return new WCMPBE_Upgrade_Migration_v4_4_0();
