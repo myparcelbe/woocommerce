@@ -87,6 +87,16 @@ function wcmyparcelbe_new_email_text($track_trace_tekst) {
 5. MyParcel BE information on the order details page
 
 == Changelog ==
+= 4.4.0 (2021-07-27) =
+* Fix: Link to Belgium customs regarding HS code tariff
+* Fix: Allow show delivery date option in my parcel config
+* Fix: Export order with insurance and signature
+* Fix: Moved time and day options per carrier, removed unavailable dpd settings
+* Fix: Get address when myparcel meta are empty
+* Fix: Update delivery options
+* Fix: Splitstreet with bus number
+* Fix: User numberSuffix when it is an EU shipment
+
 = 4.3.5 (2021-06-01) =
 * Fix: Export orders to Netherlands witch the MyParcel address fields
 
