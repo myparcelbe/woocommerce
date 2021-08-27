@@ -893,15 +893,27 @@ class WCMPBE_Settings_Data
                     'woocommerce-myparcelbe'
                 ),
             ],
-//            [
-//                "name"      => WCMPBE_Settings::SETTING_AUTOMATIC_EXPORT,
-//                "label"     => __("Automatic export", "woocommerce-myparcelbe"),
-//                "type"      => "toggle",
-//                "help_text" => __(
-//                    "With this setting enabled orders are exported to MyParcel automatically after payment.",
-//                    "woocommerce-myparcelbe"
-//                ),
-//            ],
+            [
+                "name"      => WCMPBE_Settings::SETTING_AUTOMATIC_EXPORT,
+                "label"     => __("Automatic export", "woocommerce-myparcelbe"),
+                "type"      => "toggle",
+                "help_text" => __(
+                    "With this setting enabled orders are exported to MyParcel automatically after payment.",
+                    "woocommerce-myparcelbe"
+                ),
+            ],
+            [
+                'name'      => WCMPBE_Settings::SETTING_AUTOMATIC_EXPORT_STATUS,
+                'condition' => WCMPBE_Settings::SETTING_AUTOMATIC_EXPORT,
+                'label'     => __('setting_export_automatic_status', 'woocommerce-myparcelbe'),
+                'class'     => ['wcmp__child'],
+                'type'      => 'select',
+                'default'   => self::NOT_ACTIVE,
+                'options'   =>
+                    [self::NOT_ACTIVE => __('not_active', 'woocommerce-myparcelbe')]
+                    + WCMPBE_Settings_Callbacks::get_order_status_options(),
+                'help_text' => __('setting_export_automatic_status_help_text', 'woocommerce-myparcelbe'),
+            ],
             [
                 "name"      => WCMPBE_Settings::SETTING_DEFAULT_CARRIER,
                 "label"     => __("Default carrier", "woocommerce-myparcelbe"),
