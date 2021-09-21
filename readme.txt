@@ -1,8 +1,8 @@
 === Plugin Name ===
 Contributors: richardperdaan
 Tags: woocommerce, export, myparcel Belgium
-Requires at least: 3.5.1 & WooCommerce 2.0+
-Tested up to: 5.3.1
+Requires at least: 5.2.0 & WooCommerce 5.1.0
+Tested up to: 5.8.0
 Stable tag: trunk
 Requires PHP: 7.1
 License: GPLv3 or later
@@ -87,6 +87,9 @@ function wcmyparcelbe_new_email_text($track_trace_tekst) {
 5. MyParcel BE information on the order details page
 
 == Changelog ==
+= 4.4.1 (2021-09-21) =
+* Feat: auto export after status change
+
 = 4.4.0 (2021-07-27) =
 * Fix: Link to Belgium customs regarding HS code tariff
 * Fix: Allow show delivery date option in my parcel config
