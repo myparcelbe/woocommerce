@@ -662,9 +662,34 @@ class WCMPBE_Export
         $hasPickupLocation = WCX_Order::get_meta($order, WCMYPABE_Admin::META_DELIVERY_OPTIONS);
         $connectEmail      = WCMYPABE()->setting_collection->isEnabled(WCMPBE_Settings::SETTING_CONNECT_EMAIL);
         $connectPhone      = WCMYPABE()->setting_collection->isEnabled(WCMPBE_Settings::SETTING_CONNECT_PHONE);
+        $shipping_country  = (string) WCX_Order::get_prop($order, "shipping_country");
+
+        if ($isUsingSeparateFields) {
+            $fullStreet = implode(' ', [
+                (string) WCX_Order::get_meta($order, "_shipping_street_name"),
+                (string) WCX_Order::get_meta($order, "_shipping_house_number"),
+                (string) WCX_Order::get_meta($order, "_shipping_house_number_suffix"),
+            ]);
+        } else {
+            $fullStreet = $order->get_shipping_address_1() . ' ' . $order->get_shipping_address_2();
+        }
 
         $address = [
-            "cc"                     => (string) WCX_Order::get_prop($order, "shipping_country"),
+            'cc' => $shipping_country,
+            'city' => $order->get_shipping_city(),
+            'person' => $shipping_name,
+            'company' => $order->get_shipping_company(),
+            'email' => $connectEmail || $hasPickupLocation['isPickup'] ? $order->get_billing_email() : '',
+            'phone' => $connectPhone ? $order->get_billing_phone() : '',
+            'full_street' => $fullStreet,
+            'postal_code' => $order->get_shipping_postcode(),
+            'region' => $order->get_shipping_state(),
+        ];
+
+        return apply_filters("wc_myparcelbe_recipient", $address, $order);
+
+        $address1 = [
+            "cc"                     => $shipping_country,
             "city"                   => (string) WCX_Order::get_prop($order, "shipping_city"),
             "person"                 => $shipping_name,
             "company"                => (string) WCX_Order::get_prop($order, "shipping_company"),
@@ -673,44 +698,8 @@ class WCMPBE_Export
             "street_additional_info" => WCX_Order::get_prop($order, "shipping_address_2"),
         ];
 
-        $shipping_country = WCX_Order::get_prop($order, "shipping_country");
         if ($shipping_country === "BE" || $shipping_country === "NL" ) {
-            // use billing address if old "pakjegemak" (1.5.6 and older)
-            $pgAddress = WCX_Order::get_meta($order, WCMYPABE_Admin::META_PGADDRESS);
 
-            if ($pgAddress) {
-                $billing_name = method_exists($order, "get_formatted_billing_full_name")
-                    ? $order->get_formatted_billing_full_name()
-                    : trim(
-                        $order->get_billing_first_name() . " " . $order->get_billing_last_name()
-                    );
-                $address_intl = [
-                    "city"        => (string) WCX_Order::get_prop($order, "billing_city"),
-                    "person"      => $billing_name,
-                    "company"     => (string) WCX_Order::get_prop($order, "billing_company"),
-                    "postal_code" => (string) WCX_Order::get_prop($order, "billing_postcode"),
-                ];
-
-                if ($isUsingSeparateFields) {
-                    $address_intl["street"]        = (string) WCX_Order::get_meta($order, "_billing_street_name");
-                    $address_intl["number"]        = (string) WCX_Order::get_meta($order, "_billing_house_number");
-                    $address_intl["number_suffix"] =
-                        (string) WCX_Order::get_meta($order, "_billing_house_number_suffix");
-                } else {
-                    // Split the address line 1 into three parts
-                    preg_match(
-                        WCMPBE_Postcode_Fields::SPLIT_STREET_REGEX,
-                        WCX_Order::get_prop($order, "billing_address_1"),
-                        $address_parts
-                    );
-                    $address_intl["street"]                 = (string) $address_parts["street"];
-                    $address_intl["number"]                 = (string) $address_parts["number"];
-                    $address_intl["number_suffix"]          =
-                        array_key_exists("number_suffix", $address_parts) // optional
-                            ? (string) $address_parts["number_suffix"] : "";
-                    $address_intl["street_additional_info"] = WCX_Order::get_prop($order, "billing_address_2");
-                }
-            } else {
                 $address_intl = [
                     "postal_code" => (string) WCX_Order::get_prop($order, "shipping_postcode"),
                 ];
@@ -737,7 +726,6 @@ class WCMPBE_Export
                             $address["street_additional_info"] = "";
                         }
                     }
-                }
             }
         } else {
             $address_intl = [
@@ -748,9 +736,7 @@ class WCMPBE_Export
             ];
         }
 
-        $address = array_merge($address, $address_intl);
-
-        return apply_filters("wc_myparcelbe_recipient", $address, $order);
+        $address1 = array_merge($address, $address_intl);
     }
 
     /**
