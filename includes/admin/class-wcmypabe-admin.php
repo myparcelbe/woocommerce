@@ -28,7 +28,6 @@ class WCMYPABE_Admin
     public const META_LAST_SHIPMENT_IDS      = "_myparcelbe_last_shipment_ids";
     public const META_RETURN_SHIPMENT_IDS    = "_myparcelbe_return_shipment_ids";
     public const META_ORDER_VERSION          = "_myparcelbe_order_version";
-    public const META_PGADDRESS              = "_myparcelbe_pgaddress";
     public const META_SHIPMENTS              = "_myparcelbe_shipments";
     public const META_SHIPMENT_OPTIONS_EXTRA = "_myparcelbe_shipment_options_extra";
     public const META_TRACK_TRACE            = "_myparcelbe_tracktrace";

@@ -320,7 +320,6 @@ class WCMPBE_Export_Consignments
      */
     private function setRecipient(): void
     {
-        $postnl    = $this->carrier === PostNLConsignment::CARRIER_NAME;
         $recipient = WCMPBE_Export::getRecipientFromOrder($this->order);
 
         $this->consignment
@@ -328,26 +327,11 @@ class WCMPBE_Export_Consignments
             ->setPerson($recipient['person'])
             ->setCompany($recipient['company'])
             ->setFullStreet($recipient['full_street'])
-//            ->setStreet($recipient['street'])
-//            ->setNumber($recipient['number'] ?? null)
-//            ->setStreetAdditionalInfo($recipient['street_additional_info'] ?? null)
             ->setPostalCode($recipient['postal_code'])
             ->setCity($recipient['city'])
             ->setEmail($recipient['email'])
             ->setPhone($recipient['phone'])
             ->setSaveRecipientAddress(false);
-
-        $numberSuffix = $recipient['number_suffix'];
-        $country = $this->consignment->getCountry();
-
-        if ($postnl || $country !== 'BE') {
-            $this->consignment->setNumberSuffix($numberSuffix);
-
-            return;
-        }
-
-        $numberSuffix = str_ireplace(splitstreet::BOX_SEPARATOR, '', $numberSuffix);
-        $this->consignment->setBoxNumber($numberSuffix);
     }
 
     /**
