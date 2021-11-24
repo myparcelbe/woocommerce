@@ -179,11 +179,6 @@ class WCMPBE_Export_Consignments
             $country     = $this->getCountryOfOrigin($product);
             $description = $item["name"];
 
-            // GitHub issue https://github.com/myparcelbe/woocommerce/issues/190
-            if (strlen($description) >= WCMPBE_Export::ITEM_DESCRIPTION_MAX_LENGTH) {
-                $description = substr($description, 0, 47) . "...";
-            }
-
             // Amount
             $amount = (int)($item["qty"] ?? self::DEFAULT_PRODUCT_QUANTITY);
 
@@ -195,7 +190,7 @@ class WCMPBE_Export_Consignments
             $value = round(($total + $tax) * 100);
 
             $this->consignment->addItem(
-                (new MyParcelCustomsItem())->setDescription($description)
+                (new MyParcelCustomsItem())->setDescription($description, $this->carrier)
                     ->setAmount($amount)
                     ->setWeight($weight)
                     ->setItemValue($value)
