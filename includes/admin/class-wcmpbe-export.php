@@ -661,9 +661,9 @@ class WCMPBE_Export
             : trim($order->get_shipping_first_name() . ' ' . $order->get_shipping_last_name());
 
         $deliveryOptions = WCX_Order::get_meta($order, WCMYPABE_Admin::META_DELIVERY_OPTIONS);
-        $connectEmail      = WCMYPABE()->setting_collection->isEnabled(WCMPBE_Settings::SETTING_CONNECT_EMAIL);
-        $connectPhone      = WCMYPABE()->setting_collection->isEnabled(WCMPBE_Settings::SETTING_CONNECT_PHONE);
-        $shippingCountry  = $order->get_shipping_country();
+        $connectEmail    = WCMYPABE()->setting_collection->isEnabled(WCMPBE_Settings::SETTING_CONNECT_EMAIL);
+        $connectPhone    = WCMYPABE()->setting_collection->isEnabled(WCMPBE_Settings::SETTING_CONNECT_PHONE);
+        $shippingCountry = $order->get_shipping_country();
 
         if ($isUsingSeparateFields) {
             $fullStreet = implode(' ', [
