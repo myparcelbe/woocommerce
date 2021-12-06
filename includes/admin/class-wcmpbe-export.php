@@ -653,13 +653,17 @@ class WCMPBE_Export
      */
     public static function getRecipientFromOrder(WC_Order $order)
     {
-        $isUsingSeparateFields = WCX_Order::get_meta($order, "_billing_street_name") || WCX_Order::get_meta($order, "_billing_house_number");
+        $isUsingSeparateFields = WCX_Order::get_meta($order, "_billing_street_name")
+            || WCX_Order::get_meta(
+                $order,
+                "_billing_house_number"
+            );
 
-        $shipping_name =
-            method_exists($order, "get_formatted_shipping_full_name") ? $order->get_formatted_shipping_full_name()
-                : trim($order->get_shipping_first_name() . " " . $order->get_shipping_last_name());
+        $shipping_name = method_exists($order, "get_formatted_shipping_full_name")
+            ? $order->get_formatted_shipping_full_name()
+            : trim($order->get_shipping_first_name() . " " . $order->get_shipping_last_name());
 
-        $connectPhone      = WCMYPABE()->setting_collection->isEnabled(WCMPBE_Settings::SETTING_CONNECT_PHONE);
+        $connectPhone = WCMYPABE()->setting_collection->isEnabled(WCMPBE_Settings::SETTING_CONNECT_PHONE);
 
         $address = [
             "cc"                     => (string) WCX_Order::get_prop($order, "shipping_country"),
@@ -667,39 +671,41 @@ class WCMPBE_Export
             "person"                 => $shipping_name,
             "company"                => (string) WCX_Order::get_prop($order, "shipping_company"),
             "email"                  => WCX_Order::get_prop($order, "billing_email"),
-            "phone"                  => $connectPhone ? WCX_Order::get_prop($order, "billing_phone") : "",
+            "phone"                  => $connectPhone
+                ? WCX_Order::get_prop($order, "billing_phone")
+                : "",
             "street_additional_info" => WCX_Order::get_prop($order, "shipping_address_2"),
         ];
 
         $shipping_country = WCX_Order::get_prop($order, "shipping_country");
-        if ($shipping_country === "BE" || $shipping_country === "NL" ){
+        if ($shipping_country === "BE" || $shipping_country === "NL") {
+            $address_intl = [
+                "postal_code" => (string) WCX_Order::get_prop($order, "shipping_postcode"),
+            ];
+            // If not using old fields
+            if ($isUsingSeparateFields) {
+                $address_intl["street"]        = (string) WCX_Order::get_meta($order, "_shipping_street_name");
+                $address_intl["number"]        = (string) WCX_Order::get_meta($order, "_shipping_house_number");
+                $address_intl["number_suffix"] = (string) WCX_Order::get_meta($order, "_shipping_house_number_suffix");
+            } else {
+                // Split the address line 1 into three parts
+                preg_match(
+                    ValidateStreet::SPLIT_STREET_REGEX_BE,
+                    WCX_Order::get_prop($order, "shipping_address_1"),
+                    $address_parts
+                );
 
-                $address_intl = [
-                    "postal_code" => (string) WCX_Order::get_prop($order, "shipping_postcode"),
-                ];
-                // If not using old fields
-                if ($isUsingSeparateFields) {
-                    $address_intl["street"]        = (string) WCX_Order::get_meta($order, "_shipping_street_name");
-                    $address_intl["number"]        = (string) WCX_Order::get_meta($order, "_shipping_house_number");
-                    $address_intl["number_suffix"] =
-                        (string) WCX_Order::get_meta($order, "_shipping_house_number_suffix");
-                } else {
-                    // Split the address line 1 into three parts
-                    preg_match(
-                        ValidateStreet::SPLIT_STREET_REGEX_BE,
-                        WCX_Order::get_prop($order, "shipping_address_1"),
-                        $address_parts
-                    );
-
-                    $address_intl["street"]        = (string) $address_parts["street"];
-                    $address_intl["number"]        = (string) $address_parts["number"];
-                    $address_intl["number_suffix"] = (string) $address_parts["box_number"] ?: (string) $address_parts["number_suffix"] ?: "";
-                    if (! $address_intl["number_suffix"]) {
-                        if (preg_match(self::SUFFIX_CHECK_REG, $address["street_additional_info"])) {
-                            $address_intl["number_suffix"]     = $address["street_additional_info"];
-                            $address["street_additional_info"] = "";
-                        }
+                $address_intl["street"]        = (string) $address_parts["street"];
+                $address_intl["number"]        = (string) $address_parts["number"];
+                $address_intl["number_suffix"] = (string) $address_parts["box_number"]
+                    ?: (string) $address_parts["number_suffix"]
+                        ?: "";
+                if (! $address_intl["number_suffix"]) {
+                    if (preg_match(self::SUFFIX_CHECK_REG, $address["street_additional_info"])) {
+                        $address_intl["number_suffix"]     = $address["street_additional_info"];
+                        $address["street_additional_info"] = "";
                     }
+                }
             }
         } else {
             $address_intl = [
