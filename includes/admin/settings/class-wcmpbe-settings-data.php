@@ -821,15 +821,6 @@ class WCMPBE_Settings_Data
                 ),
             ],
             [
-                "name"      => WCMPBE_Settings::SETTING_CONNECT_EMAIL,
-                "label"     => __("Connect customer email", "woocommerce-myparcelbe"),
-                "type"      => "toggle",
-                "help_text" => __(
-                    "When you connect the customer's email, MyParcel can send a Track & Trace email to this address. In your MyParcel backend you can enable or disable this email and format it in your own style.",
-                    "woocommerce-myparcelbe"
-                ),
-            ],
-            [
                 "name"      => WCMPBE_Settings::SETTING_CONNECT_PHONE,
                 "label"     => __("Connect customer phone", "woocommerce-myparcelbe"),
                 "type"      => "toggle",
