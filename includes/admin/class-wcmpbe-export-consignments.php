@@ -3,10 +3,9 @@
 use MyParcelNL\Sdk\src\Adapter\DeliveryOptions\AbstractDeliveryOptionsAdapter as DeliveryOptions;
 use MyParcelNL\Sdk\src\Factory\ConsignmentFactory;
 use MyParcelNL\Sdk\src\Helper\MyParcelCollection;
-use MyParcelNL\Sdk\src\Helper\SplitStreet;
 use MyParcelNL\Sdk\src\Model\Consignment\AbstractConsignment;
-use MyParcelNL\Sdk\src\Model\Consignment\PostNLConsignment;
 use MyParcelNL\Sdk\src\Model\MyParcelCustomsItem;
+use MyParcelNL\WooCommerce\includes\adapter\RecipientFromWCOrder;
 use WPO\WC\MyParcelBE\Compatibility\Order as WCX_Order;
 use WPO\WC\MyParcelBE\Compatibility\Product as WCX_Product;
 
@@ -315,34 +314,23 @@ class WCMPBE_Export_Consignments
      */
     private function setRecipient(): void
     {
-        $postnl    = $this->carrier === PostNLConsignment::CARRIER_NAME;
-        $recipient = WCMPBE_Export::getRecipientFromOrder($this->order);
+        $originCountry = $this->consignment->getLocalCountryCode();
+        $recipient     = new RecipientFromWCOrder($this->order, $originCountry, RecipientFromWCOrder::SHIPPING);
 
         $this->consignment
-            ->setCountry($recipient['cc'])
-            ->setPerson($recipient['person'])
-            ->setCompany($recipient['company'])
-            ->setStreet($recipient['street'])
-            ->setNumber($recipient['number'] ?? null)
-            ->setStreetAdditionalInfo($recipient['street_additional_info'] ?? null)
-            ->setPostalCode($recipient['postal_code'])
-            ->setCity($recipient['city'])
-            ->setCity($recipient['city'])
-            ->setEmail($recipient['email'])
-            ->setPhone($recipient['phone'])
+            ->setCountry($recipient->getCc())
+            ->setPerson($recipient->getPerson())
+            ->setCompany($recipient->getCompany())
+            ->setStreetAdditionalInfo($recipient->getStreetAdditionalInfo())
+            ->setNumber($recipient->getNumber())
+            ->setNumberSuffix($recipient->getNumberSuffix())
+            ->setBoxNumber($recipient->getBoxNumber())
+            ->setStreet($recipient->getStreet())
+            ->setPostalCode($recipient->getPostalCode())
+            ->setCity($recipient->getCity())
+            ->setEmail($recipient->getEmail())
+            ->setPhone($recipient->getPhone())
             ->setSaveRecipientAddress(false);
-
-        $numberSuffix = $recipient['number_suffix'];
-        $country = $this->consignment->getCountry();
-
-        if ($postnl || $country !== 'BE') {
-            $this->consignment->setNumberSuffix($numberSuffix);
-
-            return;
-        }
-
-        $numberSuffix = str_ireplace(splitstreet::BOX_SEPARATOR, '', $numberSuffix);
-        $this->consignment->setBoxNumber($numberSuffix);
     }
 
     /**
