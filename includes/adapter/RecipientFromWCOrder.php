@@ -66,23 +66,40 @@ class RecipientFromWCOrder extends Recipient
         $street       = WCX_Order::get_meta($order, "_{$type}_street_name") ?: null;
         $number       = WCX_Order::get_meta($order, "_{$type}_house_number") ?: null;
         $numberSuffix = WCX_Order::get_meta($order, "_{$type}_house_number_suffix") ?: null;
-        $addressLine1 = $this->separateStreet($order->{"get_{$type}_address_1"}(), $order, $type);
         $addressLine2 = $order->{"get_{$type}_address_2"}();
+        $streetParts  = $order->{"get_{$type}_address_1"}();
+        $country      = $order->{"get_{$type}_country"}();
+        $isNL         = AbstractConsignment::CC_NL === $country;
+        $isBE         = AbstractConsignment::CC_BE === $country;
 
         $isUsingSplitAddressFields  = ! empty($street) || ! empty($number) || ! empty($numberSuffix);
+
+        if (! $isNL && ! $isBE) {
+            $fullStreet = $isUsingSplitAddressFields
+                ? implode(' ', [$street, $number, $numberSuffix])
+                : $streetParts;
+
+            return [
+                'full_street'            => $fullStreet,
+                'street_additional_info' => $addressLine2 ?? null,
+            ];
+        }
+
+        $streetParts = $this->separateStreet($streetParts, $order, $type);
+
         $addressLine2IsNumberSuffix = strlen($addressLine2) < self::MIN_STREET_ADDITIONAL_INFO_LENGTH;
 
-        if (! $addressLine1['number_suffix'] && $addressLine2IsNumberSuffix) {
-            $addressLine1['number_suffix'] = $order->{"get_{$type}_address_2"}();
+        if (! $streetParts['number_suffix'] && $addressLine2IsNumberSuffix) {
+            $streetParts['number_suffix'] = $order->{"get_{$type}_address_2"}();
             $addressLine2                  = null;
         }
 
         $fullStreet = implode(' ', [
-                $addressLine1['street'],
-                $addressLine1['number'],
-                $addressLine1['number_suffix'],
-                $addressLine1['box_separator'],
-                $addressLine1['box_number'],
+                $streetParts['street'],
+                $streetParts['number'],
+                $streetParts['number_suffix'],
+                $streetParts['box_separator'],
+                $streetParts['box_number'],
             ]
         );
 
