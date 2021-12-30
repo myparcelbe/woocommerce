@@ -22,13 +22,22 @@ class WCMPBE_ChannelEngine_Compatibility
      */
     public static function updateMetaOnExport(WC_Order $order, $data)
     {
-        if (! class_exists('Channel_Engine') || WCX_Order::has_meta($order, "_shipping_ce_track_and_trace")) {
+        if (! class_exists('Channel_Engine')) {
+            return;
+        }
+        WCX_Order::update_meta_data($order, '_shipping_ce_track_and_trace', $data);
+
+        $delivery_options = json_decode($order->get_meta('_myparcelbe_delivery_options'), true,);
+        $carrier_name     = ($delivery_options) ? $delivery_options['carrier'] ?? 'bpost' : 'bpost';
+
+        if ('postnl' === $carrier_name) {
+            WCX_Order::update_meta_data($order, '_shipping_ce_shipping_method', 'PostNL');
+            WCX_Order::update_meta_data($order, '_shipping_ce_shipping_method_other', '');
+
             return;
         }
 
-        WCX_Order::update_meta_data($order, "_shipping_ce_track_and_trace", $data);
-
-        // Todo: Check if this has to be changed
-        WCX_Order::update_meta_data($order, "_shipping_ce_shipping_method", "Bpost");
+        WCX_Order::update_meta_data($order, '_shipping_ce_shipping_method', 'Other');
+        WCX_Order::update_meta_data($order, '_shipping_ce_shipping_method_other', $carrier_name);
     }
 }
