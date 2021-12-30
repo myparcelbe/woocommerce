@@ -27,10 +27,10 @@ class WCMPBE_ChannelEngine_Compatibility
         }
         WCX_Order::update_meta_data($order, '_shipping_ce_track_and_trace', $data);
 
-        $delivery_options = json_decode($order->get_meta('_myparcelbe_delivery_options'), true,);
-        $carrier_name     = ($delivery_options) ? $delivery_options['carrier'] ?? 'bpost' : 'bpost';
+        $deliveryOptions = json_decode($order->get_meta('_myparcelbe_delivery_options'), true,);
+        $carrierName     = ($deliveryOptions) ? $deliveryOptions['carrier'] ?? 'bpost' : 'bpost';
 
-        if ('postnl' === $carrier_name) {
+        if ('postnl' === $carrierName) {
             WCX_Order::update_meta_data($order, '_shipping_ce_shipping_method', 'PostNL');
             WCX_Order::update_meta_data($order, '_shipping_ce_shipping_method_other', '');
 
@@ -38,6 +38,6 @@ class WCMPBE_ChannelEngine_Compatibility
         }
 
         WCX_Order::update_meta_data($order, '_shipping_ce_shipping_method', 'Other');
-        WCX_Order::update_meta_data($order, '_shipping_ce_shipping_method_other', $carrier_name);
+        WCX_Order::update_meta_data($order, '_shipping_ce_shipping_method_other', $carrierName);
     }
 }
