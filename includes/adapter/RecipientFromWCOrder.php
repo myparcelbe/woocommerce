@@ -67,7 +67,7 @@ class RecipientFromWCOrder extends Recipient
         $number       = WCX_Order::get_meta($order, "_{$type}_house_number") ?: null;
         $numberSuffix = WCX_Order::get_meta($order, "_{$type}_house_number_suffix") ?: null;
         $addressLine2 = $order->{"get_{$type}_address_2"}();
-        $streetParts  = $order->{"get_{$type}_address_1"}();
+        $addressLine1 = $order->{"get_{$type}_address_1"}();
         $country      = $order->{"get_{$type}_country"}();
         $isNL         = AbstractConsignment::CC_NL === $country;
         $isBE         = AbstractConsignment::CC_BE === $country;
@@ -77,7 +77,7 @@ class RecipientFromWCOrder extends Recipient
         if (! $isNL && ! $isBE) {
             $fullStreet = $isUsingSplitAddressFields
                 ? implode(' ', [$street, $number, $numberSuffix])
-                : $streetParts;
+                : $addressLine1;
 
             return [
                 'full_street'            => $fullStreet,
@@ -85,7 +85,7 @@ class RecipientFromWCOrder extends Recipient
             ];
         }
 
-        $streetParts = $this->separateStreet($streetParts, $order, $type);
+        $streetParts = $this->separateStreet($addressLine1, $order, $type);
 
         $addressLine2IsNumberSuffix = strlen($addressLine2) < self::MIN_STREET_ADDITIONAL_INFO_LENGTH;
 
