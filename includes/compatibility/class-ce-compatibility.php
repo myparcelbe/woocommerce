@@ -25,6 +25,13 @@ class WCMPBE_ChannelEngine_Compatibility
         if (! class_exists('Channel_Engine')) {
             return;
         }
+
+        try {
+            if (WCX_Order::get_meta($order, '_shipping_ce_track_and_trace')) {
+                return;
+            }
+        } catch (\Exception $e) { }
+
         WCX_Order::update_meta_data($order, '_shipping_ce_track_and_trace', $data);
 
         $deliveryOptions = json_decode($order->get_meta('_myparcelbe_delivery_options'), true,);
