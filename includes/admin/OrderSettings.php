@@ -345,7 +345,6 @@ class OrderSettings
         $isDefaultInsured                  = (bool) $this->getCarrierSetting(WCMPBE_Settings::SETTING_CARRIER_DEFAULT_EXPORT_INSURED);
         $isDefaultInsuredFromPrice         = $this->getCarrierSetting(WCMPBE_Settings::SETTING_CARRIER_DEFAULT_EXPORT_INSURED_FROM_PRICE);
         $orderTotalExceedsInsuredFromPrice = $this->order->get_total() - $this->order->get_shipping_total() >= (float) $isDefaultInsuredFromPrice;
-        $variabele = $this->order->get_total() - $this->order->get_shipping_total();
         $insuranceFromDeliveryOptions      = $this->shipmentOptions->getInsurance();
 
         $carrier             = ConsignmentFactory::createByCarrierName($this->carrier);
