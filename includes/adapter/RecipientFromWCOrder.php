@@ -162,7 +162,10 @@ class RecipientFromWCOrder extends Recipient
             }
         }
 
-        preg_match(ValidateStreet::SPLIT_STREET_REGEX_BE, $street, $separateStreet);
+        $regex = $order->{"get_{$type}_country"}() === AbstractConsignment::CC_BE
+            ? ValidateStreet::SPLIT_STREET_REGEX_BE : ValidateStreet::SPLIT_STREET_REGEX_NL;
+
+        preg_match($regex, $street, $separateStreet);
 
         return $separateStreet;
     }
