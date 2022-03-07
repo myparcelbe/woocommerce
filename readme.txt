@@ -87,6 +87,15 @@ function wcmyparcelbe_new_email_text($track_trace_tekst) {
 5. MyParcel BE information on the order details page
 
 == Changelog ==
+= 4.5.0 (2022-03-07) =
+* Feat: use SDK for street validation
+* Fix: Error on dutch address containing forward slash
+* Fix: Update barcode and carrier for channelengine
+* Fix: Replace getRecipientFromOrder() function with adapter for recipient class
+* Fix: Delete option for connecting email
+* Fix: Use setDescription from SDK
+* Fix: Allow show delivery date option in my parcel config
+
 = 4.4.1 (2021-09-21) =
 * Feat: auto export after status change
 
