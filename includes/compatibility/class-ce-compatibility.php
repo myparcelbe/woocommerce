@@ -34,7 +34,7 @@ class WCMPBE_ChannelEngine_Compatibility
 
         WCX_Order::update_meta_data($order, '_shipping_ce_track_and_trace', $data);
 
-        $deliveryOptions = json_decode($order->get_meta('_myparcelbe_delivery_options'), true,);
+        $deliveryOptions = json_decode($order->get_meta('_myparcelbe_delivery_options'), true);
         $carrierName     = ($deliveryOptions) ? $deliveryOptions['carrier'] ?? 'bpost' : 'bpost';
 
         if ('postnl' === $carrierName) {
