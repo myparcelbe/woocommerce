@@ -87,6 +87,9 @@ function wcmyparcelbe_new_email_text($track_trace_tekst) {
 5. MyParcel BE information on the order details page
 
 == Changelog ==
+= 4.5.1 (2022-03-24) =
+* Fix: **hotfix:** parse error in channelengine compatibility
+
 = 4.5.0 (2022-03-07) =
 * Feat: use SDK for street validation
 * Fix: Error on dutch address containing forward slash
