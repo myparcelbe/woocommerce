@@ -253,7 +253,7 @@ class WCMYPABE_Admin
         $orderSettings        = new OrderSettings($order);
         $isAllowedDestination = WCMPBE_Country_Codes::isAllowedDestination($orderSettings->getShippingCountry());
 
-        if (! $isAllowedDestination) {
+        if (! $isAllowedDestination || WCMPBE_Shipping_Methods::LOCAL_PICKUP_HUMAN === $order->get_shipping_method()) {
             return;
         }
 
@@ -494,6 +494,10 @@ class WCMYPABE_Admin
                 "alt" => __("Email return label", "woocommerce-myparcelbe"),
             ],
         ];
+
+        if (WCMPBE_Shipping_Methods::LOCAL_PICKUP_HUMAN === $order->get_shipping_method()) {
+            $listing_actions = [];
+        }
 
         $consignments = self::get_order_shipments($order);
 
