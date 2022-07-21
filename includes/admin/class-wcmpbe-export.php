@@ -247,7 +247,7 @@ class WCMPBE_Export
         foreach ($order_ids as $key => $id) {
             $order = WCX::get_order($id);
 
-            if (WCMPBE_Shipping_Methods::LOCAL_PICKUP_HUMAN === $order->get_shipping_method()) {
+            if (WCMYPABE_Admin::hasLocalPickup($order)) {
                 unset($order_ids[$key]);
             }
         }
