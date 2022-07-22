@@ -244,6 +244,14 @@ class WCMPBE_Export
         $order_ids    = $this->sanitize_posted_array($_REQUEST["order_ids"] ?? []);
         $shipment_ids = $this->sanitize_posted_array($_REQUEST["shipment_ids"] ?? []);
 
+        foreach ($order_ids as $key => $id) {
+            $order = WCX::get_order($id);
+
+            if (WCMYPABE_Admin::hasLocalPickup($order)) {
+                unset($order_ids[$key]);
+            }
+        }
+
         if (empty($shipment_ids) && empty($order_ids)) {
             $this->errors[] = __("You have not selected any orders!", "woocommerce-myparcelbe");
         } else {

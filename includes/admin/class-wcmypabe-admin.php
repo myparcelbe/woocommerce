@@ -253,14 +253,14 @@ class WCMYPABE_Admin
         $orderSettings        = new OrderSettings($order);
         $isAllowedDestination = WCMPBE_Country_Codes::isAllowedDestination($orderSettings->getShippingCountry());
 
-        if (! $isAllowedDestination) {
+        if (! $isAllowedDestination || self::hasLocalPickup($order)) {
             return;
         }
 
         echo '<div class="wcmpbe__shipment-settings-wrapper" style="display: none;">';
         $this->printDeliveryDate($orderSettings->getDeliveryOptions());
 
-        $consignments  = self::get_order_shipments($order);
+        $consignments = self::get_order_shipments($order);
         // if we have shipments, then we show status & link to Track & Trace, settings under i
         if (! empty($consignments)) :
             // only use last shipment
@@ -290,6 +290,19 @@ class WCMYPABE_Admin
         );
 
         echo "</div>";
+    }
+
+    /**
+     * @param  \WC_Order $order
+     *
+     * @return bool
+     */
+    public static function hasLocalPickup(WC_Order $order): bool
+    {
+        $shippingMethods      = $order->get_shipping_methods();
+        $shippingMethodId     = reset($shippingMethods)->get_method_id();
+
+        return WCMPBE_Shipping_Methods::LOCAL_PICKUP === $shippingMethodId;
     }
 
     /**
@@ -494,6 +507,10 @@ class WCMYPABE_Admin
                 "alt" => __("Email return label", "woocommerce-myparcelbe"),
             ],
         ];
+
+        if (self::hasLocalPickup($order)) {
+            $listing_actions = [];
+        }
 
         $consignments = self::get_order_shipments($order);
 
