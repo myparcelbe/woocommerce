@@ -1366,7 +1366,7 @@ class WCMPBE_Export
     public static function getUserAgents(): array
     {
         return [
-            'MyParcelNL-WooCommerce' => (new WCMYPABE())->version,
+            'MyParcelBE-WooCommerce' => (new WCMYPABE())->version,
             'WooCommerce'            => WooCommerce::instance()->version,
             'Wordpress'              => get_bloginfo('version'),
         ];
