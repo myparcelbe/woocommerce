@@ -1,6 +1,6 @@
 {
   "require": {
-    "myparcelnl/sdk": "~6.1.0"
+    "myparcelnl/sdk": "~7.4.4"
   },
   "autoload": {
     "psr-4": {

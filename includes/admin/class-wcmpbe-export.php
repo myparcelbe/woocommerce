@@ -365,7 +365,9 @@ class WCMPBE_Export
             WCMPBE_Log::add("Shipment data for order {$order_id}.");
         }
 
-        $collection = $collection->createConcepts();
+        $collection = $collection
+            ->setUserAgents(self::getUserAgents())
+            ->createConcepts();
 
         if ($processDirectly) {
             $collection->setLinkOfLabels();
@@ -1356,6 +1358,18 @@ class WCMPBE_Export
         }
 
         return $response["body"]["data"]["shipments"][0]["barcode"];
+    }
+
+    /**
+     * @return array
+     */
+    public static function getUserAgents(): array
+    {
+        return [
+            'MyParcelNL-WooCommerce' => (new WCMYPABE())->version,
+            'WooCommerce'            => WooCommerce::instance()->version,
+            'Wordpress'              => get_bloginfo('version'),
+        ];
     }
 
     /**
