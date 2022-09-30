@@ -139,7 +139,7 @@ class WCMPBE_API extends WCMPBE_Rest
         ];
 
         // Place white space between the array elements
-        return implode(" ", $userAgents);
+        return implode(' ', $userAgents);
     }
 
     /**

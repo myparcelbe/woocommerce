@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2a09a3cc939eb0b6c0ef0ca967f816fc",
+    "content-hash": "ab5a6ea8dceddd58cb0a584628f49320",
     "packages": [
         {
             "name": "myparcelnl/sdk",
-            "version": "6.1.0",
+            "version": "7.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myparcelnl/sdk.git",
-                "reference": "28bc0c5dcef202c22f7eb40fc7e14102ad30e8bf"
+                "reference": "b9eac2897c604f3f54cb08c160a9c9aa2706deb2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myparcelnl/sdk/zipball/28bc0c5dcef202c22f7eb40fc7e14102ad30e8bf",
-                "reference": "28bc0c5dcef202c22f7eb40fc7e14102ad30e8bf",
+                "url": "https://api.github.com/repos/myparcelnl/sdk/zipball/b9eac2897c604f3f54cb08c160a9c9aa2706deb2",
+                "reference": "b9eac2897c604f3f54cb08c160a9c9aa2706deb2",
                 "shasum": ""
             },
             "require": {
@@ -37,36 +37,38 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "GPL-3.0-or-later"
+                "MIT"
             ],
             "authors": [
                 {
-                    "name": "Reindert Vetter",
-                    "email": "support@myparcel.nl",
-                    "homepage": "https://www.myparcel.nl",
-                    "role": "Developer"
+                    "name": "Edie Lemoine",
+                    "email": "support@myparcel.nl"
+                },
+                {
+                    "name": "Joeri van Veen",
+                    "email": "support@myparcel.nl"
+                },
+                {
+                    "name": "Mark Ernst",
+                    "email": "support@myparcel.nl"
                 },
                 {
                     "name": "Richard Perdaan",
-                    "email": "support@myparcel.nl",
-                    "homepage": "https://www.myparcel.nl",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Edie Lemoine",
-                    "email": "support@myparcel.nl",
-                    "homepage": "https://www.myparcel.nl",
-                    "role": "Developer"
+                    "email": "support@myparcel.nl"
                 }
             ],
             "description": "This package is designed to send and receive data from MyParcel by means of an API.",
-            "homepage": "https://www.myparcel.nl",
+            "homepage": "https://myparcelnl.github.io/sdk",
             "keywords": [
                 "Flespakket",
                 "myparcel",
                 "postnl"
             ],
-            "time": "2021-12-31T10:43:50+00:00"
+            "support": {
+                "issues": "https://github.com/myparcelnl/sdk/issues",
+                "source": "https://github.com/myparcelnl/sdk/tree/v7.4.4"
+            },
+            "time": "2022-09-09T08:01:16+00:00"
         }
     ],
     "packages-dev": [],
@@ -77,5 +79,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.3.0"
 }
