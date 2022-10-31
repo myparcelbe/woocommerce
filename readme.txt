@@ -2,7 +2,7 @@
 Contributors: richardperdaan
 Tags: woocommerce, export, myparcel Belgium
 Requires at least: 5.2.0 & WooCommerce 5.1.0
-Tested up to: 5.8.0
+Tested up to: 6.1
 Stable tag: trunk
 Requires PHP: 7.1
 License: GPLv3 or later
