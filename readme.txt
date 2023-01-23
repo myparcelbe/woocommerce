@@ -2,8 +2,8 @@
 Contributors: richardperdaan
 Tags: woocommerce, export, myparcel Belgium
 Requires at least: 5.2.0 & WooCommerce 5.1.0
-Tested up to: 5.8.0
-Stable tag: trunk
+Tested up to: 6.1
+Stable tag: 4.5.2
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.opensource.org/licenses/gpl-license.php
@@ -85,6 +85,13 @@ function wcmyparcelbe_new_email_text($track_trace_tekst) {
 3. Change the shipment options for an order
 4. MyParcel BE actions on the order overview page
 5. MyParcel BE information on the order details page
+
+
+= 4.5.2 (2023-01-23) =
+* Fix: allow export when product is missing
+
+= 4.5.1 (2022-03-24) =
+* Fix: fix parse error in channelengine compatibility
 
 == Changelog ==
 = 4.5.0 (2022-03-07) =

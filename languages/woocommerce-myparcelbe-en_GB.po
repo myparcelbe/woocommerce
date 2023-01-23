@@ -29,6 +29,11 @@ msgstr "All delivery days"
 msgid "calculated_order_weight"
 msgstr "Calculated weight: %s"
 
+msgid "carrier_dhl_for_you_today_help_text"
+msgstr ""
+"Shipments for DHL For You Today will always have the 'Same day delivery' "
+"option enabled"
+
 msgid "delivery_type"
 msgstr "Delivery type:"
 
@@ -88,6 +93,9 @@ msgstr "Activate WooCommerce"
 msgid "error_export_order_id_failed_because"
 msgstr "Order %1$s not exported to MyParcel. %2$s"
 
+msgid "error_no_shipments_created"
+msgstr "No shipments exported to MyParcel."
+
 msgid "error_order_has_invalid_shipment_country"
 msgstr "Order %s has an invalid shipping country."
 
@@ -123,17 +131,13 @@ msgstr "No label has been created yet."
 msgid "export_hint_not_exported"
 msgstr "Order not exported to MyParcel."
 
-msgid "warning_faulty_order_settings"
-msgstr "Error in (address) settings for this order."
-
-msgid "warning_product_missing_check_backoffice"
-msgstr "A deleted product was exported, check the data in the backoffice. Order: %s."
-
 msgid "extra_options"
 msgstr "Extra options:"
 
 msgid "feature_allow_show_delivery_date_help_text"
-msgstr "Shows delivery date at the options during checkout."
+msgstr ""
+"Shows delivery date at the options during checkout. When set to off, "
+"morning and evening delivery are not available."
 
 msgid "feature_allow_show_delivery_date_title"
 msgstr "Show delivery date"
@@ -147,9 +151,6 @@ msgstr "HS Code"
 msgid "hs_code_variations"
 msgstr "This HS Code overwrites the parents HS Code"
 
-msgid "no_hs_code_found"
-msgstr "No HS code found in MyParcel settings"
-
 msgid "insured"
 msgstr "Insured"
 
@@ -159,10 +160,10 @@ msgstr "Insurance amount"
 msgid "insured_for"
 msgstr "Insured for"
 
-msgid "message_insurance_belgium_2022"
+msgid "message_export_mode_on"
 msgstr ""
-"You can set up insurance for shipments to Belgium as of January 1, 2022. "
-"This option is enabled by default."
+"First generate shipment labels for pending orders before enabling order "
+"management."
 
 msgid "message_orders_exported_successfully"
 msgstr "%s orders now available in MyParcel Backoffice."
@@ -182,6 +183,26 @@ msgstr "MyParcel export:"
 msgid "myparcel_shipment_created"
 msgstr "MyParcel shipment created:"
 
+msgid "no_default_weight"
+msgstr "No default weight"
+
+msgid "no_drop_off_point_instabox"
+msgstr ""
+"It's not possible to export Instabox orders without a drop-off point. "
+"Select one at the %sLocation manager%s."
+
+msgid "no_hs_code_found"
+msgstr "No HS code found in MyParcel settings"
+
+msgid "no_insurance"
+msgstr "No insurance"
+
+msgid "no_orders_found"
+msgstr "No orders available"
+
+msgid "no_status_available"
+msgstr "No status"
+
 msgid "not_active"
 msgstr "Not active"
 
@@ -190,6 +211,9 @@ msgstr "Please enter your API key in the %sMyParcel settings%s."
 
 msgid "notice_settings_fetched_from_api"
 msgstr "Settings fetched from backoffice."
+
+msgid "order_amount"
+msgstr "Number of orders"
 
 msgid "pickup_location"
 msgstr "Pickup location:"
@@ -202,6 +226,14 @@ msgstr "Country of origin variable product"
 
 msgid "product_variable_country_of_origin_description"
 msgstr "This country of origin overwrites the product country of origin"
+
+msgid "save_customer_address"
+msgstr "Save customer address details"
+
+msgid "save_customer_address_help_text"
+msgstr ""
+"Switch this toggle on to automatically save address details of customers "
+"that place an order."
 
 msgid "setting_account_settings_manual_update_hint"
 msgstr ""
@@ -231,6 +263,16 @@ msgstr "Delivery days window"
 
 msgid "setting_carrier_delivery_enabled"
 msgstr "Enable %s delivery"
+
+msgid "setting_carrier_digital_stamp"
+msgstr "Digital stamp default weight"
+
+msgid "setting_carrier_digital_stamp_help_text"
+msgstr ""
+"Price depends on weight. Is weight filled in correctly for all products? "
+"Choose 'No default weight' to let MyParcel calculate the right weight. "
+"Select a default weight if weight is not correctly filled in for every "
+"product."
 
 msgid "setting_carrier_drop_off_days_help_text"
 msgstr "Days of the week on which you hand over parcels to %s"
@@ -300,6 +342,18 @@ msgstr "Export shipping details only"
 msgid "setting_mode_title"
 msgstr "Mode"
 
+msgid "setting_modus_append"
+msgstr ""
+"This option will only work if order management is activated in the MyParcel "
+"Backoffice."
+
+msgid "setting_modus_help_text"
+msgstr ""
+"When activated, MyParcel will export the complete order including all "
+"details to the MyParcel Backoffice. Be aware of the fact that barcodes will "
+"not be shown in order notes, so don't use this option in combination with "
+"Channable for example."
+
 msgid "setting_pickup_options"
 msgstr "%s pickup options"
 
@@ -310,6 +364,17 @@ msgstr ""
 
 msgid "setting_show_delivery_day_title"
 msgstr "Delivery date in customer communication"
+
+msgid "setting_show_widget"
+msgstr ""
+"Show the MyParcel widget containing orders and stasuses on the WordPress "
+"dashboard"
+
+msgid "setting_show_widget_label"
+msgstr "Show widget"
+
+msgid "setting_widget_amount_label"
+msgstr "Amount of orders"
 
 msgid "settings_carrier_delivery_day"
 msgstr "%s delivery"
@@ -361,6 +426,9 @@ msgstr "General"
 msgid "settings_general_title"
 msgstr "General settings"
 
+msgid "settings_general_widget_title"
+msgstr "Dashboard widget"
+
 msgid "settings_pickup_locations_default_view"
 msgstr "Pickup locations default view"
 
@@ -371,15 +439,13 @@ msgid "settings_pickup_locations_default_view_map"
 msgstr "Map"
 
 msgid "settings_trigger_manual_update"
-msgstr "Refresh settings from backoffice"
+msgstr "Connection to MyParcel"
 
 msgid "settings_trigger_manual_update_button"
-msgstr "Refresh"
+msgstr "Retrieve data"
 
 msgid "settings_trigger_manual_update_help_text"
-msgstr ""
-"Click the button to fetch the settings from your MyParcel backoffice anew. "
-"Only necessary once after you change settings for your shop there."
+msgstr "With this button your MyParcel account data will be fetched."
 
 msgid "shipment_options_age_check"
 msgstr "Age check 18+"
@@ -399,9 +465,6 @@ msgstr "Evening delivery"
 
 msgid "shipment_options_delivery_evening_title"
 msgstr "Evening delivery title"
-
-msgid "shipment_options_delivery_monday"
-msgstr "Monday delivery"
 
 msgid "shipment_options_delivery_morning"
 msgstr "Morning delivery"
@@ -423,6 +486,15 @@ msgstr "Pickup"
 msgid "shipment_options_delivery_pickup_title"
 msgstr "Pickup title"
 
+msgid "address_not_found"
+msgstr "Address is not entered correctly"
+
+msgid "address_not_found_title"
+msgstr "Address not found title"
+
+msgid "shipment_options_delivery_same_day_title"
+msgstr "Same day delivery"
+
 msgid "shipment_options_delivery_standard"
 msgstr "Standard delivery"
 
@@ -435,6 +507,24 @@ msgstr "Standard delivery title"
 msgid "shipment_options_delivery_title"
 msgstr "Delivery title"
 
+msgid "shipment_options_direct_evening_service"
+msgstr "Direct evening service"
+
+msgid "shipment_options_easy_label"
+msgstr "Easy Label"
+
+msgid "shipment_options_extra_assurance"
+msgstr "Insured for 500"
+
+msgid "shipment_options_extra_assurance_help_text"
+msgstr "Check to insure shipments."
+
+msgid "shipment_options_hide_sender"
+msgstr "Hide sender"
+
+msgid "shipment_options_hide_sender_help_text"
+msgstr "Enable this option to remove sender details from the shipping label"
+
 msgid "shipment_options_insured"
 msgstr "Insured shipment"
 
@@ -443,6 +533,14 @@ msgstr "Max insured amount"
 
 msgid "shipment_options_insured_amount_help_text"
 msgstr "Insure all parcels up to the selected amount."
+
+msgid "shipment_options_insured_eu_amount"
+msgstr "Insured EU + ROW shipment"
+
+msgid "shipment_options_insured_eu_amount_help_text"
+msgstr ""
+"Insured shipment to all countries outside of The Netherlands and Belgium "
+"for a selected amount"
 
 msgid "shipment_options_insured_for_be"
 msgstr "Insured shipment to Belgium"
@@ -469,7 +567,7 @@ msgid "shipment_options_large_format"
 msgstr "Extra large size"
 
 msgid "shipment_options_large_format_from_weight"
-msgstr "From weight (g) "
+msgstr "From weight (g)"
 
 msgid "shipment_options_large_format_from_weight_help_text"
 msgstr ""
@@ -499,27 +597,17 @@ msgstr "Return if no answer"
 
 msgid "shipment_options_return_help_text"
 msgstr ""
-"By default, a parcel will be offered twice. After two unsuccessful delivery "
-"attempts, the parcel will be available at the nearest pickup point for two "
-"weeks. There it can be picked up by the recipient with the note that was "
-"left by the courier. If you want to receive the parcel back directly and "
-"NOT forward it to the pickup point, enable this option."
+"If it is not possible to deliver a package, it will be brought to a PostNL "
+"location where the recipient can pick up the package. If you prefer the "
+"package to be returned immediately instead of to a collection point, you "
+"can turn on the Return if no answer. This is mainly used for packages with "
+"perishable contents or very expensive products."
 
 msgid "shipment_options_same_day_delivery"
 msgstr "Same day delivery"
 
-msgid "shipment_options_same_day_delivery_cutoff_time"
-msgstr "Same day delivery cut-off time"
-
 msgid "shipment_options_same_day_delivery_help_text"
-msgstr ""
-"Switch on to use the 'Same day delivery' option. Will only apply to orders "
-"when drop-ff delay is set to 0 days"
-
-msgid "shipment_options_same_day_delivery_cutoff_time_help_text"
-msgstr ""
-"The time of day after which it is no longer possible for customers to order "
-"a same day shipment. Chosen timestamp should be between 0:00 and 10:00 AM"
+msgstr "Switch on to use the 'Same day delivery' option."
 
 msgid "shipment_options_signature"
 msgstr "Signature on delivery"
@@ -533,8 +621,20 @@ msgstr ""
 msgid "shipment_options_signature_title"
 msgstr "Signature on delivery title"
 
+msgid "show_myparcel_orders_only"
+msgstr "Only show MyParcel orders"
+
+msgid "status_unknown"
+msgstr "Order status unknown"
+
 msgid "street_name"
 msgstr "Street name"
+
+msgid "successfully_exported"
+msgstr "Order(s) with ID %s have been successfully exported"
+
+msgid "successfully_exported_return"
+msgstr "Return for order with ID %s succesfully created"
 
 msgid "suffix"
 msgstr "Suffix"
@@ -545,6 +645,17 @@ msgstr "Tomorrow"
 msgid "understand_message"
 msgstr "I understand"
 
+msgid "warning_faulty_order_settings"
+msgstr "Error in (address) settings for this order."
+
+msgid "warning_product_missing_check_backoffice"
+msgstr "A deleted product was exported, check the data in the backoffice. Order: %s."
+
+msgid "warning_removed_disallowed_delivery_option"
+msgstr ""
+"The shipment option '%1$s' has been deleted, because it is not available "
+"for %3$s. Order %2$s."
+
 msgid "warning_webhook_has_error"
 msgstr "Webhook %s not active because of an error. See the logs."
 
@@ -552,7 +663,15 @@ msgid "weight"
 msgstr "Weight"
 
 msgid "woocommerce_myparcel"
-msgstr "WooCommerce MyParcel"
+msgstr "MyParcel"
+
+msgid "shipment_options_delivery_monday"
+msgstr "Monday delivery"
+
+msgid "shipment_options_same_day_delivery_cutoff_time_help_text"
+msgstr ""
+"The time of day after which it is no longer possible for customers to order "
+"a same day shipment. Chosen timestamp should be between 0:00 and 10:00 AM"
 
 msgid "(Unknown)"
 msgstr "(Unknown)"
@@ -575,14 +694,11 @@ msgstr ""
 "customer.<br/><strong>Note!</strong> When you select this option, make sure "
 "you have not enabled the Track & Trace email in your MyParcel backend."
 
+msgid "Address"
+msgstr "Address"
+
 msgid "Address details are not entered"
 msgstr "Address details are not entered"
-
-msgid "api key"
-msgstr "API key"
-
-msgid "API settings"
-msgstr "API settings"
 
 msgid "Apply preset."
 msgstr "Apply preset"
@@ -613,11 +729,12 @@ msgid ""
 "left by the courier. If you want to receive the parcel back directly and "
 "NOT forward it to the pickup point, enable this option."
 msgstr ""
-"By default, a parcel will be offered twice. After two unsuccessful delivery "
-"attempts, the parcel will be available at the nearest pickup point for two "
-"weeks. There it can be picked up by the recipient with the note that was "
-"left by the courier. If you want to receive the parcel back directly and "
-"NOT forward it to the pickup point, enable this option."
+"Automatically set order status to a predefined status after successful "
+"MyParcel export or after printing a label.<br/>Are orders automatically "
+"completed after a successful export? Make sure <strong>Process shipments "
+"directly</strong> is enabled when you use this option together with the "
+"<strong>Track & Trace in email</strong> option, otherwise the Track & Trace "
+"code will not be included in the customer email."
 
 msgid ""
 "By default, there is no insurance on the shipments. If you still want to "
@@ -675,9 +792,6 @@ msgstr "Customer note"
 msgid "Customs shipment type"
 msgstr "Customs shipment type"
 
-msgid "Cut-off time on Saturday"
-msgstr "Cut-off time on Saturday"
-
 msgid "Default"
 msgstr "Default"
 
@@ -707,9 +821,6 @@ msgstr "Delivery information:"
 
 msgid "Delivery type"
 msgstr "Delivery type"
-
-msgid "Diagnostic tools"
-msgstr "Diagnostic tools"
 
 msgid "Digital stamp"
 msgstr "Digital stamp"
@@ -784,12 +895,6 @@ msgstr "Extra large size"
 
 msgid "Fee (optional)"
 msgstr "Fee (optional)"
-
-msgid "General"
-msgstr "General"
-
-msgid "General settings"
-msgstr "General settings"
 
 msgid "Gifts"
 msgstr "Gifts"
@@ -911,6 +1016,11 @@ msgstr "Mailbox"
 msgid "Max insured amount"
 msgstr "Max insured amount"
 
+msgid "message_insurance_belgium_2022"
+msgstr ""
+"You can set up insurance for shipments to Belgium as of January 1, 2022. "
+"This option is enabled by default."
+
 msgid "Missing country"
 msgstr "Country is missing"
 
@@ -922,6 +1032,15 @@ msgstr "MyParcel"
 
 msgid "MyParcel address fields"
 msgstr "MyParcel address fields"
+
+msgid "MyParcel requires %sWooCommerce%s to be installed & activated!"
+msgstr "MyParcel requires %sWooCommerce%s to be installed & activated!"
+
+msgid "MyParcel requires PHP {PHP_VERSION} or higher."
+msgstr "MyParcel requires PHP {PHP_VERSION} or higher."
+
+msgid "MyParcel Settings"
+msgstr "MyParcel Settings"
 
 msgid "MyParcel shipment:"
 msgstr "MyParcel shipment:"
@@ -1070,6 +1189,9 @@ msgstr "Standard delivery"
 msgid "Standard printer (A4)"
 msgstr "Standard printer (A4)"
 
+msgid "Status"
+msgstr "Status"
+
 msgid "Street"
 msgstr "Street"
 
@@ -1216,15 +1338,6 @@ msgstr ""
 "With this setting enabled orders are exported to MyParcel automatically "
 "after payment."
 
-msgid "WooCommerce MyParcel requires %sWooCommerce%s to be installed & activated!"
-msgstr "WooCommerce MyParcel requires %sWooCommerce%s to be installed & activated!"
-
-msgid "WooCommerce MyParcel requires PHP {PHP_VERSION} or higher."
-msgstr "WooCommerce MyParcel requires PHP {PHP_VERSION} or higher."
-
-msgid "WooCommerce MyParcel Settings"
-msgstr "WooCommerce MyParcel Settings"
-
 msgid ""
 "You can change the place of the delivery options on the checkout page. By "
 "default it will be placed after shipping details."
@@ -1247,11 +1360,23 @@ msgstr "You have not selected any orders!"
 msgid "You have to export the orders to MyParcel before you can print the labels!"
 msgstr "You have to export the orders to MyParcel before you can print the labels!"
 
+msgid "api key"
+msgstr "API key"
+
+msgid "API settings"
+msgstr "API settings"
+
+msgid "Cut-off time on Saturday"
+msgstr "Cut-off time on Saturday"
+
+msgid "Diagnostic tools"
+msgstr "Diagnostic tools"
+
+msgid "General"
+msgstr "General"
+
+msgid "General settings"
+msgstr "General settings"
+
 msgid "error_pps_export_feedback"
-msgstr ""
-
-msgid "warning_removed_disallowed_delivery_option"
-msgstr ""
-
-msgid "setting_modus_help_text"
 msgstr ""

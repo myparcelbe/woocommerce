@@ -29,6 +29,11 @@ msgstr "Alle bezorgdagen"
 msgid "calculated_order_weight"
 msgstr "Berekend gewicht: %s"
 
+msgid "carrier_dhl_for_you_today_help_text"
+msgstr ""
+"Zendingen voor DHL For You Vandaag zullen altijd de 'Zelfde dag bezorgd' "
+"optie hebben. "
+
 msgid "delivery_type"
 msgstr "Soort levering:"
 
@@ -90,6 +95,9 @@ msgstr "Activeer WooCommerce"
 msgid "error_export_order_id_failed_because"
 msgstr "Bestelling %1$s niet geëxporteerd naar MyParcel. %2$s"
 
+msgid "error_no_shipments_created"
+msgstr "Geen zendingen geëxporteerd naar MyParcel."
+
 msgid "error_order_has_invalid_shipment_country"
 msgstr "Bestelling %s heeft een ongeldig land als bestemming."
 
@@ -128,24 +136,13 @@ msgstr "Er is nog geen label aangemaakt."
 msgid "export_hint_not_exported"
 msgstr "Bestelling niet geëxporteerd naar MyParcel."
 
-msgid "warning_faulty_order_settings"
-msgstr "Fout in (adres)gegevens bij deze order."
-
-msgid "warning_product_missing_check_backoffice"
-msgstr ""
-"Een verwijderd product werd geëxporteerd, controleer de gegevens in de "
-"backoffice. Order: %s."
-
-msgid "warning_removed_disallowed_delivery_option"
-msgstr ""
-"De verzendoptie '%1$s' is verwijderd omdat deze niet beschikbaar is voor "
-"%3$s. Order %2$s."
-
 msgid "extra_options"
 msgstr "Extra opties:"
 
 msgid "feature_allow_show_delivery_date_help_text"
-msgstr "Toont bezorgdatum bij verzendopties tijdens afrekenen."
+msgstr ""
+"Toont bezorgdatum bij verzendopties tijdens afrekenen. Wanneer deze uit "
+"staat, zijn ochtend- en avondlevering niet beschikbaar."
 
 msgid "feature_allow_show_delivery_date_title"
 msgstr "Toon bezorgdatum"
@@ -159,9 +156,6 @@ msgstr "HS Code"
 msgid "hs_code_variations"
 msgstr "Deze HS-code overschrijft de HS-code"
 
-msgid "no_hs_code_found"
-msgstr "Geen HS-code gevonden in MyParcel instellingen"
-
 msgid "insured"
 msgstr "Verzekerd"
 
@@ -171,10 +165,10 @@ msgstr "Verzekerd bedrag"
 msgid "insured_for"
 msgstr "Verzekerd voor"
 
-msgid "message_insurance_belgium_2022"
+msgid "message_export_mode_on"
 msgstr ""
-"Voor zendingen naar België kun je per 1 januari 2022 een verzekering "
-"instellen. Deze optie staat standaard geactiveerd."
+"Genereer eerst je verzendlabels voor openstaande orders voordat je "
+"orderbeheer inschakelt."
 
 msgid "message_orders_exported_successfully"
 msgstr "%s bestellingen nu beschikbaar in MyParcel Backoffice."
@@ -194,6 +188,26 @@ msgstr "MyParcel export:"
 msgid "myparcel_shipment_created"
 msgstr "MyParcel zending aangemaakt"
 
+msgid "no_default_weight"
+msgstr "Geen standaardgewicht"
+
+msgid "no_drop_off_point_instabox"
+msgstr ""
+"Voor Instabox zendingen is het verplicht om een afleverpunt ingesteld te "
+"hebben. Stel deze in op de %sLocatiewijzer%s."
+
+msgid "no_hs_code_found"
+msgstr "Geen HS-code gevonden in MyParcel instellingen"
+
+msgid "no_insurance"
+msgstr "Geen verzekering"
+
+msgid "no_orders_found"
+msgstr "Geen orders beschikbaar"
+
+msgid "no_status_available"
+msgstr "Geen status"
+
 msgid "not_active"
 msgstr "Niet actief"
 
@@ -202,6 +216,9 @@ msgstr "Vul je API key in in de %sMyParcel instellingen%s."
 
 msgid "notice_settings_fetched_from_api"
 msgstr "Instellingen opgehaald uit de backoffice."
+
+msgid "order_amount"
+msgstr "Aantal orders"
 
 msgid "pickup_location"
 msgstr "Afhaallocatie:"
@@ -214,6 +231,14 @@ msgstr "Land van herkomst variabel product"
 
 msgid "product_variable_country_of_origin_description"
 msgstr "Dit land van herkomst overschrijft het land van herkomst van het product"
+
+msgid "save_customer_address"
+msgstr "Sla adresgegevens van klanten op"
+
+msgid "save_customer_address_help_text"
+msgstr ""
+"Zet deze optie aan om automatisch adres gegevens op te slaan van klanten "
+"die een bestelling hebben geplaatst."
 
 msgid "setting_account_settings_manual_update_hint"
 msgstr ""
@@ -245,6 +270,16 @@ msgstr "Leverdagen venster"
 
 msgid "setting_carrier_delivery_enabled"
 msgstr "%s bezorging inschakelen"
+
+msgid "setting_carrier_digital_stamp"
+msgstr "Digitale postzegel standaardgewicht"
+
+msgid "setting_carrier_digital_stamp_help_text"
+msgstr ""
+"Prijs is afhankelijk van het gewicht. Zijn de gewichten correct ingevuld "
+"voor alle producten? Kies 'Geen standaardgewicht' om MyParcel het gewicht "
+"zelf te laten berekenen. Selecteer hier een standaardgewicht als de "
+"producten niet de juiste gewichten bevatten."
 
 msgid "setting_carrier_drop_off_days_help_text"
 msgstr "Dagen van de week waarop je je pakket afgeeft bij %s"
@@ -321,8 +356,17 @@ msgstr "Exporteer alleen verzendinformatie"
 msgid "setting_mode_title"
 msgstr "Modus"
 
+msgid "setting_modus_append"
+msgstr ""
+"Deze optie werkt alleen wanneer orderbeheer in de MyParcel Backoffice ook "
+"geactiveerd is."
+
 msgid "setting_modus_help_text"
 msgstr ""
+"Bij 'Exporteer volledige order' zal MyParcel elke order in zijn geheel naar "
+"de backoffice exporteren om daar verder te verwerken. Let op dat er geen "
+"barcodes in de notities komen, gebruik deze optie dus niet icm bijvoorbeeld "
+"Channable."
 
 msgid "setting_pickup_options"
 msgstr "%s afhaalopties"
@@ -334,6 +378,17 @@ msgstr ""
 
 msgid "setting_show_delivery_day_title"
 msgstr "Toon bezorgdatum in klantcommunicatie"
+
+msgid "setting_show_widget"
+msgstr ""
+"Toon de MyParcel widget met orders en bijbehorende info over status op het "
+"WordPress dashboard"
+
+msgid "setting_show_widget_label"
+msgstr "Toon widget"
+
+msgid "setting_widget_amount_label"
+msgstr "Aantal orders"
 
 msgid "settings_carrier_delivery_day"
 msgstr "%slevering"
@@ -385,6 +440,9 @@ msgstr "Algemeen"
 msgid "settings_general_title"
 msgstr "Algemene instellingen"
 
+msgid "settings_general_widget_title"
+msgstr "Dashboard widget"
+
 msgid "settings_pickup_locations_default_view"
 msgstr "Pickup locaties standaard weergave"
 
@@ -395,16 +453,13 @@ msgid "settings_pickup_locations_default_view_map"
 msgstr "Kaart"
 
 msgid "settings_trigger_manual_update"
-msgstr "Ververs instellingen uit backoffice"
+msgstr "Verbinding met MyParcel"
 
 msgid "settings_trigger_manual_update_button"
-msgstr "Verversen"
+msgstr "Gegevens ophalen"
 
 msgid "settings_trigger_manual_update_help_text"
-msgstr ""
-"Druk op de knop om de instellingen uit je MyParcel backoffice opnieuw op te "
-"halen. Alleen nodig wanneer je je instellingen voor deze shop daar hebt "
-"aangepast."
+msgstr "Via deze knop zullen jouw MyParcel account gegevens worden opgehaald."
 
 msgid "shipment_options_age_check"
 msgstr "Leeftijdscheck 18+"
@@ -424,9 +479,6 @@ msgstr "Avondlevering"
 
 msgid "shipment_options_delivery_evening_title"
 msgstr "Avondlevering titel"
-
-msgid "shipment_options_delivery_monday"
-msgstr "Maandaglevering"
 
 msgid "shipment_options_delivery_morning"
 msgstr "Ochtendlevering"
@@ -448,6 +500,15 @@ msgstr "Afhalen"
 msgid "shipment_options_delivery_pickup_title"
 msgstr "Afhalen titel"
 
+msgid "address_not_found"
+msgstr "Adres is niet correct ingevuld"
+
+msgid "address_not_found_title"
+msgstr "Adres is niet gevonden titel"
+
+msgid "shipment_options_delivery_same_day_title"
+msgstr "Zelfde dag bezorgd"
+
 msgid "shipment_options_delivery_standard"
 msgstr "Standaard bezorging"
 
@@ -462,6 +523,24 @@ msgstr "Standaard bezorgtitel"
 msgid "shipment_options_delivery_title"
 msgstr "Bezorg titel"
 
+msgid "shipment_options_direct_evening_service"
+msgstr "Directe avondservice"
+
+msgid "shipment_options_easy_label"
+msgstr "Easy Label"
+
+msgid "shipment_options_extra_assurance"
+msgstr "Verzekerd tot 500"
+
+msgid "shipment_options_extra_assurance_help_text"
+msgstr "Vink aan om verzekerd te verzenden."
+
+msgid "shipment_options_hide_sender"
+msgstr "Afzender verbergen"
+
+msgid "shipment_options_hide_sender_help_text"
+msgstr "Vink deze optie aan om de afzender niet op het label te tonen"
+
 msgid "shipment_options_insured"
 msgstr "Verzekerde zending"
 
@@ -470,6 +549,14 @@ msgstr "Verzekeren tot maximaal"
 
 msgid "shipment_options_insured_amount_help_text"
 msgstr "Verzeker alle orders tot het geselecteerde bedrag."
+
+msgid "shipment_options_insured_eu_amount"
+msgstr "Verzeker EU + ROW zending tot maximaal"
+
+msgid "shipment_options_insured_eu_amount_help_text"
+msgstr ""
+"Verzeker zendingen voor alle landen buiten Nederland en België voor een "
+"geselecteerd bedrag"
 
 msgid "shipment_options_insured_for_be"
 msgstr "Verzekerde zending naar België"
@@ -526,29 +613,20 @@ msgstr "Retour bij mislukte leverpoging"
 
 msgid "shipment_options_return_help_text"
 msgstr ""
-"Standaard wordt een pakket 2x aangeboden. Bij 2 mislukte afleverpogingen, "
-"wordt het pakket bij het dichtstbijzijnde pickup point beschikbaar voor 2 "
-"weken. Daar kan het worden opgehaald met het bewijs dat is achtergelaten "
-"door de bezorger. Als je het pakket meteen retour wilt en NIET afgeleverd "
-"wil laten worden bij een pickup point, zet deze optie dan aan."
+"Als het niet in 1 keer lukt om een pakket te bezorgen dan wordt deze naar "
+"een PostNL locatie gebracht waar de ontvanger het pakket kan ophalen. Als "
+"je liever wilt dat het pakket direct retour komt in plaats van naar een "
+"afhaalpunt dan kun je de optie Retour bij mislukte leverpoging aan zetten. "
+"Dit wordt voornamelijk gebruikt voor pakketten met beperkt houdbare inhoud "
+"of zeer kostbare producten."
 
 msgid "shipment_options_same_day_delivery"
 msgstr "Zelfde dag bezorgd"
 
-msgid "shipment_options_same_day_delivery_cutoff_time"
-msgstr "Sluitingstijd"
-
 msgid "shipment_options_same_day_delivery_help_text"
 msgstr ""
 "Zet deze optie aan om gebruik te maken van de 'zelfde dag bezorgd' "
-"mogelijkheid. Alleen mogelijk wanner de verwerkingstijd op 0 dagen gezet "
-"wordt."
-
-msgid "shipment_options_same_day_delivery_cutoff_time_help_text"
-msgstr ""
-"De uiterste tijd dat een klant een order kan doen waarbij zelfde dag "
-"bezorgd nog mogelijk is. Deze tijd moet ingesteld worden tussen 0:00 en "
-"10:00 in de ochtend."
+"mogelijkheid"
 
 msgid "shipment_options_signature"
 msgstr "Handtekening voor ontvangst"
@@ -562,8 +640,20 @@ msgstr ""
 msgid "shipment_options_signature_title"
 msgstr "Handtekening bij levering titel"
 
+msgid "show_myparcel_orders_only"
+msgstr "Toon alleen MyParcel orders"
+
+msgid "status_unknown"
+msgstr "Order status onbekend"
+
 msgid "street_name"
 msgstr "Straatnaam"
+
+msgid "successfully_exported"
+msgstr "Orders(s) met ID %s zijn succesvol geëxporteerd"
+
+msgid "successfully_exported_return"
+msgstr "Retour voor order met ID %s succesvol aangemaakt"
 
 msgid "suffix"
 msgstr "Toev."
@@ -574,6 +664,19 @@ msgstr "Morgen "
 msgid "understand_message"
 msgstr "Ik heb het begrepen"
 
+msgid "warning_faulty_order_settings"
+msgstr "Fout in (adres)gegevens bij deze order."
+
+msgid "warning_product_missing_check_backoffice"
+msgstr ""
+"Een verwijderd product werd geëxporteerd, controleer de gegevens in de "
+"backoffice. Order: %s."
+
+msgid "warning_removed_disallowed_delivery_option"
+msgstr ""
+"De verzendoptie '%1$s' is verwijderd omdat deze niet beschikbaar is voor "
+"%3$s. Order %2$s."
+
 msgid "warning_webhook_has_error"
 msgstr "Webhook %s niet actief vanwege een error. Zie hiervoor de logs."
 
@@ -581,7 +684,16 @@ msgid "weight"
 msgstr "Gewicht"
 
 msgid "woocommerce_myparcel"
-msgstr "WooCommerce MyParcel"
+msgstr "MyParcel"
+
+msgid "shipment_options_delivery_monday"
+msgstr "Maandaglevering"
+
+msgid "shipment_options_same_day_delivery_cutoff_time_help_text"
+msgstr ""
+"De uiterste tijd dat een klant een order kan doen waarbij zelfde dag "
+"bezorgd nog mogelijk is. Deze tijd moet ingesteld worden tussen 0:00 en "
+"10:00 in de ochtend."
 
 msgid "(Unknown)"
 msgstr "(Onbekend)"
@@ -604,14 +716,11 @@ msgstr ""
 "op!</strong> Wanneer je voor deze optie kiest, zorg er dan voor dat je niet "
 "de Track & Trace e-mail in MyParcel backend hebt ingeschakeld."
 
+msgid "Address"
+msgstr "Adres"
+
 msgid "Address details are not entered"
 msgstr "Adresgegevens zijn niet ingevuld"
-
-msgid "api key"
-msgstr "API key"
-
-msgid "API settings"
-msgstr "API instellingen"
 
 msgid "Apply preset."
 msgstr "Voorinstelling toepassen"
@@ -705,9 +814,6 @@ msgstr "Opmerking klant"
 msgid "Customs shipment type"
 msgstr "Type douanezending"
 
-msgid "Cut-off time on Saturday"
-msgstr "Sluitingstijd op zaterdag"
-
 msgid "Default"
 msgstr "Standaard"
 
@@ -721,7 +827,7 @@ msgid "Default weight of your empty parcel."
 msgstr "Standaardgewicht van een leeg pakket"
 
 msgid "delivered - at recipient"
-msgstr "afgeleverd - bij geadresseeerde"
+msgstr "afgeleverd - bij geadresseerde"
 
 msgid "delivered - package picked up"
 msgstr "afgeleverd - opgehaald"
@@ -737,9 +843,6 @@ msgstr "Bezorginformatie:"
 
 msgid "Delivery type"
 msgstr "Soort levering"
-
-msgid "Diagnostic tools"
-msgstr "Diagnostische hulpmiddelen"
 
 msgid "Digital stamp"
 msgstr "Digitale postzegel"
@@ -814,12 +917,6 @@ msgstr "Extra grote verpakking"
 
 msgid "Fee (optional)"
 msgstr "Kosten (optioneel)"
-
-msgid "General"
-msgstr "Algemeen"
-
-msgid "General settings"
-msgstr "Algemene instellingen"
 
 msgid "Gifts"
 msgstr "Geschenken"
@@ -940,6 +1037,11 @@ msgstr "Brievenbuspakje"
 msgid "Max insured amount"
 msgstr "Verzekeren tot maximaal"
 
+msgid "message_insurance_belgium_2022"
+msgstr ""
+"Voor zendingen naar België kun je per 1 januari 2022 een verzekering "
+"instellen. Deze optie staat standaard geactiveerd."
+
 msgid "Missing country"
 msgstr "Land ontbreekt"
 
@@ -951,6 +1053,15 @@ msgstr "MyParcel"
 
 msgid "MyParcel address fields"
 msgstr "MyParcel adresvelden"
+
+msgid "MyParcel requires %sWooCommerce%s to be installed & activated!"
+msgstr "MyParcel vereist dat %sWooCommerce%s geïnstalleerd en geactiveerd is!"
+
+msgid "MyParcel requires PHP {PHP_VERSION} or higher."
+msgstr "MyParcel vereist PHP {PHP_VERSION} of hoger."
+
+msgid "MyParcel Settings"
+msgstr "MyParcel Instellingen"
 
 msgid "MyParcel shipment:"
 msgstr "MyParcel zending:"
@@ -1099,6 +1210,9 @@ msgstr "Standaardlevering"
 msgid "Standard printer (A4)"
 msgstr "Standaard printer (A4)"
 
+msgid "Status"
+msgstr "Voortgang"
+
 msgid "Street"
 msgstr "Straat"
 
@@ -1212,7 +1326,7 @@ msgid ""
 msgstr ""
 "Wanneer je het klant-e-mailadres koppelt, kan MyParcel een Track & Trace "
 "e-mail naar dit adres sturen. In de %sMyParcel backoffice%s kun je deze "
-"e-mail in- of uitschakelen en deze in je eigen stijl opmaken\n"
+"e-mail in- of uitschakelen en deze in je eigen stijl opmaken."
 
 msgid ""
 "When you connect the customer's phone number, the courier can use this for "
@@ -1248,17 +1362,6 @@ msgstr ""
 "Als deze instelling ingeschakeld is worden jouw orders na betaling "
 "automatisch naar MyParcel geëxporteerd."
 
-msgid "WooCommerce MyParcel requires %sWooCommerce%s to be installed & activated!"
-msgstr ""
-"WooCommerce MyParcel vereist dat %sWooCommerce%s geïnstalleerd en "
-"geactiveerd is!"
-
-msgid "WooCommerce MyParcel requires PHP {PHP_VERSION} or higher."
-msgstr "WooCommerce MyParcel vereist PHP {PHP_VERSION} of hoger."
-
-msgid "WooCommerce MyParcel Settings"
-msgstr "WooCommerce MyParcel Instellingen"
-
 msgid ""
 "You can change the place of the delivery options on the checkout page. By "
 "default it will be placed after shipping details."
@@ -1282,3 +1385,21 @@ msgid "You have to export the orders to MyParcel before you can print the labels
 msgstr ""
 "Je dient de orders eerst naar MyParcel te exporteren voordat je de labels "
 "kunt printen!"
+
+msgid "api key"
+msgstr "API key"
+
+msgid "API settings"
+msgstr "API instellingen"
+
+msgid "Cut-off time on Saturday"
+msgstr "Sluitingstijd op zaterdag"
+
+msgid "Diagnostic tools"
+msgstr "Diagnostische hulpmiddelen"
+
+msgid "General"
+msgstr "Algemeen"
+
+msgid "General settings"
+msgstr "Algemene instellingen"

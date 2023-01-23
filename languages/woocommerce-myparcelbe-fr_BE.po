@@ -29,6 +29,9 @@ msgstr "Tous les jours de livraison"
 msgid "calculated_order_weight"
 msgstr "Poids calculé : %s"
 
+msgid "carrier_dhl_for_you_today_help_text"
+msgstr ""
+
 msgid "delivery_type"
 msgstr "Type de livraison :"
 
@@ -86,6 +89,9 @@ msgstr "Activer WooCommerce"
 msgid "error_export_order_id_failed_because"
 msgstr "Commande %1$s non pas exporté vers MyParcel. %2$s"
 
+msgid "error_no_shipments_created"
+msgstr ""
+
 msgid "error_order_has_invalid_shipment_country"
 msgstr "L'ordre %s á un pays d'expédition invalide."
 
@@ -119,12 +125,6 @@ msgstr "Label pas encore créé."
 msgid "export_hint_not_exported"
 msgstr ""
 
-msgid "warning_faulty_order_settings"
-msgstr ""
-
-msgid "warning_product_missing_check_backoffice"
-msgstr ""
-
 msgid "extra_options"
 msgstr "Options supplémentaire :"
 
@@ -143,19 +143,16 @@ msgstr "HS Code"
 msgid "hs_code_variations"
 msgstr "Ce code HS remplace le code HS"
 
-msgid "no_hs_code_found"
-msgstr "Aucun code HS trouvé dans les paramètres MyParcel"
-
 msgid "insured"
 msgstr "Assuré"
 
 msgid "insured_amount"
-msgstr "Montant d'assurance"
+msgstr "Montant de l'assurance"
 
 msgid "insured_for"
 msgstr "Montant assuré"
 
-msgid "message_insurance_belgium_2022"
+msgid "message_export_mode_on"
 msgstr ""
 
 msgid "message_orders_exported_successfully"
@@ -176,6 +173,24 @@ msgstr ""
 msgid "myparcel_shipment_created"
 msgstr "Envoi MyParcel créé :"
 
+msgid "no_default_weight"
+msgstr ""
+
+msgid "no_drop_off_point_instabox"
+msgstr ""
+
+msgid "no_hs_code_found"
+msgstr "Aucun code HS trouvé dans les paramètres MyParcel"
+
+msgid "no_insurance"
+msgstr ""
+
+msgid "no_orders_found"
+msgstr ""
+
+msgid "no_status_available"
+msgstr ""
+
 msgid "not_active"
 msgstr "Non actif"
 
@@ -183,6 +198,9 @@ msgid "notice_admin_api_key_missing"
 msgstr ""
 
 msgid "notice_settings_fetched_from_api"
+msgstr ""
+
+msgid "order_amount"
 msgstr ""
 
 msgid "pickup_location"
@@ -196,6 +214,12 @@ msgstr "Pays d'origine variable produit"
 
 msgid "product_variable_country_of_origin_description"
 msgstr "Ce pays d'origine remplace le pays d'origine du produit"
+
+msgid "save_customer_address"
+msgstr ""
+
+msgid "save_customer_address_help_text"
+msgstr ""
 
 msgid "setting_account_settings_manual_update_hint"
 msgstr ""
@@ -218,7 +242,7 @@ msgid "setting_carrier_cut_off_time_title"
 msgstr "Heure de clôture"
 
 msgid "setting_carrier_delivery_days_window_help_text"
-msgstr "Quantité de jours qu'un client peut reporter un envoi."
+msgstr "Du nombre de jours Un client peut reporter un envoi."
 
 msgid "setting_carrier_delivery_days_window_title"
 msgstr "Fenêtre jours de livraison"
@@ -226,8 +250,14 @@ msgstr "Fenêtre jours de livraison"
 msgid "setting_carrier_delivery_enabled"
 msgstr "Activer la livraison %s"
 
+msgid "setting_carrier_digital_stamp"
+msgstr ""
+
+msgid "setting_carrier_digital_stamp_help_text"
+msgstr ""
+
 msgid "setting_carrier_drop_off_days_help_text"
-msgstr "Jours de la semaine sur lesquels vous remettez des colis à% s"
+msgstr "Jours de la semaine où vous remettez les colis à% s"
 
 msgid "setting_carrier_drop_off_days_title"
 msgstr "Jours de livraison"
@@ -242,7 +272,7 @@ msgid "setting_carrier_pickup_enabled"
 msgstr "Activer le ramassage %s"
 
 msgid "setting_change_order_status_after"
-msgstr "Statut de commande de changement après"
+msgstr "Modifier l'état de la commande après"
 
 msgid "setting_change_status_after_export"
 msgstr "Commande d'exportation"
@@ -260,8 +290,8 @@ msgstr "Pays d'origine par défaut"
 
 msgid "setting_country_of_origin_help_text"
 msgstr ""
-"Le pays d'origine est requis pour les envois mondiaux. Par défaut de la "
-"base de magasin."
+"Le pays d'origine est requis pour les expéditions mondiales. Par défaut "
+"pour acheter la base."
 
 msgid "setting_delivery_options"
 msgstr "Options de livraison %s"
@@ -300,16 +330,31 @@ msgstr ""
 msgid "setting_mode_title"
 msgstr ""
 
+msgid "setting_modus_append"
+msgstr ""
+
+msgid "setting_modus_help_text"
+msgstr ""
+
 msgid "setting_pickup_options"
 msgstr "Options de ramassage %s"
 
 msgid "setting_show_delivery_day_help_text"
 msgstr ""
 "Cette option permet à vos clients de voir la date de livraison dans les "
-"confirmations de commande et de mon compte."
+"confirmations de l'ordre et mon compte."
 
 msgid "setting_show_delivery_day_title"
 msgstr "Date de livraison dans communication"
+
+msgid "setting_show_widget"
+msgstr ""
+
+msgid "setting_show_widget_label"
+msgstr "Show widget"
+
+msgid "setting_widget_amount_label"
+msgstr ""
 
 msgid "settings_carrier_delivery_day"
 msgstr "Livraison le %s"
@@ -336,7 +381,7 @@ msgid "settings_checkout_display_for_selected_methods"
 msgstr "Mode d'expédition couplé au type de colis"
 
 msgid "settings_checkout_price_format"
-msgstr "Voir les prix comme"
+msgstr "Montrer les prix comme"
 
 msgid "settings_checkout_surcharge"
 msgstr "Surtaxe"
@@ -361,6 +406,9 @@ msgstr "Général"
 
 msgid "settings_general_title"
 msgstr "Paramètres généraux"
+
+msgid "settings_general_widget_title"
+msgstr ""
 
 msgid "settings_pickup_locations_default_view"
 msgstr "Lieux de ramassage vue défaut"
@@ -400,14 +448,11 @@ msgstr "Livraison en soirée"
 msgid "shipment_options_delivery_evening_title"
 msgstr "Titre de livraison du soir"
 
-msgid "shipment_options_delivery_monday"
-msgstr "Lundi"
-
 msgid "shipment_options_delivery_morning"
 msgstr "Livraison le matin"
 
 msgid "shipment_options_delivery_morning_title"
-msgstr "Titre de la livraison du matin"
+msgstr "Titre de livraison du matin"
 
 msgid "shipment_options_delivery_options_title"
 msgstr "Options de livraison - titre"
@@ -423,6 +468,15 @@ msgstr "Ramasser"
 msgid "shipment_options_delivery_pickup_title"
 msgstr "Titre du ramassage"
 
+msgid "address_not_found"
+msgstr ""
+
+msgid "address_not_found_title"
+msgstr ""
+
+msgid "shipment_options_delivery_same_day_title"
+msgstr ""
+
 msgid "shipment_options_delivery_standard"
 msgstr "Livraison Standard"
 
@@ -437,14 +491,38 @@ msgstr "Livraison standard - titre"
 msgid "shipment_options_delivery_title"
 msgstr "Titre de la livraison"
 
+msgid "shipment_options_direct_evening_service"
+msgstr ""
+
+msgid "shipment_options_easy_label"
+msgstr ""
+
+msgid "shipment_options_extra_assurance"
+msgstr ""
+
+msgid "shipment_options_extra_assurance_help_text"
+msgstr ""
+
+msgid "shipment_options_hide_sender"
+msgstr ""
+
+msgid "shipment_options_hide_sender_help_text"
+msgstr ""
+
 msgid "shipment_options_insured"
 msgstr "Expédition assurée"
 
 msgid "shipment_options_insured_amount"
-msgstr "Quantité assurée max"
+msgstr "Montant d'assuré maximum"
 
 msgid "shipment_options_insured_amount_help_text"
-msgstr "Assurez tous les colis jusqu'au montant sélectionné."
+msgstr "Assurez toutes les parcelles jusqu'au montant sélectionné."
+
+msgid "shipment_options_insured_eu_amount"
+msgstr ""
+
+msgid "shipment_options_insured_eu_amount_help_text"
+msgstr ""
 
 msgid "shipment_options_insured_for_be"
 msgstr ""
@@ -453,18 +531,18 @@ msgid "shipment_options_insured_for_be_help_text"
 msgstr ""
 
 msgid "shipment_options_insured_from_price"
-msgstr "Assurer de prix"
+msgstr "Assurer le prix"
 
 msgid "shipment_options_insured_from_price_help_text"
-msgstr "Assurez toutes les commandes dépassant ce point de prix."
+msgstr "Assurer toutes les commandes dépassant ce prix."
 
 msgid "shipment_options_insured_help_text"
 msgstr ""
-"Par défaut, il n'y a pas d'assurance sur les envois. Si vous voulez "
-"toujours assurer l'envoi, vous pouvez le faire. Nous assurons la valeur "
-"d'achat de l'envoi, avec une valeur assurée maximale de 5 000 €. Les colis "
-"assurés contiennent toujours les options 'Adresse à domicile uniquement' FR "
-"'Signature pour la livraison'"
+"Par défaut, il n'y a aucune assurance sur les envois. Si vous souhaitez "
+"toujours assurer l'expédition, vous pouvez le faire. Nous assurons la "
+"valeur d'achat de l'envoi, avec une valeur maximale assurée de 5 000 €. Les "
+"colis assurés contiennent toujours les options «Adresse domestique "
+"uniquement« en »signature pour la livraison»"
 
 msgid "shipment_options_large_format"
 msgstr "Très grande taille"
@@ -479,44 +557,37 @@ msgstr ""
 
 msgid "shipment_options_large_format_help_text"
 msgstr ""
-"Activez cette option lorsque votre envoi est de plus de 100 x 70 x 50 cm, "
-"mais inférieur à 175 x 78 x 58 cm. Un supplément sera facturé. Noter! Si le "
-"colis est plus grand que 175 x 78 x 58 de ou plus lourd que 30 kg, la "
-"vitesse de palette sera chargée."
+"Activez cette option lorsque votre expédition est supérieure à 100 x 70 x "
+"50 cm, mais inférieure à 175 x 78 x 58 cm. Des frais supplémentaires seront "
+"facturés. Note! Si le colis est supérieur à 175 x 78 x 58 de plus de 30 kg, "
+"le taux de palette sera facturé."
 
 msgid "shipment_options_only_recipient"
 msgstr "Seul destinataire"
 
 msgid "shipment_options_only_recipient_help_text"
 msgstr ""
-"Si vous ne voulez pas que le colis soit livré sur les voisins, choisissez "
+"Si vous ne voulez pas que le colis soit livré chez les voisins, choisissez "
 "cette option."
 
 msgid "shipment_options_only_recipient_title"
-msgstr "Adresse à domicile uniquement"
+msgstr "Titre d'adresse d'accueil uniquement"
 
 msgid "shipment_options_return"
-msgstr "Retourner si aucune réponse"
+msgstr "Retourner si pas de réponse"
 
 msgid "shipment_options_return_help_text"
 msgstr ""
-"Par défaut, une colis sera offerte deux fois. Après deux tentatives de "
-"livraison infructueuses, le colis sera disponible au point de ramassage le "
-"plus proche pendant deux semaines. Là, il peut être ramassé par le "
-"destinataire avec la note laissée par le courrier. Si vous souhaitez "
-"recevoir le colis directement et ne pas le transférer au point de "
-"ramassage, activez cette option."
+"S'il n'est pas possible de livrer un colis, il sera amené à un emplacement "
+"POSTNL où le destinataire peut récupérer le colis. Si vous préférez que le "
+"package soit renvoyé immédiatement au lieu d'un point de collecte, vous "
+"pouvez activer le retour en cas de réponse. Ceci est principalement utilisé "
+"pour les packages avec contenu périssable ou produits très chers."
 
 msgid "shipment_options_same_day_delivery"
 msgstr ""
 
-msgid "shipment_options_same_day_delivery_cutoff_time"
-msgstr ""
-
 msgid "shipment_options_same_day_delivery_help_text"
-msgstr ""
-
-msgid "shipment_options_same_day_delivery_cutoff_time_help_text"
 msgstr ""
 
 msgid "shipment_options_signature"
@@ -524,15 +595,27 @@ msgstr "Signature pour réception"
 
 msgid "shipment_options_signature_help_text"
 msgstr ""
-"Le colis sera offert à l'adresse de livraison. Si le destinataire n'est pas "
-"à la maison, le colis sera livré aux voisins. Dans les deux cas, une "
-"signature sera requise."
+"Le colis sera proposé à l'adresse de livraison. Si le destinataire n'est "
+"pas à la maison, le colis sera livré aux voisins. Dans les deux cas, une "
+"signature sera nécessaire."
 
 msgid "shipment_options_signature_title"
 msgstr "Signature sur le titre de livraison"
 
+msgid "show_myparcel_orders_only"
+msgstr ""
+
+msgid "status_unknown"
+msgstr ""
+
 msgid "street_name"
 msgstr "Rue"
+
+msgid "successfully_exported"
+msgstr ""
+
+msgid "successfully_exported_return"
+msgstr ""
 
 msgid "suffix"
 msgstr "Extension"
@@ -543,6 +626,15 @@ msgstr "Demain"
 msgid "understand_message"
 msgstr ""
 
+msgid "warning_faulty_order_settings"
+msgstr ""
+
+msgid "warning_product_missing_check_backoffice"
+msgstr ""
+
+msgid "warning_removed_disallowed_delivery_option"
+msgstr ""
+
 msgid "warning_webhook_has_error"
 msgstr ""
 
@@ -550,7 +642,13 @@ msgid "weight"
 msgstr "Poids"
 
 msgid "woocommerce_myparcel"
-msgstr "WooCommerce MyParcel"
+msgstr "MyParcel"
+
+msgid "shipment_options_delivery_monday"
+msgstr "Livraison du lundi"
+
+msgid "shipment_options_same_day_delivery_cutoff_time_help_text"
+msgstr ""
 
 msgid "(Unknown)"
 msgstr "(Inconnu)"
@@ -573,14 +671,11 @@ msgstr ""
 "<strong>Attention !</strong> Lorsque vous choisissez cette option, veillez "
 "à ce que l'e-mail Track & Trace n'est pas activé dans le back-end MyParcel."
 
+msgid "Address"
+msgstr ""
+
 msgid "Address details are not entered"
 msgstr "Les données relatives à l'adresse ne sont pas complétées"
-
-msgid "api key"
-msgstr "API key"
-
-msgid "API settings"
-msgstr "Paramètres API"
 
 msgid "Apply preset."
 msgstr "Appliquer préréglage."
@@ -612,12 +707,13 @@ msgid ""
 "left by the courier. If you want to receive the parcel back directly and "
 "NOT forward it to the pickup point, enable this option."
 msgstr ""
-"Par défaut, une colis sera offerte deux fois. Après deux tentatives de "
-"livraison infructueuses, le colis sera disponible au point de ramassage le "
-"plus proche pendant deux semaines. Là, il peut être ramassé par le "
-"destinataire avec la note laissée par le courrier. Si vous souhaitez "
-"recevoir le colis directement et ne pas le transférer au point de "
-"ramassage, activez cette option."
+"Définissez automatiquement l'état de commande sur un statut prédéfini après "
+"une exportation de myParcel réussie ou après l'impression d'une étiquette. "
+"<br/> Les commandes sont-elles automatiquement terminées après une "
+"exportation réussie? Assurez-vous que <strong> les envois de processus "
+"directement </strong> sont activés lorsque vous utilisez cette option avec "
+"l'option <strong> track & trace dans l'option </strong>, sinon le code de "
+"piste et de trace ne sera pas inclus dans l'e-mail client ."
 
 msgid ""
 "By default, there is no insurance on the shipments. If you still want to "
@@ -625,11 +721,11 @@ msgid ""
 "shipment, with a maximum insured value of € 5.000. Insured parcels always "
 "contain the options 'Home address only' en 'Signature for delivery'"
 msgstr ""
-"Par défaut, il n'y a pas d'assurance sur les envois. Si vous voulez "
-"toujours assurer l'envoi, vous pouvez le faire. Nous assurons la valeur "
-"d'achat de l'envoi, avec une valeur assurée maximale de 5 000 €. Les colis "
-"assurés contiennent toujours les options 'Adresse à domicile uniquement' FR "
-"'Signature pour la livraison'"
+"Par défaut, il n'y a aucune assurance sur les envois. Si vous souhaitez "
+"toujours assurer l'expédition, vous pouvez le faire. Nous assurons la "
+"valeur d'achat de l'envoi, avec une valeur maximale assurée de 5 000 €. Les "
+"colis assurés contiennent toujours les options «Adresse domestique "
+"uniquement« en »signature pour la livraison»"
 
 msgid "Calculated weight: %s"
 msgstr "Poids calculé : %s"
@@ -665,7 +761,7 @@ msgid "Connect customer phone"
 msgstr "Associer le numéro de téléphone du client"
 
 msgid "Custom ID (top left on label)"
-msgstr "ID personnalisé (haut à gauche sur l'étiquette)"
+msgstr "ID personnalisé (en haut à gauche sur l'étiquette)"
 
 msgid "Custom styles"
 msgstr "Styles personnalisés (CSS)"
@@ -675,9 +771,6 @@ msgstr "Note du client"
 
 msgid "Customs shipment type"
 msgstr "Type d'expédition sous douane"
-
-msgid "Cut-off time on Saturday"
-msgstr "Temps de coupure le samedi"
 
 msgid "Default"
 msgstr "Défaut"
@@ -709,11 +802,8 @@ msgstr "Informations de livraiso :"
 msgid "Delivery type"
 msgstr "Type de livraison"
 
-msgid "Diagnostic tools"
-msgstr "Outils de diagnostic"
-
 msgid "Digital stamp"
-msgstr "Timbre numérique"
+msgstr "Tampon numérique"
 
 msgid "Disabled"
 msgstr "désactivé"
@@ -731,7 +821,7 @@ msgid "Empty parcel weight"
 msgstr "Poids de colis vide"
 
 msgid "Enable delivery options for backorders"
-msgstr "Activer les options de livraison pour les backorders"
+msgstr "Activer les options de livraison pour les arrières"
 
 msgid "Enable MyParcel delivery options"
 msgstr "Activer les options de livraison MyParcel"
@@ -742,10 +832,10 @@ msgid ""
 "parcel is bigger than 175 x 78 x 58 of or heavier than 30 kg, the pallet "
 "rate will be charged."
 msgstr ""
-"Activez cette option lorsque votre envoi est de plus de 100 x 70 x 50 cm, "
-"mais inférieur à 175 x 78 x 58 cm. Un supplément sera facturé. Noter! Si le "
-"colis est plus grand que 175 x 78 x 58 de ou plus lourd que 30 kg, la "
-"vitesse de palette sera chargée."
+"Activez cette option lorsque votre expédition est supérieure à 100 x 70 x "
+"50 cm, mais inférieure à 175 x 78 x 58 cm. Des frais supplémentaires seront "
+"facturés. Note! Si le colis est supérieur à 175 x 78 x 58 de plus de 30 kg, "
+"le taux de palette sera facturé."
 
 msgid "Enabled"
 msgstr "Activé"
@@ -786,12 +876,6 @@ msgstr "Très grande taille"
 msgid "Fee (optional)"
 msgstr "Frais (optionnel)"
 
-msgid "General"
-msgstr "Général"
-
-msgid "General settings"
-msgstr "Paramètres généraux"
-
 msgid "Gifts"
 msgstr "Cadeaux"
 
@@ -815,14 +899,14 @@ msgid ""
 "HS Codes are used for MyParcel world shipments, you can find the "
 "appropriate code on the site of the Dutch Customs."
 msgstr ""
-"Les codes HS sont utilisés pour MyParcel World Shipments, vous pouvez "
+"Les codes HS sont utilisés pour les expéditions MyParcel World, vous pouvez "
 "trouver le code approprié sur le site des douanes néerlandaises."
 
 msgid ""
 "If you don't want the parcel to be delivered at the neighbours, choose this "
 "option."
 msgstr ""
-"Si vous ne voulez pas que le colis soit livré sur les voisins, choisissez "
+"Si vous ne voulez pas que le colis soit livré chez les voisins, choisissez "
 "cette option."
 
 msgid "inactive - concept"
@@ -856,16 +940,16 @@ msgid "inactive - unknown"
 msgstr "inactif - inconnu"
 
 msgid "Insurance amount"
-msgstr "Montant d'assurance"
+msgstr "Montant de l'assurance"
 
 msgid "Insure all orders that exceed this price point."
-msgstr "Assurez toutes les commandes dépassant ce point de prix."
+msgstr "Assurer toutes les commandes dépassant ce prix."
 
 msgid "Insure all parcels up to the selected amount."
-msgstr "Assurez tous les colis jusqu'au montant sélectionné."
+msgstr "Assurez toutes les parcelles jusqu'au montant sélectionné."
 
 msgid "Insure from price"
-msgstr "Assurer de prix"
+msgstr "Assurer le prix"
 
 msgid "Insured for"
 msgstr "Montant assuré"
@@ -910,7 +994,10 @@ msgid "Mailbox"
 msgstr "Boites aux lettres"
 
 msgid "Max insured amount"
-msgstr "Quantité assurée max"
+msgstr "Montant d'assuré maximum"
+
+msgid "message_insurance_belgium_2022"
+msgstr ""
 
 msgid "Missing country"
 msgstr "Pays manque"
@@ -924,6 +1011,15 @@ msgstr "MyParcel"
 msgid "MyParcel address fields"
 msgstr "Champs adresse MyParcel"
 
+msgid "MyParcel requires %sWooCommerce%s to be installed & activated!"
+msgstr "MyParcel nécessite que %sWooCommerce%s soit installé et activé!"
+
+msgid "MyParcel requires PHP {PHP_VERSION} or higher."
+msgstr "MyParcel nécessite PHP {PHP_VERSION} ou supérieur."
+
+msgid "MyParcel Settings"
+msgstr "Paramètres MyParcel"
+
 msgid "MyParcel shipment:"
 msgstr "Envoi MyParce :"
 
@@ -931,10 +1027,10 @@ msgid "No API key found in MyParcel settings"
 msgstr "Aucune clé API trouvée dans les paramètres MyParcel"
 
 msgid "No e-mail address found in order."
-msgstr "Aucune adresse de messagerie trouvée dans l'ordre."
+msgstr "Aucune adresse e-mail trouvée dans l'ordre."
 
 msgid "No HS code found in MyParcel settings"
-msgstr "Aucun code HS trouvé dans les paramètres de myparcel"
+msgstr "Aucun code HS trouvé dans les paramètres MyParcel"
 
 msgid "Number of labels"
 msgstr "Nombre d'étiquettes"
@@ -1027,7 +1123,7 @@ msgid "Retry"
 msgstr "Réessayez"
 
 msgid "Return if no answer"
-msgstr "Retourner si aucune réponse"
+msgstr "Retourner si pas de réponse"
 
 msgid "Return shipment"
 msgstr "Envoi retour"
@@ -1059,10 +1155,10 @@ msgid "Show after notes"
 msgstr "Show after notes"
 
 msgid "Show after shipping details"
-msgstr "Afficher après les données d'expédition"
+msgstr "Afficher après le sous-total"
 
 msgid "Show after subtotal"
-msgstr "Afficher après le sous-total"
+msgstr ""
 
 msgid "Show Track & Trace trace code and link in My Account."
 msgstr "Montrer le code et le lien Track & Trace dans Mon Compte."
@@ -1072,6 +1168,9 @@ msgstr "Livraison standard"
 
 msgid "Standard printer (A4)"
 msgstr "Imprimante standard (A4)"
+
+msgid "Status"
+msgstr ""
 
 msgid "Street"
 msgstr "Rue"
@@ -1092,17 +1191,17 @@ msgstr ""
 
 msgid "The order(s) you have selected have invalid shipping countries."
 msgstr ""
-"La ou les commandes que vous avez sélectionnées ont des pays d'expédition "
-"non valides."
+"La ou les commandes que vous avez sélectionnées ont des pays maritimes non "
+"valides."
 
 msgid ""
 "The parcel will be offered at the delivery address. If the recipient is not "
 "at home, the parcel will be delivered to the neighbours. In both cases, a "
 "signature will be required."
 msgstr ""
-"Le colis sera offert à l'adresse de livraison. Si le destinataire n'est pas "
-"à la maison, le colis sera livré aux voisins. Dans les deux cas, une "
-"signature sera requise."
+"Le colis sera proposé à l'adresse de livraison. Si le destinataire n'est "
+"pas à la maison, le colis sera livré aux voisins. Dans les deux cas, une "
+"signature sera nécessaire."
 
 msgid "The selected orders have not been exported to MyParcel yet!"
 msgstr "Les commandes sélectionnées n'ont pas encore été exportées vers MyParce !"
@@ -1124,10 +1223,11 @@ msgid ""
 "MyParcel plugin was activated. The address data can still be manually "
 "entered in the order screen."
 msgstr ""
-"Cet ordre ne contient pas de données de numéro de rue et de maison valides "
-"et ne peut pas être exporté à cause de cela! Cette commande a probablement "
-"été placée avant l'activation du plug-in MyParcel. Les données d'adresse "
-"peuvent toujours être entrées manuellement dans l'écran de commande."
+"Cette commande ne contient pas de données valides dans la rue et le numéro "
+"de maison et ne peut pas être exportée à cause de cela! Cette commande a "
+"probablement été passée avant l'activation du plugin MyParcel. Les données "
+"d'adresse peuvent toujours être saisies manuellement dans l'écran de "
+"commande."
 
 msgid "Title before the barcode"
 msgstr "Titre pour le code-barres"
@@ -1176,18 +1276,17 @@ msgid ""
 "When this option is enabled, delivery options and delivery day will be also "
 "shown for backorders."
 msgstr ""
-"Lorsque cette option est activée, les options de livraison et la journée de "
-"livraison seront également affichées pour les versorisers."
+"Lorsque cette option est activée, les options de livraison et le jour de la "
+"livraison seront également affichés pour les arrières."
 
 msgid ""
 "When you connect the customer's email, MyParcel can send a Track & Trace "
 "email to this address. In your MyParcel backend you can enable or disable "
 "this email and format it in your own style."
 msgstr ""
-"Lorsque vous connectez le courrier électronique du client, MyParcel peut "
-"envoyer un courrier électronique de piste et de trace à cette adresse. Vous "
-"pouvez activer ou désactiver cet email et le formater dans votre propre "
-"style dans la backOffice% Smyparcel% s."
+"Lorsque vous connectez l'e-mail du client, MyParcel peut envoyer un e-mail "
+"de piste et de trace à cette adresse. Vous pouvez activer ou désactiver cet "
+"e-mail et le formater dans votre propre style dans le% Backoffice% S."
 
 msgid ""
 "When you connect the customer's phone number, the courier can use this for "
@@ -1213,10 +1312,10 @@ msgid ""
 "which varies per package type, we recommend that you keep the label "
 "description as short as possible."
 msgstr ""
-"Avec cette option, vous pouvez ajouter une description à l'envoi. Ceci sera "
-"imprimé en haut à gauche de l'étiquette et vous pouvez l'utiliser pour "
-"rechercher ou trier les envois dans votre backOffice. En raison de l'espace "
-"limité sur l'étiquette qui varie selon le type d'emballage, nous vous "
+"Avec cette option, vous pouvez ajouter une description à l'expédition. Cela "
+"sera imprimé en haut à gauche de l'étiquette, et vous pouvez l'utiliser "
+"pour rechercher ou trier les envois dans votre backoffice. En raison de "
+"l'espace limité sur l'étiquette qui varie par type de package, nous vous "
 "recommandons de garder la description de l'étiquette aussi courte que "
 "possible."
 
@@ -1224,17 +1323,8 @@ msgid ""
 "With this setting enabled orders are exported to MyParcel automatically "
 "after payment."
 msgstr ""
-"Avec ce paramètre, les commandes activées sont automatiquement exportées "
+"Avec ce paramètre, les commandes activées sont exportées automatiquement "
 "vers MyParcel après le paiement."
-
-msgid "WooCommerce MyParcel requires %sWooCommerce%s to be installed & activated!"
-msgstr "WooCommerce MyParcel nécessite que %sWooCommerce%s soit installé et activé!"
-
-msgid "WooCommerce MyParcel requires PHP {PHP_VERSION} or higher."
-msgstr "WooCommerce MyParcel nécessite PHP {PHP_VERSION} ou supérieur."
-
-msgid "WooCommerce MyParcel Settings"
-msgstr "Paramètres WooCommerce MyParcel"
 
 msgid ""
 "You can change the place of the delivery options on the checkout page. By "
@@ -1261,11 +1351,23 @@ msgstr ""
 "Vous devez d'abord exporter vos commandes vers MyParcel avant de pouvoir "
 "imprimer vos étiquettes !"
 
+msgid "api key"
+msgstr "API key"
+
+msgid "API settings"
+msgstr "Paramètres API"
+
+msgid "Cut-off time on Saturday"
+msgstr "Heure de coupure samedi"
+
+msgid "Diagnostic tools"
+msgstr "Outils de diagnostic"
+
+msgid "General"
+msgstr "Général"
+
+msgid "General settings"
+msgstr "Paramètres généraux"
+
 msgid "error_pps_export_feedback"
-msgstr ""
-
-msgid "warning_removed_disallowed_delivery_option"
-msgstr ""
-
-msgid "setting_modus_help_text"
 msgstr ""
