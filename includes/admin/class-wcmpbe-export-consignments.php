@@ -363,6 +363,9 @@ class WCMPBE_Export_Consignments
 
             /** @var WC_Product $product */
             $product = $item->get_product();
+            if (! $product) {
+                continue;
+            }
             $sku     = $product->get_sku();
 
             $productIds[]   = $product->get_id();
