@@ -8,7 +8,7 @@ const download = require('download');
  */
 async function downloadTranslations() {
   const documentId = '1WSx25YNJRyOZpkuJZLLY6hrNufe25SJaGH4dgX_og4I';
-  const sheetId = '0';
+  const sheetId = '1837968392';
 
   const data = await download(
     `https://docs.google.com/spreadsheets/d/${documentId}/gviz/tq?tqx=out:csv&gid=${sheetId}`,
