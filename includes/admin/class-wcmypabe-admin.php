@@ -300,7 +300,8 @@ class WCMYPABE_Admin
     public static function hasLocalPickup(WC_Order $order): bool
     {
         $shippingMethods      = $order->get_shipping_methods();
-        $shippingMethodId     = reset($shippingMethods)->get_method_id();
+        $shippingMethod   = array_shift($shippingMethods);
+        $shippingMethodId = $shippingMethod ? $shippingMethod->get_method_id() : null;
 
         return WCMPBE_Shipping_Methods::LOCAL_PICKUP === $shippingMethodId;
     }
