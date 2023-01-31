@@ -3,7 +3,7 @@ Contributors: richardperdaan
 Tags: woocommerce, export, myparcel Belgium
 Requires at least: 5.2.0 & WooCommerce 5.1.0
 Tested up to: 6.1
-Stable tag: 4.5.3
+Stable tag: 4.5.4
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.opensource.org/licenses/gpl-license.php
@@ -88,6 +88,9 @@ function wcmyparcelbe_new_email_text($track_trace_tekst) {
 
 
 == Changelog ==
+= 4.5.4 (2023-01-31) =
+* Fix: prevent calling function on bool
+
 = 4.5.3 (2023-01-30) =
 * Fix: prevent calling function on bool
 
