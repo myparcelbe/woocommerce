@@ -319,7 +319,7 @@ class WCMPBE_Postcode_Fields
 
         // Add street name
         $fields[$form . '_street_name'] = [
-            'label'    => __("street_name", "woocommerce-myparcelbe"),
+            'label'    => __("Street name", "woocommerce-myparcelbe"),
             'class'    => apply_filters('wcmpbe_custom_address_field_class', ['form-row-third first']),
             'required' => $required, // Only required for BE
             'priority' => 60,
@@ -327,7 +327,7 @@ class WCMPBE_Postcode_Fields
 
         // Add house number
         $fields[$form . '_house_number'] = [
-            'label'    => __("abbreviation_house_number", "woocommerce-myparcelbe"),
+            'label'    => __("No.", "woocommerce-myparcelbe"),
             'class'    => apply_filters('wcmpbe_custom_address_field_class', ['form-row-third']),
             'required' => $required, // Only required for BE
             'type'     => 'number',
@@ -503,7 +503,7 @@ class WCMPBE_Postcode_Fields
         ];
 
         $fields['house_number'] = [
-            'label' => __("abbreviation_house_number", "woocommerce-myparcelbe"),
+            'label' => __("No.", "woocommerce-myparcelbe"),
             'show'  => true,
         ];
 
@@ -530,7 +530,7 @@ class WCMPBE_Postcode_Fields
         ];
 
         $fields['house_number'] = [
-            'label' => __("abbreviation_house_number", "woocommerce-myparcelbe"),
+            'label' => __("No.", "woocommerce-myparcelbe"),
             'show'  => true,
         ];
 
