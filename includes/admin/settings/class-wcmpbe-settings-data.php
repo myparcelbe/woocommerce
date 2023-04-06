@@ -192,7 +192,7 @@ class WCMPBE_Settings_Data
             $optionIdentifier,
             array_replace_recursive(
                 $defaults,
-                get_option($optionIdentifier)
+                (array) get_option($optionIdentifier)
             )
         );
     }
