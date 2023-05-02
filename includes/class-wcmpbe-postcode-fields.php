@@ -25,6 +25,9 @@ class WCMPBE_Postcode_Fields
 
     public function __construct()
     {
+        if (wp_unslash(filter_input_array(INPUT_POST))) {
+            $this->fixAddressInPost();
+        }
         // Load styles
         add_action('wp_enqueue_scripts', [&$this, 'add_styles_scripts']);
 
@@ -126,6 +129,22 @@ class WCMPBE_Postcode_Fields
         // Hide state field for countries without states (backwards compatible fix for bug #4223)
         if (version_compare(WOOCOMMERCE_VERSION, '2.1', '<')) {
             add_filter('woocommerce_countries_allowed_country_states', [&$this, 'hide_states']);
+        }
+    }
+
+    private function fixAddressInPost(): void
+    {
+        foreach (['billing', 'shipping'] as $type) {
+            if (isset($_POST["{$type}_address_1"], $_POST["{$type}_street_name"])
+                && '' === $_POST["{$type}_address_1"]) {
+                $_POST["{$type}_address_1"] = trim(
+                    $_POST["{$type}_street_name"]
+                    . ' '
+                    . ($_POST["{$type}_house_number"] ?? '')
+                    . ' '
+                    . ($_POST["{$type}_house_number_suffix"] ?? '')
+                );
+            }
         }
     }
 
