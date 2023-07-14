@@ -319,7 +319,7 @@ class WCMPBE_Postcode_Fields
 
         // Add street name
         $fields[$form . '_street_name'] = [
-            'label'    => __("Street name", "woocommerce-myparcelbe"),
+            'label'    => __("street_name", "woocommerce-myparcelbe"),
             'class'    => apply_filters('wcmpbe_custom_address_field_class', ['form-row-third first']),
             'required' => $required, // Only required for BE
             'priority' => 60,
