@@ -906,10 +906,13 @@ msgstr "Status"
 msgid "Street"
 msgstr "Street"
 
-msgid "Street name"
+msgid "street_name"
 msgstr "Street name"
 
 msgid "Bus"
+msgstr "Bus."
+
+msgid "suffix"
 msgstr "Bus."
 
 msgid "The label has been printed."
