@@ -850,6 +850,10 @@ class WCMPBE_Export
     public static function getPackageTypeFromShippingMethod($shippingMethod, $shippingClass): string
     {
         $packageType           = AbstractConsignment::PACKAGE_TYPE_PACKAGE_NAME;
+        if (! isset($shippingMethod)) {
+            return $packageType;
+        }
+
         $shippingMethodIdClass = $shippingMethod;
 
         if (Str::startsWith($shippingMethod, 'table_rate:') && class_exists('WC_Table_Rate_Shipping')) {
