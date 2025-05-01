@@ -149,10 +149,10 @@ class WCMPBE_Export_Consignments
     public function getDeliveryDate(): string
     {
         $date             = strtotime($this->deliveryOptions->getDate());
-        $deliveryDateTime = date('Y-m-d H:i:s', $date);
-        $deliveryDate     = date("Y-m-d", $date);
-        $dateOfToday      = date("Y-m-d", strtotime('now'));
-        $dateOfTomorrow   = date('Y-m-d H:i:s', strtotime('now +1 day'));
+        $deliveryDateTime = gmdate('Y-m-d H:i:s', $date);
+        $deliveryDate     = gmdate("Y-m-d", $date);
+        $dateOfToday      = gmdate("Y-m-d", strtotime('now'));
+        $dateOfTomorrow   = gmdate('Y-m-d H:i:s', strtotime('now +1 day'));
 
         if ($deliveryDate <= $dateOfToday) {
             return $dateOfTomorrow;
@@ -244,7 +244,7 @@ class WCMPBE_Export_Consignments
         }
 
         if (! $hsCode) {
-            throw new ErrorException(__("No HS code found in MyParcel BE settings", "woocommerce-myparcelbe"));
+            throw new ErrorException(esc_html__('No HS code found in MyParcel BE settings', 'woocommerce-myparcelbe'));
         }
 
         return (int)$hsCode;
@@ -341,7 +341,7 @@ class WCMPBE_Export_Consignments
         $this->apiKey = $this->getSetting(WCMPBE_Settings::SETTING_API_KEY);
 
         if (! $this->apiKey) {
-            throw new ErrorException(__("No API key found in MyParcel BE settings", "woocommerce-myparcelbe"));
+            throw new ErrorException(esc_html__('No API key found in MyParcel BE settings', 'woocommerce-myparcelbe'));
         }
     }
 
@@ -376,7 +376,7 @@ class WCMPBE_Export_Consignments
         $formattedLabelDescription = strtr(
             $this->orderSettings->getLabelDescription(),
             [
-                '[DELIVERY_DATE]' => date('d-m-Y', strtotime($this->deliveryOptions->getDate())),
+                '[DELIVERY_DATE]' => gmdate('d-m-Y', strtotime($this->deliveryOptions->getDate())),
                 '[ORDER_NR]'      => $this->order->get_order_number(),
                 '[PRODUCT_ID]'    => implode(', ', $productIds),
                 '[PRODUCT_NAME]'  => implode(', ', $productNames),

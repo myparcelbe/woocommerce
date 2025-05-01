@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use WPO\WC\MyParcelBE\Entity\SettingsFieldArguments;
 
 if (! defined('ABSPATH')) {
@@ -43,11 +45,12 @@ class WCMPBE_Settings_Callbacks_Enhanced_Select
             $value       = null;
             $newClass    = clone $class;
             $optionId    = self::getOptionId($newClass);
-            $optionValue = get_option($optionId)[$newClass->getId()];
+            $option      = get_option($optionId);
+            $optionValue = is_array($option) ? $option[$newClass->getId()] ?? false : false;
 
-            printf('<h4 class="title">%s:</h4>', $human);
+            printf('<h4 class="title">%s:</h4>', esc_html($human));
 
-            if (array_key_exists($id, $optionValue)) {
+            if (is_array($optionValue) && array_key_exists($id, $optionValue)) {
                 $value = $optionValue[$id];
             }
 
@@ -74,10 +77,10 @@ class WCMPBE_Settings_Callbacks_Enhanced_Select
                 multiple="multiple"
                 data-placeholder="%s"
                 %s>',
-            $class->getId(),
-            $class->getName() . ($id ? "[$id][]" : "[]"),
-            $args["placeholder"] ?? "",
-            $class->getCustomAttributesAsString()
+            esc_attr($class->getId()),
+            esc_attr($class->getName() . ($id ? "[$id][]" : '[]')),
+            esc_attr($args['placeholder'] ?? ''),
+            wp_kses_post($class->getCustomAttributesAsString())
         );
 
         foreach ($args["options"] as $key => $label) {

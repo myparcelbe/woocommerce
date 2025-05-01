@@ -4,7 +4,7 @@ Plugin Name: WC MyParcel Belgium
 Plugin URI: https://sendmyparcel.be/
 Description: Export your WooCommerce orders to MyParcel BE (https://sendmyparcel.be/) and print labels directly from the WooCommerce admin
 Author: Richard Perdaan
-Version: 4.5.5
+Version: 4.5.6
 Text Domain: woocommerce-myparcelbe
 
 License: GPLv3 or later
@@ -14,7 +14,9 @@ License URI: http://www.opensource.org/licenses/gpl-license.php
 if (! defined('ABSPATH')) {
     exit;
 } // Exit if accessed directly
-
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
 if (! class_exists('WCMYPABE')) :
 
     class WCMYPABE
@@ -27,7 +29,7 @@ if (! class_exists('WCMYPABE')) :
         const PHP_VERSION_7_1      = '7.1';
         const PHP_VERSION_REQUIRED = self::PHP_VERSION_7_1;
 
-        public $version = '4.5.5';
+        public $version = '4.5.6';
 
         public $plugin_basename;
 
@@ -208,16 +210,15 @@ if (! class_exists('WCMYPABE')) :
         public function need_woocommerce()
         {
             $error = sprintf(
-                __("WooCommerce MyParcel BE requires %sWooCommerce%s to be installed & activated!",
+                // TRANSLATORS: %1$s link to WooCommerce plugin, $2$s closing tag
+                __('WooCommerce MyParcel BE requires %1$sWooCommerce%2$s to be installed & activated!',
                     "woocommerce-myparcelbe"
                 ),
                 '<a href="http://wordpress.org/extend/plugins/woocommerce/">',
                 '</a>'
             );
 
-            $message = '<div class="error"><p>' . $error . '</p></div>';
-
-            echo $message;
+            echo '<div class="error"><p>', wp_kses($error, array('a'=>array('href'))), '</p></div>';
         }
 
         /**
@@ -229,15 +230,11 @@ if (! class_exists('WCMYPABE')) :
             $error = __("WooCommerce MyParcel BE requires PHP {PHP_VERSION} or higher.", "woocommerce-myparcelbe");
             $error = str_replace('{PHP_VERSION}', self::PHP_VERSION_REQUIRED, $error);
 
-            $how_to_update = __("How to update your PHP version", "woocommerce-myparcelbe");
-            $message       = sprintf(
-                '<div class="error"><p>%s</p><p><a href="%s">%s</a></p></div>',
-                $error,
-                'http://docs.wpovernight.com/general/how-to-update-your-php-version/',
-                $how_to_update
-            );
-
-            echo $message;
+            echo '<div class="error"><p>';
+            echo esc_html($error);
+            echo '</p><p><a href="http://docs.wpovernight.com/general/how-to-update-your-php-version/">';
+            echo esc_html__('How to update your PHP version', 'woocommerce-myparcelbe');
+            echo '</a></p></div>';
         }
 
         /** Lifecycle methods *******************************************************

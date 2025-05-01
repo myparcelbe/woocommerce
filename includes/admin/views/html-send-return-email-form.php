@@ -23,7 +23,7 @@ $target_url = wp_nonce_url(
 
 ?>
     <form
-        method="post" class="page-form wcmpbe__bulk-options wcmpbe__return-dialog" action="<?php echo $target_url; ?>">
+        method="post" class="page-form wcmpbe__bulk-options wcmpbe__return-dialog" action="<?php echo esc_url($target_url); ?>">
         <table style="width: 100%">
             <tbody>
             <?php
@@ -51,8 +51,8 @@ $target_url = wp_nonce_url(
                                     <strong>
                                         <?php echo sprintf(
                                             "%s %s",
-                                            __("Order", "woocommerce-myparcelbe"),
-                                            $order->get_order_number()
+                                            esc_html__('Order', 'woocommerce-myparcelbe'),
+                                            esc_html($order->get_order_number())
                                         ); ?>
                                     </strong>
                                 </td>
@@ -63,24 +63,24 @@ $target_url = wp_nonce_url(
                                         <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th><?php _e("Product name", "woocommerce-myparcelbe"); ?></th>
-                                            <th class="wcmpbe__text--right"><?php _e("weight", "woocommerce-myparcelbe"); ?></th>
+                                            <th><?php esc_html_e('Product name', 'woocommerce-myparcelbe'); ?></th>
+                                            <th class="wcmpbe__text--right"><?php esc_html_e('weight', 'woocommerce-myparcelbe'); ?></th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <?php foreach ($order->get_items() as $item_id => $item) : ?>
                                             <tr>
-                                                <td><?php echo $item['qty'] . 'x'; ?></td>
-                                                <td><?php echo WCMPBE_Export::get_item_display_name($item, $order) ?></td>
+                                                <td><?php echo (int) $item['qty'], 'x'; ?></td>
+                                                <td><?php echo esc_html(WCMPBE_Export::get_item_display_name($item, $order)) ?></td>
                                                 <td class="wcmpbe__text--right">
                                                     <?php
 
                                                     $weight = $item->get_product()->weight;
 
                                                     if ($weight) {
-                                                        echo wc_format_weight($weight * $item['qty']);
+                                                        echo esc_html(wc_format_weight($weight * $item['qty']));
                                                     } else {
-                                                        echo esc_html__('N/A', 'woocommerce');
+                                                        echo esc_html__('N/A', 'woocommerce-myparcelbe');
                                                     }
                                                     ?>
                                                 </td>
@@ -90,15 +90,15 @@ $target_url = wp_nonce_url(
                                         <tfoot>
                                         <tr>
                                             <th>&nbsp;</th>
-                                            <th><?php _e("Total weight", "woocommerce-myparcelbe"); ?></th>
+                                            <th><?php esc_html_e('Total weight', 'woocommerce-myparcelbe'); ?></th>
                                             <th class="wcmpbe__text--right">
                                                 <?php
                                                 $weight = $orderSettings->getWeight();
 
                                                 if ($weight) {
-                                                    echo wc_format_weight($weight);
+                                                    echo esc_html(wc_format_weight($weight));
                                                 } else {
-                                                    echo esc_html__('N/A', 'woocommerce');
+                                                    echo esc_html__('N/A', 'woocommerce-myparcelbe');
                                                 }
                                                 ?>
                                             </th>
@@ -108,10 +108,10 @@ $target_url = wp_nonce_url(
                                 </td>
                             </tr> <!-- last row -->
                             <?php
-                            echo '<p>' . $order->get_formatted_shipping_address() . '<br/>' . WCX_Order::get_prop(
+                            echo '<p>', wp_kses_post($order->get_formatted_shipping_address()), '<br/>', esc_html(WCX_Order::get_prop(
                                     $order,
                                     'billing_phone'
-                                ) . '<br/>' . WCX_Order::get_prop($order, 'billing_email') . '</p>';
+                                )), '<br/>', esc_html(WCX_Order::get_prop($order, 'billing_email')), '</p>';
                             ?>
                             </td></tr>
                             <tr>
@@ -142,7 +142,7 @@ $target_url = wp_nonce_url(
             }
             ?>
             <div class="wcmpbe__d--flex">
-                <input type="submit" value="<?php echo $button_text; ?>" class="button wcmpbe__return-dialog__save">
+                <input type="submit" value="<?php echo esc_html($button_text); ?>" class="button wcmpbe__return-dialog__save">
                 <?php WCMYPABE_Admin::renderSpinner() ?>
             </div>
         </div>

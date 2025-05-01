@@ -1127,3 +1127,9 @@ msgid "You have to export the orders to MyParcel before you can print the labels
 msgstr ""
 "Je dient de orders eerst naar MyParcel te exporteren voordat je de labels "
 "kunt printen!"
+
+msgid "Yes"
+msgstr "Ja"
+
+msgid "No"
+msgstr "Nee"

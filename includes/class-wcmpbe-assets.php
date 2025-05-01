@@ -41,7 +41,8 @@ class WCMPBE_Assets
                     "wc-enhanced-select",
                     WC()->plugin_url() . "/assets/js/admin/wc-enhanced-select" . $suffix . ".js",
                     ["jquery", version_compare(WC()->version, "3.2.0", ">=") ? "selectWoo" : "select2"],
-                    WC_VERSION
+                    WC_VERSION,
+                    true
                 );
             }
             wp_enqueue_script("wc-enhanced-select");
@@ -61,7 +62,8 @@ class WCMPBE_Assets
             "wcmpbe-admin",
             WCMYPABE()->plugin_url() . "/assets/js/wcmpbe-admin.js",
             ["jquery", "thickbox"],
-            WC_MYPARCEL_BE_VERSION
+            WC_MYPARCEL_BE_VERSION,
+            true
         );
 
         wp_localize_script(

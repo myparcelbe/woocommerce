@@ -1161,6 +1161,7 @@ class WCMPBE_Settings_Data
 
         return sprintf(
             '<p>%s <a class="" href="#" onclick="document.querySelector(`#delivery_options_custom_css`).value = `%s`">%s</a></p>',
+            // TRANSLATORS: %s is the name of the theme
             sprintf(__('Theme "%s" detected.', "woocommerce-myparcelbe"), $currentTheme),
             file_get_contents($cssPath),
             __("Apply preset.", "woocommerce-myparcelbe")

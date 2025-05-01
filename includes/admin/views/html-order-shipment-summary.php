@@ -11,8 +11,8 @@ if (! defined('ABSPATH')) {
     exit;
 } // Exit if accessed directly
 
-$order_id    = $_POST["order_id"];
-$shipment_id = $_POST["shipment_id"];
+$order_id    = (int) filter_input(INPUT_POST, 'order_id');
+$shipment_id = (int) filter_input(INPUT_POST, 'shipment_id');
 
 $order = WCX::get_order($order_id);
 
@@ -39,32 +39,32 @@ echo '<ul class="wcmpbe__shipment-summary wcmpbe__ws--nowrap">';
  */
 printf(
     '%s: %s',
-    __("Shipment type", "woocommerce-myparcelbe"),
-    WCMPBE_Data::getPackageTypeHuman(Arr::get($firstShipment, "shipment.options.package_type"))
+    esc_html__('Shipment type', 'woocommerce-myparcelbe'),
+    esc_html(WCMPBE_Data::getPackageTypeHuman(Arr::get($firstShipment, 'shipment.options.package_type')))
 );
 
 foreach ($option_strings as $key => $label) {
     if (Arr::get($firstShipment, "shipment.options.$key")
         && (int) Arr::get($firstShipment, "shipment.options.$key") === 1) {
-        printf('<li class="%s">%s</li>', $key, $label);
+        printf('<li class="%s">%s</li>', esc_attr($key), esc_html($label));
     }
 }
 
 if ($insurance) {
     $price = number_format(Arr::get($insurance, "amount") / 100, 2);
-    printf('<li>%s: € %s</li>', __("insured_for", "woocommerce-myparcelbe"), $price);
+    printf('<li>%s: € %s</li>', esc_html__('insured_for', 'woocommerce-myparcelbe'), esc_html($price));
 }
 
 if ($labelDescription) {
     printf(
         '<li>%s: %s</li>',
-        __("Label description", "woocommerce-myparcelbe"),
-        $labelDescription
+        esc_html__('Label description', 'woocommerce-myparcelbe'),
+        esc_html($labelDescription)
     );
 }
 echo '</ul>';
 
-echo "<hr>";
+echo '<hr/>';
 
 /**
  * Do show the Track & Trace status for all shipments.
@@ -81,9 +81,9 @@ foreach ($shipments as $shipment_id => $shipment) {
 
     printf(
         '<a href="%2$s" target="_blank" title="%3$s">%3$s</a><br/> %1$s: %4$s<br/>',
-        __("Status", "woocommerce-myparcelbe"),
-        WCMYPABE_Admin::getTrackTraceUrl($order_id, $trackTrace),
-        $trackTrace,
-        Arr::get($shipment, "status")
+        esc_html__('Status', 'woocommerce-myparcelbe'),
+        esc_url(WCMYPABE_Admin::getTrackTraceUrl($order_id, $trackTrace)),
+        esc_html($trackTrace),
+        esc_html(Arr::get($shipment, 'status'))
     );
 }

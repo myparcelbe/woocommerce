@@ -1112,3 +1112,9 @@ msgstr "You have not selected any orders!"
 
 msgid "You have to export the orders to MyParcel before you can print the labels!"
 msgstr "You have to export the orders to MyParcel before you can print the labels!"
+
+msgid "Yes"
+msgstr "Yes"
+
+msgid "No"
+msgstr "No"

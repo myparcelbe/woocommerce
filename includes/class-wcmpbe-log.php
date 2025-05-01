@@ -29,7 +29,7 @@ class WCMPBE_Log
             try {
                 (wc_get_logger())->debug($message, ["source" => "wc-myparcelbe"]);
             } catch (Exception $e) {
-                exit($e);
+                exit(esc_html($e));
             }
             return;
         }
@@ -46,7 +46,7 @@ class WCMPBE_Log
         $upload_dir        = wp_upload_dir();
         $upload_base       = trailingslashit($upload_dir["basedir"]);
         $log_file          = $upload_base . "myparcelbe_log.txt";
-        $current_date_time = date("Y-m-d H:i:s");
+        $current_date_time = gmdate("Y-m-d H:i:s");
         $message           = $current_date_time . " " . $message . "n";
         file_put_contents($log_file, $message, FILE_APPEND);
 

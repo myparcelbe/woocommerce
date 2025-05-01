@@ -39,8 +39,6 @@ class WCMPBE_API extends WCMPBE_Rest
      */
     public function __construct($key)
     {
-        parent::__construct();
-
         $this->apiUrl    = WCMPBE_Data::API_URL;
         $this->userAgent = $this->getUserAgent();
         $this->key       = (string) $key;
@@ -82,7 +80,7 @@ class WCMPBE_API extends WCMPBE_Rest
             ],
         ];
 
-        $json = json_encode($data);
+        $json = wp_json_encode($data);
 
         $headers = [
             "Content-type"  => $content_type . "; charset=UTF-8",
@@ -172,7 +170,7 @@ class WCMPBE_API extends WCMPBE_Rest
         if (! $display) {
             $collection->setLinkOfLabels($positions);
             $this->updateOrderBarcode($order_ids, $collection);
-            echo $collection->getLinkOfLabels();
+            echo esc_html($collection->getLinkOfLabels());
             die();
         }
     }

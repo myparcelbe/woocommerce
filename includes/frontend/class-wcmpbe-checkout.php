@@ -145,8 +145,8 @@ class WCMPBE_Checkout
             "wc-myparcel",
             "MyParcelDeliveryOptions",
             [
-                "allowedShippingMethods"    => json_encode($this->getShippingMethodsAllowingDeliveryOptions()),
-                "disallowedShippingMethods" => json_encode(WCMPBE_Export::DISALLOWED_SHIPPING_METHODS),
+                "allowedShippingMethods"    => wp_json_encode($this->getShippingMethodsAllowingDeliveryOptions()),
+                "disallowedShippingMethods" => wp_json_encode(WCMPBE_Export::DISALLOWED_SHIPPING_METHODS),
                 "alwaysShow"                => $this->alwaysDisplayDeliveryOptions(),
                 "hiddenInputName"           => WCMYPABE_Admin::META_DELIVERY_OPTIONS,
             ]
@@ -187,7 +187,7 @@ class WCMPBE_Checkout
             $shipping_methods = $packageTypes[AbstractConsignment::PACKAGE_TYPE_PACKAGE];
         }
 
-        return json_encode($shipping_methods);
+        return wp_json_encode($shipping_methods);
     }
 
     /**
@@ -262,7 +262,7 @@ class WCMPBE_Checkout
      */
     public function getDeliveryOptionsConfigAjax(): void
     {
-        echo json_encode($this->getDeliveryOptionsConfig(), JSON_UNESCAPED_SLASHES);
+        echo wp_json_encode($this->getDeliveryOptionsConfig(), JSON_UNESCAPED_SLASHES);
         die();
     }
 
@@ -289,7 +289,7 @@ class WCMPBE_Checkout
     {
         $settings = WCMYPABE()->setting_collection;
 
-        return __(strip_tags($settings->getStringByName($title)), "woocommerce-myparcelbe");
+        return esc_html($settings->getStringByName($title));
     }
 
     /**
@@ -335,18 +335,23 @@ class WCMPBE_Checkout
     /**
      * Save delivery options to order when used
      *
-     * @param int   $order_id
-     * @param array $posted
-     *
+     * @param int $orderId
      * @return void
-     * @throws Exception
      */
-    public static function save_delivery_options($order_id)
+    public static function save_delivery_options(int $orderId): void
     {
-        $order = WCX::get_order($order_id);
-
-        $shippingMethod       = Arr::get($_POST, "shipping_method");
-        $highestShippingClass = Arr::get($_POST, "myparcel_highest_shipping_class") ?? $shippingMethod[0];
+        // TODO nonce verification
+        $order                = WCX::get_order($orderId);
+        $shippingMethod       = sanitize_text_field(
+            wp_unslash(
+                $_POST['shipping_method'][0]
+                ?? WC()->session->get('chosen_shipping_methods')[0]
+                ?? ''
+            )
+        );
+        $highestShippingClass = sanitize_text_field(
+            wp_unslash(filter_input(INPUT_POST, 'myparcel_highest_shipping_class') ?? $shippingMethod)
+        );
 
         /**
          * Save the current version of our plugin to the order.
@@ -374,7 +379,7 @@ class WCMPBE_Checkout
             );
         }
 
-        $deliveryOptionsFromPost          = Arr::get($_POST, WCMYPABE_Admin::META_DELIVERY_OPTIONS);
+        $deliveryOptionsFromPost          = filter_input(INPUT_POST, WCMYPABE_Admin::META_DELIVERY_OPTIONS);
         $deliveryOptionsFromShippingClass = $highestShippingClass
             ? [
                 'packageType' => WCMPBE_Export::getPackageTypeFromShippingMethod(
