@@ -19,23 +19,24 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: woocommerce-myparcel.php:211
-msgid "WooCommerce MyParcel BE requires %sWooCommerce%s to be installed & activated!"
+#. translators: %1$s link to WooCommerce plugin, $2$s closing tag
+#: woocommerce-myparcel.php:214
+msgid "WooCommerce MyParcel BE requires %1$sWooCommerce%2$s to be installed & activated!"
 msgstr ""
 
-#: woocommerce-myparcel.php:229
+#: woocommerce-myparcel.php:230
 msgid "WooCommerce MyParcel BE requires PHP {PHP_VERSION} or higher."
 msgstr ""
 
-#: woocommerce-myparcel.php:232
+#: woocommerce-myparcel.php:236
 msgid "How to update your PHP version"
 msgstr ""
 
-#: includes/class-wcmpbe-assets.php:93, includes/admin/class-wcmpbe-export.php:256
+#: includes/class-wcmpbe-assets.php:95, includes/admin/class-wcmpbe-export.php:260
 msgid "You have not selected any orders!"
 msgstr ""
 
-#: includes/class-wcmpbe-assets.php:95
+#: includes/class-wcmpbe-assets.php:97
 msgid "Export options"
 msgstr ""
 
@@ -71,47 +72,39 @@ msgstr ""
 msgid "DPD"
 msgstr ""
 
-#: includes/class-wcmpbe-postcode-fields.php:322, includes/class-wcmpbe-postcode-fields.php:501, includes/class-wcmpbe-postcode-fields.php:528
+#: includes/class-wcmpbe-postcode-fields.php:313, includes/class-wcmpbe-postcode-fields.php:492, includes/class-wcmpbe-postcode-fields.php:519
 msgid "street_name"
 msgstr ""
 
-#: includes/class-wcmpbe-postcode-fields.php:330, includes/class-wcmpbe-postcode-fields.php:506, includes/class-wcmpbe-postcode-fields.php:533
+#: includes/class-wcmpbe-postcode-fields.php:321, includes/class-wcmpbe-postcode-fields.php:497, includes/class-wcmpbe-postcode-fields.php:524
 msgid "No."
 msgstr ""
 
-#: includes/class-wcmpbe-postcode-fields.php:339, includes/class-wcmpbe-postcode-fields.php:511, includes/class-wcmpbe-postcode-fields.php:538
+#: includes/class-wcmpbe-postcode-fields.php:330, includes/class-wcmpbe-postcode-fields.php:502, includes/class-wcmpbe-postcode-fields.php:529
 msgid "suffix"
 msgstr ""
 
-#: includes/class-wcmpbe-postcode-fields.php:552, includes/class-wcmpbe-postcode-fields.php:566
+#: includes/class-wcmpbe-postcode-fields.php:543, includes/class-wcmpbe-postcode-fields.php:557
 msgid "Street"
 msgstr ""
 
-#: includes/class-wcmpbe-postcode-fields.php:556, includes/class-wcmpbe-postcode-fields.php:570
+#: includes/class-wcmpbe-postcode-fields.php:547, includes/class-wcmpbe-postcode-fields.php:561
 msgid "Number"
 msgstr ""
 
-#: includes/class-wcmpbe-postcode-fields.php:560, includes/class-wcmpbe-postcode-fields.php:574
+#: includes/class-wcmpbe-postcode-fields.php:551, includes/class-wcmpbe-postcode-fields.php:565
 msgid "Suffix"
 msgstr ""
 
-#: includes/class-wcmpbe-postcode-fields.php:735
+#: includes/class-wcmpbe-postcode-fields.php:726
 msgid "Please enter a valid billing address."
 msgstr ""
 
-#: includes/class-wcmpbe-postcode-fields.php:746
+#: includes/class-wcmpbe-postcode-fields.php:737
 msgid "Please enter a valid shipping address."
 msgstr ""
 
-#: includes/class-wcmpbe-postcode-fields.php:852
-msgid "<b>Billing No.</b> is a required field"
-msgstr ""
-
-#: includes/class-wcmpbe-postcode-fields.php:855
-msgid "<b>Shipping No.</b> is a required field"
-msgstr ""
-
-#: includes/admin/class-wcmpbe-api.php:195
+#: includes/admin/class-wcmpbe-api.php:193
 msgid "myparcel_shipment_created"
 msgstr ""
 
@@ -131,119 +124,120 @@ msgstr ""
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:406
+#. translators: %s number of shipments
+#: includes/admin/class-wcmpbe-export.php:411
 msgid "%s shipments successfully exported to MyParcel BE"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:528
+#: includes/admin/class-wcmpbe-export.php:533
 msgid "The selected orders have not been exported to MyParcel yet! "
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:574
+#: includes/admin/class-wcmpbe-export.php:579
 msgid "No API key found in MyParcel settings"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:605
+#: includes/admin/class-wcmpbe-export.php:610
 msgid "No e-mail address found in order."
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:906
+#: includes/admin/class-wcmpbe-export.php:911
 msgid "Unknown"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:969, includes/admin/views/html-send-return-email-form.php:54
+#: includes/admin/class-wcmpbe-export.php:974, includes/admin/views/html-send-return-email-form.php:54
 msgid "Order"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:993
+#: includes/admin/class-wcmpbe-export.php:998
 msgid "pending - concept"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:994
+#: includes/admin/class-wcmpbe-export.php:999
 msgid "pending - registered"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:995
+#: includes/admin/class-wcmpbe-export.php:1000
 msgid "enroute - handed to carrier"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:996
+#: includes/admin/class-wcmpbe-export.php:1001
 msgid "enroute - sorting"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:997
+#: includes/admin/class-wcmpbe-export.php:1002
 msgid "enroute - distribution"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:998
+#: includes/admin/class-wcmpbe-export.php:1003
 msgid "enroute - customs"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:999
+#: includes/admin/class-wcmpbe-export.php:1004
 msgid "delivered - at recipient"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1000
+#: includes/admin/class-wcmpbe-export.php:1005
 msgid "delivered - ready for pickup"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1001
+#: includes/admin/class-wcmpbe-export.php:1006
 msgid "delivered - package picked up"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1002
+#: includes/admin/class-wcmpbe-export.php:1007
 msgid "printed - letter"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1003
+#: includes/admin/class-wcmpbe-export.php:1008
 msgid "printed - digital stamp"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1004
+#: includes/admin/class-wcmpbe-export.php:1009
 msgid "inactive - concept"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1005
+#: includes/admin/class-wcmpbe-export.php:1010
 msgid "inactive - registered"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1006
+#: includes/admin/class-wcmpbe-export.php:1011
 msgid "inactive - enroute - handed to carrier"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1007
+#: includes/admin/class-wcmpbe-export.php:1012
 msgid "inactive - enroute - sorting"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1008
+#: includes/admin/class-wcmpbe-export.php:1013
 msgid "inactive - enroute - distribution"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1009
+#: includes/admin/class-wcmpbe-export.php:1014
 msgid "inactive - enroute - customs"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1010
+#: includes/admin/class-wcmpbe-export.php:1015
 msgid "inactive - delivered - at recipient"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1011
+#: includes/admin/class-wcmpbe-export.php:1016
 msgid "inactive - delivered - ready for pickup"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1012
+#: includes/admin/class-wcmpbe-export.php:1017
 msgid "inactive - delivered - package picked up"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1013
+#: includes/admin/class-wcmpbe-export.php:1018
 msgid "inactive - unknown"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1019
+#: includes/admin/class-wcmpbe-export.php:1024
 msgid "Unknown status"
 msgstr ""
 
-#: includes/admin/class-wcmpbe-export.php:1468
+#: includes/admin/class-wcmpbe-export.php:1473
 msgid "The order(s) you have selected have invalid shipping countries."
 msgstr ""
 
@@ -251,91 +245,115 @@ msgstr ""
 msgid "Pickup location"
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:335, includes/admin/class-wcmypabe-admin.php:359
-msgid "MyParcel BE: Export"
-msgstr ""
-
-#: includes/admin/class-wcmypabe-admin.php:336, includes/admin/class-wcmypabe-admin.php:360
-msgid "MyParcel BE: Print"
-msgstr ""
-
-#: includes/admin/class-wcmypabe-admin.php:337, includes/admin/class-wcmypabe-admin.php:361
-msgid "MyParcel BE: Export & Print"
-msgstr ""
-
-#: includes/admin/class-wcmypabe-admin.php:418
-msgid "Labels to skip"
-msgstr ""
-
-#: includes/admin/class-wcmypabe-admin.php:434
-msgid "Print"
-msgstr ""
-
-#: includes/admin/class-wcmypabe-admin.php:498
-msgid "Export to MyParcel"
-msgstr ""
-
-#: includes/admin/class-wcmypabe-admin.php:503
-msgid "Print MyParcel label"
-msgstr ""
-
-#: includes/admin/class-wcmypabe-admin.php:508
-msgid "Email return label"
-msgstr ""
-
-#: includes/admin/class-wcmypabe-admin.php:636, includes/admin/settings/class-wcmpbe-settings.php:168, includes/admin/settings/class-wcmpbe-settings.php:169
-msgid "MyParcel BE"
-msgstr ""
-
-#: includes/admin/class-wcmypabe-admin.php:817
+#: includes/admin/class-wcmypabe-admin.php:151, includes/admin/class-wcmypabe-admin.php:823
 msgid "HS Code"
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:821, includes/admin/settings/class-wcmpbe-settings-data.php:859
+#: includes/admin/class-wcmypabe-admin.php:153
+msgid "This HS Code overwrites the parents HS Code."
+msgstr ""
+
+#: includes/admin/class-wcmypabe-admin.php:338, includes/admin/class-wcmypabe-admin.php:362
+msgid "MyParcel BE: Export"
+msgstr ""
+
+#: includes/admin/class-wcmypabe-admin.php:339, includes/admin/class-wcmypabe-admin.php:363
+msgid "MyParcel BE: Print"
+msgstr ""
+
+#: includes/admin/class-wcmypabe-admin.php:340, includes/admin/class-wcmypabe-admin.php:364
+msgid "MyParcel BE: Export & Print"
+msgstr ""
+
+#: includes/admin/class-wcmypabe-admin.php:421
+msgid "Labels to skip"
+msgstr ""
+
+#: includes/admin/class-wcmypabe-admin.php:437
+msgid "Print"
+msgstr ""
+
+#: includes/admin/class-wcmypabe-admin.php:501
+msgid "Export to MyParcel"
+msgstr ""
+
+#: includes/admin/class-wcmypabe-admin.php:506
+msgid "Print MyParcel label"
+msgstr ""
+
+#: includes/admin/class-wcmypabe-admin.php:511
+msgid "Email return label"
+msgstr ""
+
+#: includes/admin/class-wcmypabe-admin.php:641, includes/admin/settings/class-wcmpbe-settings.php:168, includes/admin/settings/class-wcmpbe-settings.php:169
+msgid "MyParcel BE"
+msgstr ""
+
+#: includes/admin/class-wcmypabe-admin.php:827, includes/admin/settings/class-wcmpbe-settings-data.php:859
 msgid "product_option_hs_code_help_text_tariff_website"
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:829
+#: includes/admin/class-wcmypabe-admin.php:835
 msgid "product_options_country_of_origin"
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:833
+#: includes/admin/class-wcmypabe-admin.php:839
 msgid "Default"
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:838, includes/admin/settings/class-wcmpbe-settings-data.php:882
+#: includes/admin/class-wcmypabe-admin.php:844, includes/admin/settings/class-wcmpbe-settings-data.php:882
 msgid "setting_country_of_origin_help_text"
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:882
+#: includes/admin/class-wcmypabe-admin.php:888
 msgid "No label has been created yet."
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:893
+#: includes/admin/class-wcmypabe-admin.php:899
 msgid "The label has been printed."
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:898
+#: includes/admin/class-wcmypabe-admin.php:904
 msgid "Concept created but not printed."
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:983
+#: includes/admin/class-wcmypabe-admin.php:989
 msgid "MyParcel BE shipment:"
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:1024, includes/admin/class-wcmypabe-admin.php:1037
+#: includes/admin/class-wcmypabe-admin.php:1030, includes/admin/class-wcmypabe-admin.php:1043
 msgid "delivery_type"
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:1025
+#: includes/admin/class-wcmypabe-admin.php:1031
 msgid "pickup_location"
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:1082, includes/admin/class-wcmypabe-admin.php:1104
+#: includes/admin/class-wcmypabe-admin.php:1088, includes/admin/class-wcmypabe-admin.php:1110
 msgid "Delivery information:"
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:1210
+#: includes/admin/class-wcmypabe-admin.php:1132
+msgid "shipment_options_delivery_morning"
+msgstr ""
+
+#: includes/admin/class-wcmypabe-admin.php:1134
+msgid "shipment_options_delivery_standard"
+msgstr ""
+
+#: includes/admin/class-wcmypabe-admin.php:1136
+msgid "shipment_options_delivery_evening"
+msgstr ""
+
+#: includes/admin/class-wcmypabe-admin.php:1138
+msgid "shipment_options_delivery_pickup"
+msgstr ""
+
+#: includes/admin/class-wcmypabe-admin.php:1140
+msgid "shipment_options_delivery_same_day"
+msgstr ""
+
+#: includes/admin/class-wcmypabe-admin.php:1234
 msgid "(Unknown)"
 msgstr ""
 
@@ -447,11 +465,11 @@ msgstr ""
 msgid "Track & Trace"
 msgstr ""
 
-#: includes/admin/settings/class-wcmpbe-settings-callbacks.php:165
+#: includes/admin/settings/class-wcmpbe-settings-callbacks.php:168
 msgid "No"
 msgstr ""
 
-#: includes/admin/settings/class-wcmpbe-settings-callbacks.php:160
+#: includes/admin/settings/class-wcmpbe-settings-callbacks.php:163
 msgid "Yes"
 msgstr ""
 
@@ -1029,11 +1047,11 @@ msgid "Settings_page_title"
 msgstr ""
 
 #. translators: %s is the name of the plugin in the WordPress plugin repository
-#: includes/admin/settings/class-wcmpbe-settings.php:267
+#: includes/admin/settings/class-wcmpbe-settings.php:266
 msgid "It looks like your shop is based in Netherlands. This plugin is for MyParcel Belgium. If you are using MyParcel Netherlands, download the %s plugin instead!"
 msgstr ""
 
-#: includes/admin/settings/class-wcmpbe-settings.php:276
+#: includes/admin/settings/class-wcmpbe-settings.php:275
 msgid "Hide this message"
 msgstr ""
 
@@ -1041,7 +1059,7 @@ msgstr ""
 msgid "Return email successfully sent to customer"
 msgstr ""
 
-#: includes/admin/views/html-order-return-shipment-options.php:60, includes/admin/views/html-order-shipment-options.php:63
+#: includes/admin/views/html-order-return-shipment-options.php:59, includes/admin/views/html-order-shipment-options.php:63
 msgid "Save"
 msgstr ""
 
@@ -1055,6 +1073,10 @@ msgstr ""
 
 #: includes/admin/views/html-order-track-trace-table.php:66
 msgid "Print MyParcel BE label"
+msgstr ""
+
+#: includes/admin/views/html-send-return-email-form.php:83, includes/admin/views/html-send-return-email-form.php:101
+msgid "N/A"
 msgstr ""
 
 #: includes/admin/views/html-send-return-email-form.php:93

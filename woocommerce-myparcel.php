@@ -14,9 +14,7 @@ License URI: http://www.opensource.org/licenses/gpl-license.php
 if (! defined('ABSPATH')) {
     exit;
 } // Exit if accessed directly
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
+
 if (! class_exists('WCMYPABE')) :
 
     class WCMYPABE
@@ -24,10 +22,11 @@ if (! class_exists('WCMYPABE')) :
         /**
          * Translations domain
          */
-        const DOMAIN               = 'woocommerce-myparcelbe';
-        const NONCE_ACTION         = 'wc_myparcel';
-        const PHP_VERSION_7_1      = '7.1';
-        const PHP_VERSION_REQUIRED = self::PHP_VERSION_7_1;
+        public const DOMAIN               = 'woocommerce-myparcelbe';
+        public const NONCE_ACTION         = 'wc_myparcel';
+        public const PHP_VERSION_7_1      = '7.1';
+        public const PHP_VERSION_REQUIRED = self::PHP_VERSION_7_1;
+        public const WC_VERSION_REQUIRED  = '5.5';
 
         public $version = '4.5.6';
 
@@ -172,8 +171,14 @@ if (! class_exists('WCMYPABE')) :
          */
         public function load_classes()
         {
-            if ($this->is_woocommerce_activated() === false) {
+            if (!$this->isWoocommerceActivated()) {
                 add_action('admin_notices', [$this, 'need_woocommerce']);
+
+                return;
+            }
+
+            if (!$this->woocommerceVersionMeets(self::WC_VERSION_REQUIRED)) {
+                add_action('admin_notices', [$this, 'need_woocommerce_version']);
 
                 return;
             }
@@ -183,6 +188,7 @@ if (! class_exists('WCMYPABE')) :
 
                 return;
             }
+
             // php 7.1
             $this->includes();
             $this->initSettings();
@@ -191,17 +197,18 @@ if (! class_exists('WCMYPABE')) :
         /**
          * Check if woocommerce is activated
          */
-        public function is_woocommerce_activated()
+        public function isWoocommerceActivated()
         {
             $blog_plugins = get_option('active_plugins', []);
             $site_plugins = get_site_option('active_sitewide_plugins', []);
 
-            if (in_array('woocommerce/woocommerce.php', $blog_plugins)
-                || isset($site_plugins['woocommerce/woocommerce.php'])) {
-                return true;
-            } else {
-                return false;
-            }
+            return in_array('woocommerce/woocommerce.php', $blog_plugins)
+                   || isset($site_plugins['woocommerce/woocommerce.php']);
+        }
+
+        private function woocommerceVersionMeets(string $version): bool
+        {
+            return defined('WC_VERSION') && version_compare(WC_VERSION, $version, '>=');
         }
 
         /**
@@ -219,6 +226,17 @@ if (! class_exists('WCMYPABE')) :
             );
 
             echo '<div class="error"><p>', wp_kses($error, array('a'=>array('href'))), '</p></div>';
+        }
+
+        public function need_woocommerce_version()
+        {
+            $error = str_replace(
+                '{WC_VERSION}',
+                self::WC_VERSION_REQUIRED,
+                __('WooCommerce MyParcel BE requires WooCommerce {WC_VERSION} or higher.', 'woocommerce-myparcelbe')
+            );
+
+            echo '<div class="error"><p>', esc_html($error), '</p></div>';
         }
 
         /**

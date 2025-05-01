@@ -396,6 +396,9 @@ msgstr "Hoe update je jouw PHP versie"
 msgid "HS Code"
 msgstr "HS Code"
 
+msgid "This HS Code overwrites the parents HS Code."
+msgstr "Deze HS Code overschrijft de ouder-HS code."
+
 msgid ""
 "HS Codes are used for MyParcel world shipments, you can find the "
 "appropriate code on the %ssite of the Dutch Customs%s"
@@ -1133,3 +1136,9 @@ msgstr "Ja"
 
 msgid "No"
 msgstr "Nee"
+
+msgid "Date:"
+msgstr "Datum:"
+
+msgid "N/A"
+msgstr "NB"
