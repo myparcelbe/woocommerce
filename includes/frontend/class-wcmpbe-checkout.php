@@ -340,7 +340,10 @@ class WCMPBE_Checkout
      */
     public static function save_delivery_options(int $orderId): void
     {
-        // TODO nonce verification
+        if (isset($_POST['shipping_method'])) {
+            wp_verify_nonce('_wpnonce');
+        }
+
         $order                = WCX::get_order($orderId);
         $shippingMethod       = sanitize_text_field(
             wp_unslash(

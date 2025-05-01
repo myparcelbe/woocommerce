@@ -807,13 +807,13 @@ msgid "shipment_options_insured_amount"
 msgstr "Bezig met laden..."
 
 msgid "shipment_options_insured_amount_help_text"
-msgstr "Assurez tous les colis à hauteur du montant choisi."
+msgstr "Bezig met laden..."
 
 msgid "shipment_options_insured_from_price"
-msgstr "Assurer à partir du prix"
+msgstr "Bezig met laden..."
 
 msgid "shipment_options_insured_from_price_help_text"
-msgstr "Assurez toutes les commandes qui dépassent ce prix."
+msgstr "Bezig met laden..."
 
 msgid "shipment_options_insured_help_text"
 msgstr "Bezig met laden..."
@@ -822,22 +822,16 @@ msgid "shipment_options_large_format"
 msgstr "Très grande taille"
 
 msgid "shipment_options_large_format_help_text"
-msgstr ""
-"Activez cette option lorsque votre envoi mesure plus de 100 x 70 x 50 cm, "
-"mais moins de 175 x 78 x 58 cm. Des frais supplémentaires seront facturés. "
-"Note! Si le colis mesure plus de 175 x 78 x 58 ou pèse plus de 30 kg, le "
-"tarif palette sera facturé."
+msgstr "Bezig met laden..."
 
 msgid "shipment_options_only_recipient"
 msgstr "Seul destinataire"
 
 msgid "shipment_options_only_recipient_help_text"
-msgstr ""
-"Si vous ne souhaitez pas que le colis soit livré chez les voisins, "
-"choisissez cette option."
+msgstr "Bezig met laden..."
 
 msgid "shipment_options_return"
-msgstr "Retour si pas de réponse"
+msgstr "Bezig met laden..."
 
 msgid "shipment_options_return_help_text"
 msgstr "Bezig met laden..."

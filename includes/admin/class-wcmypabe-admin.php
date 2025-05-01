@@ -166,6 +166,8 @@ class WCMYPABE_Admin
         if (!isset($_POST[self::META_HS_CODE_VARIATION][$loop])) {
             return;
         }
+        wp_verify_nonce('_wpnonce');
+
         $hsCodeValue = sanitize_title(wp_unslash($_POST[self::META_HS_CODE_VARIATION][$loop]));
 
         if (! $hsCodeValue || ! ctype_digit(str_replace(' ', '', $hsCodeValue))) {

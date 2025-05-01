@@ -76,35 +76,35 @@ msgstr ""
 msgid "DPD"
 msgstr ""
 
-#: includes/class-wcmpbe-postcode-fields.php:313, includes/class-wcmpbe-postcode-fields.php:492, includes/class-wcmpbe-postcode-fields.php:519
+#: includes/class-wcmpbe-postcode-fields.php:323, includes/class-wcmpbe-postcode-fields.php:502, includes/class-wcmpbe-postcode-fields.php:529
 msgid "street_name"
 msgstr ""
 
-#: includes/class-wcmpbe-postcode-fields.php:321, includes/class-wcmpbe-postcode-fields.php:497, includes/class-wcmpbe-postcode-fields.php:524
+#: includes/class-wcmpbe-postcode-fields.php:331, includes/class-wcmpbe-postcode-fields.php:507, includes/class-wcmpbe-postcode-fields.php:534
 msgid "No."
 msgstr ""
 
-#: includes/class-wcmpbe-postcode-fields.php:330, includes/class-wcmpbe-postcode-fields.php:502, includes/class-wcmpbe-postcode-fields.php:529
+#: includes/class-wcmpbe-postcode-fields.php:340, includes/class-wcmpbe-postcode-fields.php:512, includes/class-wcmpbe-postcode-fields.php:539
 msgid "suffix"
 msgstr ""
 
-#: includes/class-wcmpbe-postcode-fields.php:543, includes/class-wcmpbe-postcode-fields.php:557
+#: includes/class-wcmpbe-postcode-fields.php:553, includes/class-wcmpbe-postcode-fields.php:567
 msgid "Street"
 msgstr ""
 
-#: includes/class-wcmpbe-postcode-fields.php:547, includes/class-wcmpbe-postcode-fields.php:561
+#: includes/class-wcmpbe-postcode-fields.php:557, includes/class-wcmpbe-postcode-fields.php:571
 msgid "Number"
 msgstr ""
 
-#: includes/class-wcmpbe-postcode-fields.php:551, includes/class-wcmpbe-postcode-fields.php:565
+#: includes/class-wcmpbe-postcode-fields.php:561, includes/class-wcmpbe-postcode-fields.php:575
 msgid "Suffix"
 msgstr ""
 
-#: includes/class-wcmpbe-postcode-fields.php:726
+#: includes/class-wcmpbe-postcode-fields.php:736
 msgid "Please enter a valid billing address."
 msgstr ""
 
-#: includes/class-wcmpbe-postcode-fields.php:737
+#: includes/class-wcmpbe-postcode-fields.php:747
 msgid "Please enter a valid shipping address."
 msgstr ""
 
@@ -249,7 +249,7 @@ msgstr ""
 msgid "Pickup location"
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:151, includes/admin/class-wcmypabe-admin.php:823
+#: includes/admin/class-wcmypabe-admin.php:151, includes/admin/class-wcmypabe-admin.php:826
 msgid "HS Code"
 msgstr ""
 
@@ -257,107 +257,107 @@ msgstr ""
 msgid "This HS Code overwrites the parents HS Code."
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:338, includes/admin/class-wcmypabe-admin.php:362
+#: includes/admin/class-wcmypabe-admin.php:341, includes/admin/class-wcmypabe-admin.php:365
 msgid "MyParcel BE: Export"
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:339, includes/admin/class-wcmypabe-admin.php:363
+#: includes/admin/class-wcmypabe-admin.php:342, includes/admin/class-wcmypabe-admin.php:366
 msgid "MyParcel BE: Print"
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:340, includes/admin/class-wcmypabe-admin.php:364
+#: includes/admin/class-wcmypabe-admin.php:343, includes/admin/class-wcmypabe-admin.php:367
 msgid "MyParcel BE: Export & Print"
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:421
+#: includes/admin/class-wcmypabe-admin.php:424
 msgid "Labels to skip"
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:437
+#: includes/admin/class-wcmypabe-admin.php:440
 msgid "Print"
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:501
+#: includes/admin/class-wcmypabe-admin.php:504
 msgid "Export to MyParcel"
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:506
+#: includes/admin/class-wcmypabe-admin.php:509
 msgid "Print MyParcel label"
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:511
+#: includes/admin/class-wcmypabe-admin.php:514
 msgid "Email return label"
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:641, includes/admin/settings/class-wcmpbe-settings.php:168, includes/admin/settings/class-wcmpbe-settings.php:169
+#: includes/admin/class-wcmypabe-admin.php:644, includes/admin/settings/class-wcmpbe-settings.php:168, includes/admin/settings/class-wcmpbe-settings.php:169
 msgid "MyParcel BE"
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:827, includes/admin/settings/class-wcmpbe-settings-data.php:859
+#: includes/admin/class-wcmypabe-admin.php:830, includes/admin/settings/class-wcmpbe-settings-data.php:859
 msgid "product_option_hs_code_help_text_tariff_website"
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:835
+#: includes/admin/class-wcmypabe-admin.php:838
 msgid "product_options_country_of_origin"
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:839
+#: includes/admin/class-wcmypabe-admin.php:842
 msgid "Default"
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:844, includes/admin/settings/class-wcmpbe-settings-data.php:882
+#: includes/admin/class-wcmypabe-admin.php:847, includes/admin/settings/class-wcmpbe-settings-data.php:882
 msgid "setting_country_of_origin_help_text"
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:888
+#: includes/admin/class-wcmypabe-admin.php:891
 msgid "No label has been created yet."
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:899
+#: includes/admin/class-wcmypabe-admin.php:902
 msgid "The label has been printed."
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:904
+#: includes/admin/class-wcmypabe-admin.php:907
 msgid "Concept created but not printed."
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:989
+#: includes/admin/class-wcmypabe-admin.php:992
 msgid "MyParcel BE shipment:"
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:1030, includes/admin/class-wcmypabe-admin.php:1043
+#: includes/admin/class-wcmypabe-admin.php:1033, includes/admin/class-wcmypabe-admin.php:1046
 msgid "delivery_type"
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:1031
+#: includes/admin/class-wcmypabe-admin.php:1034
 msgid "pickup_location"
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:1088, includes/admin/class-wcmypabe-admin.php:1110
+#: includes/admin/class-wcmypabe-admin.php:1091, includes/admin/class-wcmypabe-admin.php:1113
 msgid "Delivery information:"
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:1132
+#: includes/admin/class-wcmypabe-admin.php:1135
 msgid "shipment_options_delivery_morning"
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:1134
+#: includes/admin/class-wcmypabe-admin.php:1137
 msgid "shipment_options_delivery_standard"
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:1136
+#: includes/admin/class-wcmypabe-admin.php:1139
 msgid "shipment_options_delivery_evening"
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:1138
+#: includes/admin/class-wcmypabe-admin.php:1141
 msgid "shipment_options_delivery_pickup"
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:1140
+#: includes/admin/class-wcmypabe-admin.php:1143
 msgid "shipment_options_delivery_same_day"
 msgstr ""
 
-#: includes/admin/class-wcmypabe-admin.php:1234
+#: includes/admin/class-wcmypabe-admin.php:1237
 msgid "(Unknown)"
 msgstr ""
 
