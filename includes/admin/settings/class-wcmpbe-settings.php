@@ -271,8 +271,8 @@ class WCMPBE_Settings
             );
             $dismiss_button   = sprintf(
                 '<a href="%s" style="display:inline-block; margin-top: 10px;">%s</a>',
-                add_query_arg('myparcelbe_hide_be_notice', 'true'),
-                __("Hide this message", "woocommerce-myparcelbe")
+                esc_url(add_query_arg('myparcelbe_hide_be_notice', 'true')),
+                esc_html__("Hide this message", "woocommerce-myparcelbe")
             );
             printf('<div class="notice notice-warning"><p>%s %s</p></div>', $text, $dismiss_button);
         }
