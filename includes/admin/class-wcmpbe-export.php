@@ -190,10 +190,10 @@ class WCMPBE_Export
         }
 
         if (isset($_COOKIE['myparcelbe_response'])) {
-            $response = wp_unslash($_COOKIE['myparcelbe_response']);
+            $response = sanitize_text_field(wp_unslash($_COOKIE['myparcelbe_response']));
             printf(
                 '<div class="wcmpbe__notice is-dismissible notice notice-error"><p>%s</p></div>',
-                wp_kses($response, [])
+                esc_html($response)
             );
         }
     }

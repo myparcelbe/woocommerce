@@ -162,7 +162,10 @@ class WCMYPABE_Admin
      */
     public function save_variation_hs_code_field($variationId, $loop)
     {
-        if (!isset($_POST[self::META_HS_CODE_VARIATION][$loop])) return;
+        // check if the field is set
+        if (!isset($_POST[self::META_HS_CODE_VARIATION][$loop])) {
+            return;
+        }
         $hsCodeValue = sanitize_title(wp_unslash($_POST[self::META_HS_CODE_VARIATION][$loop]));
 
         if (! $hsCodeValue || ! ctype_digit(str_replace(' ', '', $hsCodeValue))) {

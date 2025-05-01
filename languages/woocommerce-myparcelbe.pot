@@ -20,15 +20,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. translators: %1$s link to WooCommerce plugin, $2$s closing tag
-#: woocommerce-myparcel.php:214
+#: woocommerce-myparcel.php:221
 msgid "WooCommerce MyParcel BE requires %1$sWooCommerce%2$s to be installed & activated!"
 msgstr ""
 
-#: woocommerce-myparcel.php:230
+#: woocommerce-myparcel.php:236
+msgid "WooCommerce MyParcel BE requires WooCommerce {WC_VERSION} or higher."
+msgstr ""
+
+#: woocommerce-myparcel.php:248
 msgid "WooCommerce MyParcel BE requires PHP {PHP_VERSION} or higher."
 msgstr ""
 
-#: woocommerce-myparcel.php:236
+#: woocommerce-myparcel.php:254
 msgid "How to update your PHP version"
 msgstr ""
 
