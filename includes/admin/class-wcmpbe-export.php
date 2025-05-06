@@ -290,7 +290,7 @@ class WCMPBE_Export
 
         // display errors directly if PDF requested or modal
         if (! empty($this->errors) && in_array($request, [self::ADD_RETURN, self::GET_LABELS, self::MODAL_DIALOG])) {
-            echo wp_kses($this->parse_errors($this->errors),["ul"=>[],"li"=>[],"strong"=>[]]);
+            echo wp_kses($this->parse_errors($this->errors), ['ul' => [], 'li' => [], 'strong' => []]);
             die();
         }
 
