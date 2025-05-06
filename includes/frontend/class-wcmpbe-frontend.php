@@ -245,12 +245,13 @@ class WCMPBE_Frontend
     }
 
     /**
-     * @return int|null
      * @throws Exception
      */
     public function ajaxGetHighestShippingClass(): ?int
     {
-        echo WCMPBE_Frontend::get_cart_shipping_class();
+        if (null !== self::get_cart_shipping_class()) {
+            echo esc_html((string) self::get_cart_shipping_class());
+        }
         die();
     }
 }

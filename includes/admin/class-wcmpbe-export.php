@@ -138,7 +138,7 @@ class WCMPBE_Export
                     if ($type === "success" && ! empty($print_queue)) {
                         $print_queue_store = sprintf(
                             '<input type="hidden" value=\'%s\' class="wcmpbe__print-queue">',
-                            json_encode(
+                            wp_json_encode(
                                 [
                                     "shipment_ids" => $print_queue["shipment_ids"],
                                     "order_ids"    => $print_queue["order_ids"],
@@ -153,9 +153,9 @@ class WCMPBE_Export
 
                     printf(
                         '<div class="wcmpbe__notice is-dismissible notice notice-%s"><p>%s</p>%s</div>',
-                        $type,
-                        $message,
-                        $print_queue_store ?? ""
+                        esc_attr($type),
+                        esc_html($message),
+                        wp_kses($print_queue_store ?? '', ["input" => ["type" => [], "value" => [], "class" => []]])
                     );
                 }
                 // destroy after reading
@@ -167,8 +167,8 @@ class WCMPBE_Export
         if (! empty($error_notice)) {
             printf(
                 '<div class="wcmpbe__notice is-dismissible notice notice-error"><p>%s</p>%s</div>',
-                $error_notice,
-                $print_queue_store ?? ""
+                esc_html($error_notice),
+                wp_kses($print_queue_store ?? '', ["input" => ["type" => [], "value" => [], "class" => []]])
             );
             // destroy after reading
             delete_option("wcmyparcelbe_admin_error_notices");
@@ -182,7 +182,7 @@ class WCMPBE_Export
                         "You have to export the orders to MyParcel BE before you can print the labels!",
                         "woocommerce-myparcelbe"
                     );
-                    printf('<div class="wcmpbe__notice is-dismissible notice notice-error"><p>%s</p></div>', $message);
+                    printf('<div class="wcmpbe__notice is-dismissible notice notice-error"><p>%s</p></div>', esc_html($message));
                     break;
                 default:
                     break;
@@ -190,10 +190,10 @@ class WCMPBE_Export
         }
 
         if (isset($_COOKIE['myparcelbe_response'])) {
-            $response = $_COOKIE['myparcelbe_response'];
+            $response = sanitize_text_field(wp_unslash($_COOKIE['myparcelbe_response']));
             printf(
                 '<div class="wcmpbe__notice is-dismissible notice notice-error"><p>%s</p></div>',
-                $response
+                esc_html($response)
             );
         }
     }
@@ -215,7 +215,7 @@ class WCMPBE_Export
         }
 
         if (! is_user_logged_in()) {
-            wp_die(__("You do not have sufficient permissions to access this page.", "woocommerce-myparcelbe"));
+            wp_die(esc_html__('You do not have sufficient permissions to access this page.', 'woocommerce-myparcelbe'));
         }
 
         $return = [];
@@ -229,20 +229,24 @@ class WCMPBE_Export
                 "You do not have sufficient permissions to access this page.",
                 "woocommerce-myparcelbe"
             );
-            echo json_encode($return);
+            echo wp_json_encode($return);
             die();
         }
 
-        $dialog  = $_REQUEST["dialog"] ?? null;
-        $print   = $_REQUEST["print"] ?? null;
-        $offset  = (int)($_REQUEST["offset"] ?? 0);
-        $request = $_REQUEST["request"];
+        $requestVars = array_merge(
+            filter_input_array(INPUT_GET) ?? [],
+            filter_input_array(INPUT_POST) ?? []
+        );
+        $print       = sanitize_text_field($requestVars['print'] ?? null);
+        $offset      = (int) ($requestVars['offset'] ?? 0);
+        $request     = sanitize_text_field($requestVars['request']);
+        $dialog      = sanitize_text_field($requestVars['dialog'] ?? null);
 
         /**
          * @var $order_ids
          */
-        $order_ids    = $this->sanitize_posted_array($_REQUEST["order_ids"] ?? []);
-        $shipment_ids = $this->sanitize_posted_array($_REQUEST["shipment_ids"] ?? []);
+        $order_ids    = $this->onlyIntegersInArray($requestVars['order_ids'] ?? []);
+        $shipment_ids = $this->onlyIntegersInArray($requestVars['shipment_ids'] ?? []);
 
         foreach ($order_ids as $key => $id) {
             $order = WCX::get_order($id);
@@ -253,7 +257,7 @@ class WCMPBE_Export
         }
 
         if (empty($shipment_ids) && empty($order_ids)) {
-            $this->errors[] = __("You have not selected any orders!", "woocommerce-myparcelbe");
+            $this->errors[] = __('You have not selected any orders!', 'woocommerce-myparcelbe');
         } else {
             try {
                 switch ($request) {
@@ -264,7 +268,7 @@ class WCMPBE_Export
 
                     // Creating a return shipment.
                     case self::ADD_RETURN:
-                        $return = $this->addReturn($order_ids, $_REQUEST['myparcelbe_options']);
+                        $return = $this->addReturn($order_ids, $requestVars['myparcelbe_options']);
                         break;
 
                     // Downloading labels.
@@ -280,13 +284,13 @@ class WCMPBE_Export
             } catch (Exception $e) {
                 $errorMessage   = $e->getMessage();
                 $this->errors[] = "$request: {$errorMessage}";
-                add_option("wcmyparcelbe_admin_error_notices", $errorMessage);
+                add_option('wcmyparcelbe_admin_error_notices', $errorMessage);
             }
         }
 
         // display errors directly if PDF requested or modal
         if (! empty($this->errors) && in_array($request, [self::ADD_RETURN, self::GET_LABELS, self::MODAL_DIALOG])) {
-            echo $this->parse_errors($this->errors);
+            echo wp_kses($this->parse_errors($this->errors), ['ul' => [], 'li' => [], 'strong' => []]);
             die();
         }
 
@@ -300,7 +304,7 @@ class WCMPBE_Export
             $this->modal_success_page($request, $return);
         } else {
             // return JSON response
-            echo json_encode($return);
+            echo wp_json_encode($return);
             die();
         }
     }
@@ -379,7 +383,7 @@ class WCMPBE_Export
             }
 
             $order          = WCX::get_order($order_id);
-            $consignmentIds = ($collection->getConsignmentsByReferenceIdGroup($order_id))->getConsignmentIds();
+            $consignmentIds = ($collection->getConsignmentsByReferenceIdGroup((string)$order_id))->getConsignmentIds();
 
             foreach ($consignmentIds as $consignmentId) {
                 $shipment["shipment_id"] = $consignmentId;
@@ -403,6 +407,7 @@ class WCMPBE_Export
 
         if (! empty($this->success)) {
             $return["success"]     = sprintf(
+                // TRANSLATORS: %s number of shipments
                 __("%s shipments successfully exported to MyParcel BE", "woocommerce-myparcelbe"),
                 count($collection->getConsignmentIds())
             );
@@ -438,12 +443,12 @@ class WCMPBE_Export
                     ),
                 ];
 
-                WCMPBE_Log::add("Return shipment data for order {$order_id}:", print_r($return_shipments, true));
+                WCMPBE_Log::add("Return shipment data for order $order_id:", print_r($return_shipments, true));
 
                 $api      = $this->init_api();
                 $response = $api->add_shipments($return_shipments, "return");
 
-                WCMPBE_Log::add("API response (order {$order_id}):\n" . print_r($response, true));
+                WCMPBE_Log::add("API response (order $order_id):\n" . print_r($response, true));
 
                 $ids = Arr::get($response, "body.data.ids");
 
@@ -503,7 +508,7 @@ class WCMPBE_Export
             $display        = ($displayOverride ?? $displaySetting) === "display";
             $api->getShipmentLabels($shipment_ids, $order_ids, $positions, $display);
         } catch (Exception $e) {
-            throw new Exception($e->getMessage());
+            throw new Exception(esc_html($e->getMessage()));
             add_option('wcmyparcelbe_admin_error_notice', $e->getMessage());
         }
 
@@ -525,7 +530,7 @@ class WCMPBE_Export
         if (empty($shipment_ids)) {
             WCMPBE_Log::add(" *** Failed label request(not exported yet) ***");
 
-            throw new Exception(__("The selected orders have not been exported to MyParcel yet! ", "woocommerce-myparcelbe"));
+            throw new Exception(esc_html__('The selected orders have not been exported to MyParcel yet! ', 'woocommerce-myparcelbe'));
         }
 
         return $this->downloadOrGetUrlOfLabels(
@@ -571,7 +576,7 @@ class WCMPBE_Export
         $key = $this->getSetting(WCMPBE_Settings::SETTING_API_KEY);
 
         if (! ($key)) {
-            throw new ErrorException(__("No API key found in MyParcel settings", "woocommerce-myparcelbe"));
+            throw new ErrorException(esc_html__('No API key found in MyParcel settings', 'woocommerce-myparcelbe'));
         }
 
         return new WCMPBE_API($key);
@@ -602,7 +607,7 @@ class WCMPBE_Export
         ];
 
         if (! Arr::get($return_shipment_data, "email")) {
-            throw new Exception(__("No e-mail address found in order.", "woocommerce-myparcelbe"));
+            throw new Exception(esc_html__('No e-mail address found in order.', 'woocommerce-myparcelbe'));
         }
 
         // add options if available
@@ -975,13 +980,13 @@ class WCMPBE_Export
             }
         }
 
-        if (count($parsed_errors) == 1) {
+        if (1 === count($parsed_errors)) {
             $html = array_shift($parsed_errors);
         } else {
             foreach ($parsed_errors as &$parsed_error) {
-                $parsed_error = "<li>{$parsed_error}</li>";
+                $parsed_error = "<li>$parsed_error</li>";
             }
-            $html = sprintf("<ul>%s</ul>", implode("\n", $parsed_errors));
+            $html = sprintf('<ul>%s</ul>', implode("\n", $parsed_errors));
         }
 
         return $html;
@@ -1358,7 +1363,7 @@ class WCMPBE_Export
         $response = $api->get_shipments($shipment_id);
 
         if (! isset($response["body"]["data"]["shipments"][0]["barcode"])) {
-            throw new ErrorException("No MyParcel barcode found for shipment id; " . $shipment_id);
+            throw new ErrorException(esc_html("No MyParcel barcode found for shipment id; $shipment_id"));
         }
 
         return $response["body"]["data"]["shipments"][0]["barcode"];
@@ -1540,6 +1545,21 @@ class WCMPBE_Export
         }
 
         $collection->addConsignment($consignment);
+    }
+
+    /**
+     * @param string|array $array
+     *
+     * @return array
+     */
+    public function onlyIntegersInArray($array): array
+    {
+        // check for JSON
+        if (is_string($array) && false !== strpos($array, '[')) {
+            $array = json_decode(stripslashes($array), false);
+        }
+
+        return array_map(static function ($value) { return (int) $value; }, (array) $array);
     }
 }
 

@@ -35,6 +35,9 @@ function createGettextFiles(data) {
   const [, ...languageKeys] = keys;
 
   languageKeys.forEach((language, index) => {
+    if (!language) {
+      return;
+    }
     const poFilePath = path.join(languagesDir, `woocommerce-myparcelbe-${language}.po`);
     const moFilePath = path.join(languagesDir, `woocommerce-myparcelbe-${language}.mo`);
 

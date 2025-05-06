@@ -40,14 +40,14 @@ try {
 
         <tr>
             <td>
-                <label for="<?php echo $class->getName() ?>">
-                    <?php echo $class->getArgument('label'); ?>
+                <label for="<?php echo esc_attr($class->getName()) ?>">
+                    <?php echo esc_html($class->getArgument('label')); ?>
                 </label>
             </td>
             <td>
                 <?php
                 if (isset($optionRow['help_text'])) {
-                    printf("<span class='ml-auto'>%s</span>", wc_help_tip($optionRow['help_text'], true));
+                    printf("<span class='ml-auto'>%s</span>", wp_kses(wc_help_tip($optionRow['help_text']), true));
                 }
                 ?>
             </td>
@@ -60,7 +60,7 @@ try {
         <td colspan="2">
             <div class="button wcmpbe__shipment-options__save">
                 <?php
-                _e("Save", "woocommerce-myparcelbe");
+                esc_html_e('Save', 'woocommerce-myparcelbe');
                 WCMYPABE_Admin::renderSpinner();
                 ?>
             </div>

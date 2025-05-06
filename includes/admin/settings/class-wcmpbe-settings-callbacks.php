@@ -67,7 +67,7 @@ class WCMPBE_Settings_Callbacks
     public static function renderSection(array $args): void
     {
         if (isset($args["description"])) {
-            echo "<p>{$args["description"]}</p>";
+            echo wp_kses_post("<p>{$args["description"]}</p>");
         }
     }
 
@@ -96,13 +96,16 @@ class WCMPBE_Settings_Callbacks
             );
         }
 
-        if (isset($arguments["append"])) {
-            echo $arguments["append"];
+        if (isset($arguments['append'])) {
+            echo wp_kses($arguments['append'],[
+                'p' => ['class' => [],],
+                'a' => ['href' => [], 'class' => [], 'onclick' => true,],
+            ]);
         }
 
         // Render the description here instead of inside the above function.
         if (isset($description)) {
-            WCMPBE_Settings_Callbacks::renderDescription($description);
+            self::renderDescription($description);
         }
     }
 
@@ -115,18 +118,11 @@ class WCMPBE_Settings_Callbacks
     {
         $order_statuses = [];
 
-        if (version_compare(WOOCOMMERCE_VERSION, '2.2', '<')) {
-            $statuses = (array) get_terms('shop_order_status', ['hide_empty' => 0, 'orderby' => 'id']);
-            foreach ($statuses as $status) {
-                $order_statuses[esc_attr($status->slug)] = esc_html__($status->name, 'woocommerce');
-            }
-        } else {
-            $statuses = wc_get_order_statuses();
-            foreach ($statuses as $status_slug => $status) {
-                $status_slug = 'wc-' === substr($status_slug, 0, 3) ? substr($status_slug, 3) : $status_slug;
+        $statuses = wc_get_order_statuses();
+        foreach ($statuses as $status_slug => $status) {
+            $status_slug = 0 === strpos($status_slug, 'wc-') ? substr($status_slug, 3) : $status_slug;
 
-                $order_statuses[$status_slug] = $status;
-            }
+            $order_statuses[$status_slug] = $status;
         }
 
         return $order_statuses;
@@ -137,7 +133,7 @@ class WCMPBE_Settings_Callbacks
      */
     private static function renderDescription($description): void
     {
-        echo "<p class=\"description\">$description</p>";
+        echo wp_kses_post("<p class=\"description\">$description</p>");
     }
 
     /**
@@ -156,20 +152,20 @@ class WCMPBE_Settings_Callbacks
 
         printf(
             '<input type="hidden" name="%s" value="%s" %s>',
-            $class->getName(),
-            $class->getValue(),
-            $class->getCustomAttributesAsString()
+            esc_attr($class->getName()),
+            esc_attr($class->getValue()),
+            wp_kses_post($class->getCustomAttributesAsString())
         );
 
         if (wc_string_to_bool($class->getValue())) {
             printf(
                 "<span class=\"woocommerce-input-toggle woocommerce-input-toggle--enabled\">%s</span>",
-                esc_attr__('Yes', 'woocommerce')
+                esc_attr__('Yes', 'woocommerce-myparcelbe')
             );
         } else {
             printf(
                 "<span class=\"woocommerce-input-toggle woocommerce-input-toggle--disabled\">%s</span>",
-                esc_attr__('No', 'woocommerce')
+                esc_attr__('No', 'woocommerce-myparcelbe')
             );
         }
 

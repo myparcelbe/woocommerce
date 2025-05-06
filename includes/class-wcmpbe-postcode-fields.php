@@ -23,8 +23,18 @@ class WCMPBE_Postcode_Fields
 
     public const COUNTRIES_WITH_SPLIT_ADDRESS_FIELDS = ['NL', 'BE'];
 
+    /**
+     * @var array|string
+     */
+    private $postedValues;
+
     public function __construct()
     {
+        $this->postedValues = wp_unslash(filter_input_array(INPUT_POST));
+        if ($this->postedValues) {
+            wp_verify_nonce('_wpnonce');
+        }
+
         // Load styles
         add_action('wp_enqueue_scripts', [&$this, 'add_styles_scripts']);
 
@@ -94,17 +104,6 @@ class WCMPBE_Postcode_Fields
             if (version_compare(WOOCOMMERCE_VERSION, '2.2') >= 0) {
                 add_action('woocommerce_checkout_update_order_meta', [&$this, 'save_order_data'], 10, 2);
             }
-
-            // Remove placeholder values (IE8 & 9)
-            add_action('woocommerce_checkout_update_order_meta', [&$this, 'remove_placeholders'], 10, 2);
-
-            // Fix weird required field translations
-            add_filter(
-                'woocommerce_checkout_required_field_notice',
-                [&$this, 'required_field_notices'],
-                10,
-                2
-            );
 
             $this->load_woocommerce_filters();
         } else { // if NOT using old fields
@@ -200,7 +199,8 @@ class WCMPBE_Postcode_Fields
                 'checkout',
                 WCMYPABE()->plugin_url() . '/assets/js/checkout.js',
                 ['jquery', 'wc-checkout'],
-                WC_MYPARCEL_BE_VERSION
+                WC_MYPARCEL_BE_VERSION,
+                true
             );
             wp_enqueue_script('checkout');
         }
@@ -211,7 +211,8 @@ class WCMPBE_Postcode_Fields
                 'account-page',
                 WCMYPABE()->plugin_url() . '/assets/js/account-page.js',
                 ['jquery'],
-                WC_MYPARCEL_BE_VERSION
+                WC_MYPARCEL_BE_VERSION,
+                true
             );
             wp_enqueue_script('account-page');
         }
@@ -613,8 +614,8 @@ class WCMPBE_Postcode_Fields
      */
     public function customer_details_ajax($customer_data)
     {
-        $user_id      = (int) trim(stripslashes($_POST['user_id']));
-        $type_to_load = esc_attr(trim(stripslashes($_POST['type_to_load'])));
+        $user_id      = (int) trim(stripslashes($this->postedValues['user_id']));
+        $type_to_load = esc_attr(trim(stripslashes($this->postedValues['type_to_load'])));
 
         $custom_data = [
             $type_to_load . '_street_name'         => get_user_meta($user_id, $type_to_load . '_street_name', true),
@@ -639,17 +640,17 @@ class WCMPBE_Postcode_Fields
     public function save_custom_fields($post_id): void
     {
         $post_type = get_post_type($post_id);
-        if (($post_type == 'shop_order' || $post_type == 'shop_order_refund') && ! empty($_POST)) {
+        if (($post_type == 'shop_order' || $post_type == 'shop_order_refund') && ! empty($this->postedValues)) {
             $order          = WCX::get_order($post_id);
             $addresses      = ['billing', 'shipping'];
             $address_fields = ['street_name', 'house_number', 'house_number_suffix'];
             foreach ($addresses as $address) {
                 foreach ($address_fields as $address_field) {
-                    if (isset($_POST["_{$address}_{$address_field}"])) {
+                    if (isset($this->postedValues["_{$address}_{$address_field}"])) {
                         WCX_Order::update_meta_data(
                             $order,
                             "_{$address}_{$address_field}",
-                            stripslashes($_POST["_{$address}_{$address_field}"])
+                            stripslashes($this->postedValues["_{$address}_{$address_field}"])
                         );
                     }
                 }
@@ -667,25 +668,25 @@ class WCMPBE_Postcode_Fields
     public function merge_street_number_suffix($order_id): void
     {
         $order                          = WCX::get_order($order_id);
-        $billingHasCustomAddressFields  = self::isCountryWithSplitAddressFields($_POST['billing_country']);
-        $shippingHasCustomAddressFields = self::isCountryWithSplitAddressFields($_POST['shipping_country']);
+        $billingHasCustomAddressFields  = self::isCountryWithSplitAddressFields($this->postedValues['billing_country']);
+        $shippingHasCustomAddressFields = self::isCountryWithSplitAddressFields($this->postedValues['shipping_country']);
 
         if (version_compare(WOOCOMMERCE_VERSION, '2.1', '<=')) {
             // old versions use 'shiptobilling'
-            $shipToDifferentAddress = ! isset($_POST['shiptobilling']);
+            $shipToDifferentAddress = ! isset($this->postedValues['shiptobilling']);
         } else {
             // WC2.1
-            $shipToDifferentAddress = isset($_POST['ship_to_different_address']);
+            $shipToDifferentAddress = isset($this->postedValues['ship_to_different_address']);
         }
 
         if ($billingHasCustomAddressFields) {
             // concatenate street & house number & copy to 'billing_address_1'
-            $suffix = ! empty($_POST['billing_house_number_suffix'])
-                ? '-' . $_POST['billing_house_number_suffix']
+            $suffix = ! empty($this->postedValues['billing_house_number_suffix'])
+                ? '-' . $this->postedValues['billing_house_number_suffix']
                 : '';
 
-            $billingHouseNumber = $_POST['billing_house_number'] . $suffix;
-            $billingAddress1    = $_POST['billing_street_name'] . ' ' . $billingHouseNumber;
+            $billingHouseNumber = $this->postedValues['billing_house_number'] . $suffix;
+            $billingAddress1    = $this->postedValues['billing_street_name'] . ' ' . $billingHouseNumber;
             WCX_Order::set_address_prop($order, 'address_1', 'billing', $billingAddress1);
 
             if (! $shipToDifferentAddress && $this->cart_needs_shipping_address()) {
@@ -696,12 +697,12 @@ class WCMPBE_Postcode_Fields
 
         if ($shippingHasCustomAddressFields && $shipToDifferentAddress) {
             // concatenate street & house number & copy to 'shipping_address_1'
-            $suffix = ! empty($_POST['shipping_house_number_suffix'])
-                ? '-' . $_POST['shipping_house_number_suffix']
+            $suffix = ! empty($this->postedValues['shipping_house_number_suffix'])
+                ? '-' . $this->postedValues['shipping_house_number_suffix']
                 : '';
 
-            $shippingHouseNumber = $_POST['shipping_house_number'] . $suffix;
-            $shippingAddress1    = $_POST['shipping_street_name'] . ' ' . $shippingHouseNumber;
+            $shippingHouseNumber = $this->postedValues['shipping_house_number'] . $suffix;
+            $shippingAddress1    = $this->postedValues['shipping_street_name'] . ' ' . $shippingHouseNumber;
             WCX_Order::set_address_prop($order, 'address_1', 'shipping', $shippingAddress1);
         }
     }
@@ -755,10 +756,10 @@ class WCMPBE_Postcode_Fields
      */
     public function clean_billing_postcode()
     {
-        if ($_POST['billing_country'] == 'BE') {
-            $billing_postcode = preg_replace('/[^a-zA-Z0-9]/', '', $_POST['billing_postcode']);
+        if ($this->postedValues['billing_country'] == 'BE') {
+            $billing_postcode = preg_replace('/[^a-zA-Z0-9]/', '', $this->postedValues['billing_postcode']);
         } else {
-            $billing_postcode = $_POST['billing_postcode'];
+            $billing_postcode = $this->postedValues['billing_postcode'];
         }
 
         return $billing_postcode;
@@ -766,99 +767,13 @@ class WCMPBE_Postcode_Fields
 
     public function clean_shipping_postcode()
     {
-        if ($_POST['billing_country'] == 'BE') {
-            $shipping_postcode = preg_replace('/[^a-zA-Z0-9]/', '', $_POST['shipping_postcode']);
+        if ($this->postedValues['billing_country'] == 'BE') {
+            $shipping_postcode = preg_replace('/[^a-zA-Z0-9]/', '', $this->postedValues['shipping_postcode']);
         } else {
-            $shipping_postcode = $_POST['shipping_postcode'];
+            $shipping_postcode = $this->postedValues['shipping_postcode'];
         }
 
         return $shipping_postcode;
-    }
-
-    /**
-     * Remove placeholders from posted checkout data
-     *
-     * @param string $order_id order_id of the new order
-     * @param array  $posted   Array of posted form data
-     *
-     * @return void
-     */
-    public function remove_placeholders($order_id, $posted)
-    {
-        $order = WCX::get_order($order_id);
-        // get default address fields with their placeholders
-        $countries = new WC_Countries();
-        $fields    = $countries->get_default_address_fields();
-
-        // define order_comments placeholder
-        $order_comments_placeholder = _x(
-            'Notes about your order, e.g. special notes for delivery.',
-            'placeholder',
-            'woocommerce'
-        );
-
-        // check if ship to billing is set
-        if (version_compare(WOOCOMMERCE_VERSION, '2.1', '<=')) {
-            // old versions use 'shiptobilling'
-            $ship_to_different_address = isset($_POST['shiptobilling']) ? false : true;
-        } else {
-            // WC2.1
-            $ship_to_different_address = isset($_POST['ship_to_different_address']) ? true : false;
-        }
-
-        // check the billing & shipping fields
-        $field_types  = ['billing', 'shipping'];
-        $check_fields = ['address_1', 'address_2', 'city', 'state', 'postcode'];
-        foreach ($field_types as $field_type) {
-            foreach ($check_fields as $check_field) {
-                if (isset($posted[$field_type . '_' . $check_field])
-                    && isset($fields[$check_field]['placeholder'])
-                    && $posted[$field_type . '_' . $check_field] == $fields[$check_field]['placeholder']) {
-                    WCX_Order::set_address_prop($order, $check_field, $field_type, '');
-
-                    // also clear shipping field when ship_to_different_address is false
-                    if ($ship_to_different_address == false && $field_type == 'billing') {
-                        WCX_Order::set_address_prop($order, $check_field, 'shipping', '');
-                    }
-                }
-            }
-        }
-
-        // check the order comments field
-        if ($posted['order_comments'] == $order_comments_placeholder) {
-            wp_update_post(
-                [
-                    'ID'           => $order_id,
-                    'post_excerpt' => '',
-                ]
-            );
-        }
-
-        return;
-    }
-
-    /**
-     * WooCommerce concatenates translations for required field notices that result in
-     * confusing messages, so we translate the full notice to prevent this
-     */
-    public function required_field_notices($notice, $field_label)
-    {
-        // concatenate translations
-        $billing_nr  = sprintf(__("Billing %s", "woocommerce"), __("No."));
-        $shipping_nr = sprintf(__("Shipping %s", "woocommerce"), __("No."));
-
-        switch ($field_label) {
-            case $billing_nr:
-                $notice = __("<b>Billing No.</b> is a required field", "woocommerce-myparcelbe");
-                break;
-            case $shipping_nr:
-                $notice = __("<b>Shipping No.</b> is a required field", "woocommerce-myparcelbe");
-                break;
-            default:
-                break;
-        }
-
-        return $notice;
     }
 
     /**

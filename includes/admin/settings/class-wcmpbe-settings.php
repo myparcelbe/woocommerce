@@ -206,29 +206,28 @@ class WCMPBE_Settings
             WCMPBE_Settings_Data::getTabs()
         );
 
-        $active_tab = isset($_GET["tab"]) ? $_GET["tab"] : self::SETTINGS_GENERAL;
+        $active_tab = filter_input(INPUT_GET, 'tab') ?? self::SETTINGS_GENERAL;
         ?>
         <div class="wrap woocommerce">
-            <h1><?php _e("Settings_page_title", "woocommerce-myparcelbe"); ?></h1>
+            <h1><?php esc_html_e("Settings_page_title", "woocommerce-myparcelbe"); ?></h1>
             <h2 class="nav-tab-wrapper">
                 <?php
-                foreach ($settings_tabs as $tab_slug => $tab_title) :
+                foreach ($settings_tabs as $tabSlug => $tabTitle) {
                     printf(
-                        '<a href="?page='
-                        . self::SETTINGS_MENU_SLUG
-                        . '&tab=%1$s" class="nav-tab nav-tab-%1$s %2$s">%3$s</a>',
-                        $tab_slug,
-                        (($active_tab === $tab_slug) ? "nav-tab-active" : ""),
-                        $tab_title
+                        '<a href="?page=%4$s&tab=%1$s" class="nav-tab nav-tab-%1$s %2$s">%3$s</a>',
+                        esc_html($tabSlug),
+                        (($active_tab === $tabSlug) ? 'nav-tab-active' : ''),
+                        esc_html($tabTitle),
+                        esc_attr(self::SETTINGS_MENU_SLUG)
                     );
-                endforeach;
+                }
                 ?>
             </h2>
             <?php do_action("woocommerce_myparcelbe_before_settings_page", $active_tab); ?>
             <form
                     method="post"
                     action="options.php"
-                    id="<?php echo self::SETTINGS_MENU_SLUG; ?>">
+                    id="<?php echo esc_attr(self::SETTINGS_MENU_SLUG); ?>">
                 <?php
                 do_action("woocommerce_myparcelbe_before_settings", $active_tab);
                 settings_fields(self::getOptionId($active_tab));
@@ -263,6 +262,7 @@ class WCMPBE_Settings
             $myparcel_nl_link =
                 '<a href="https://wordpress.org/plugins/woocommerce-myparcel/" target="blank">WC MyParcel Netherlands</a>';
             $text             = sprintf(
+                // TRANSLATORS: %s is the name of the plugin in the WordPress plugin repository
                 __(
                     "It looks like your shop is based in Netherlands. This plugin is for MyParcel Belgium. If you are using MyParcel Netherlands, download the %s plugin instead!",
                     "woocommerce-myparcelbe"
@@ -271,10 +271,14 @@ class WCMPBE_Settings
             );
             $dismiss_button   = sprintf(
                 '<a href="%s" style="display:inline-block; margin-top: 10px;">%s</a>',
-                add_query_arg('myparcelbe_hide_be_notice', 'true'),
-                __("Hide this message", "woocommerce-myparcelbe")
+                esc_url(add_query_arg('myparcelbe_hide_be_notice', 'true')),
+                esc_html__("Hide this message", "woocommerce-myparcelbe")
             );
-            printf('<div class="notice notice-warning"><p>%s %s</p></div>', $text, $dismiss_button);
+            printf(
+                '<div class="notice notice-warning"><p>%s %s</p></div>',
+                wp_kses($text, ['a'=> ['href' => [], 'target' => []]]),
+                wp_kses($dismiss_button, ['a' => ['href' => []]])
+            );
         }
     }
 
@@ -311,7 +315,7 @@ class WCMPBE_Settings
             $callback = Arr::get($section, "callback");
 
             if ($title) {
-                printf('<h2 id="%s">%s</h2>', $id, $title);
+                printf('<h2 id="%s">%s</h2>', esc_html($id), esc_html($title));
             }
 
             if ($callback) {
@@ -354,15 +358,15 @@ class WCMPBE_Settings
                 $class = wc_implode_html_attributes(["class" => esc_attr($class)]);
             }
 
-            echo "<tr {$class}>";
+            echo wp_kses("<tr $class>", ['tr' => ['class'=>[]]]);
 
             $helpText = Arr::get($field, "args.help_text");
             $label    = Arr::get($field, "args.label_for");
 
             printf('<th scope="row"><label class="wcmpbe__ws--nowrap" %s>%s%s</label></th>',
                 $label ? "for=\"" . esc_attr($label) . "\"" : "",
-                Arr::get($field, "title"),
-                $helpText ? wc_help_tip($helpText) : ""
+                esc_html(Arr::get($field, 'title')),
+                wp_kses(($helpText ? wc_help_tip($helpText) : ''),['span' => ['class' => [], 'data-tip' => [], 'style' => []]])
             );
 
             // Pass the option id as argument

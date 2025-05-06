@@ -19,7 +19,7 @@ try {
 }
 
 if (isset($message)) {
-    echo "<p>$message</p>";
+    echo '<p>', esc_html($message), '</p>';
 }
 
 /**
@@ -34,8 +34,8 @@ if (! count($shipments)) {
 <table class="wcmpbe__table--track-trace">
   <thead>
   <tr>
-    <th><?php _e("Track & Trace", "woocommerce-myparcelbe"); ?></th>
-    <th><?php _e("Status", "woocommerce-myparcelbe"); ?></th>
+    <th><?php esc_html_e('Track & Trace', 'woocommerce-myparcelbe'); ?></th>
+    <th><?php esc_html_e('Status', 'woocommerce-myparcelbe'); ?></th>
     <th>&nbsp;</th>
   </tr>
   </thead>

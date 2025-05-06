@@ -218,6 +218,7 @@ class WC_Core
     public static function normalize_wc_screen_id($slug = 'wc-settings')
     {
         // The text-domain usage is intentional here, we need to match the menu title.
+        // phpcs:ignore WordPress.WP.I18n.TextDomainMismatch
         $prefix = sanitize_title(__('WooCommerce', 'woocommerce'));
 
         return $prefix . '_page_' . $slug;

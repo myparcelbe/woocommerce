@@ -20,17 +20,16 @@ $orderSettings = new OrderSettings($order);
 <table class="wcmpbe__settings-table" style="width: auto">
     <tr>
         <td>
-            <?php _e("Shipment type", "woocommerce-myparcelbe") ?>:<br/> <small class="calculated_weight">
-                <?php printf(
+            <?php esc_html_e("Shipment type", "woocommerce-myparcelbe") ?>:<br/> <small class="calculated_weight">
+                <?php echo esc_html(sprintf(
                     __("calculated_order_weight", "woocommerce-myparcelbe"),
                     wc_format_weight($orderSettings->getWeight())
-                ) ?>
+                )) ?>
             </small>
         </td>
         <td>
             <?php
-            $name = "myparcelbe_options[{$order_id}][package_type]";
-            printf('<select name="%s" class="package_type">', $name);
+            echo '<select name="myparcelbe_options[',(int)$order_id,'][package_type]" class="package_type">';
             foreach (WCMPBE_Data::getPackageTypesHuman() as $key => $label) {
                 $isReturnPackageType = in_array(
                     $key,
@@ -46,8 +45,8 @@ $orderSettings = new OrderSettings($order);
 
                 printf(
                     '<option value="%s">%s</option>',
-                    WCMPBE_Data::getPackageTypeId($key),
-                    $label
+                    esc_html(WCMPBE_Data::getPackageTypeId($key)),
+                    esc_html($label)
                 );
             }
             echo '</select>';
@@ -57,7 +56,7 @@ $orderSettings = new OrderSettings($order);
 </table><br>
 <?php if (! isset($skip_save)): ?>
     <div class="wcmpbe__d--flex">
-        <a class="button save" data-order="<?php echo $order_id; ?>"><?php _e("Save", "woocommerce-myparcelbe") ?>
+        <a class="button save" data-order="<?php echo (int)$order_id; ?>"><?php esc_html_e('Save', 'woocommerce-myparcelbe') ?>
             <?php WCMYPABE_Admin::renderSpinner() ?>
         </a>
     </div>

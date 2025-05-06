@@ -4,7 +4,7 @@ Plugin Name: WC MyParcel Belgium
 Plugin URI: https://sendmyparcel.be/
 Description: Export your WooCommerce orders to MyParcel BE (https://sendmyparcel.be/) and print labels directly from the WooCommerce admin
 Author: Richard Perdaan
-Version: 4.5.5
+Version: 4.5.6
 Text Domain: woocommerce-myparcelbe
 
 License: GPLv3 or later
@@ -22,12 +22,13 @@ if (! class_exists('WCMYPABE')) :
         /**
          * Translations domain
          */
-        const DOMAIN               = 'woocommerce-myparcelbe';
-        const NONCE_ACTION         = 'wc_myparcel';
-        const PHP_VERSION_7_1      = '7.1';
-        const PHP_VERSION_REQUIRED = self::PHP_VERSION_7_1;
+        public const DOMAIN               = 'woocommerce-myparcelbe';
+        public const NONCE_ACTION         = 'wc_myparcel';
+        public const PHP_VERSION_7_1      = '7.1';
+        public const PHP_VERSION_REQUIRED = self::PHP_VERSION_7_1;
+        public const WC_VERSION_REQUIRED  = '5.5';
 
-        public $version = '4.5.5';
+        public $version = '4.5.6';
 
         public $plugin_basename;
 
@@ -170,8 +171,14 @@ if (! class_exists('WCMYPABE')) :
          */
         public function load_classes()
         {
-            if ($this->is_woocommerce_activated() === false) {
+            if (!$this->isWoocommerceActivated()) {
                 add_action('admin_notices', [$this, 'need_woocommerce']);
+
+                return;
+            }
+
+            if (!$this->woocommerceVersionMeets(self::WC_VERSION_REQUIRED)) {
+                add_action('admin_notices', [$this, 'need_woocommerce_version']);
 
                 return;
             }
@@ -181,6 +188,7 @@ if (! class_exists('WCMYPABE')) :
 
                 return;
             }
+
             // php 7.1
             $this->includes();
             $this->initSettings();
@@ -189,17 +197,18 @@ if (! class_exists('WCMYPABE')) :
         /**
          * Check if woocommerce is activated
          */
-        public function is_woocommerce_activated()
+        public function isWoocommerceActivated()
         {
             $blog_plugins = get_option('active_plugins', []);
             $site_plugins = get_site_option('active_sitewide_plugins', []);
 
-            if (in_array('woocommerce/woocommerce.php', $blog_plugins)
-                || isset($site_plugins['woocommerce/woocommerce.php'])) {
-                return true;
-            } else {
-                return false;
-            }
+            return in_array('woocommerce/woocommerce.php', $blog_plugins)
+                   || isset($site_plugins['woocommerce/woocommerce.php']);
+        }
+
+        private function woocommerceVersionMeets(string $version): bool
+        {
+            return defined('WC_VERSION') && version_compare(WC_VERSION, $version, '>=');
         }
 
         /**
@@ -208,16 +217,26 @@ if (! class_exists('WCMYPABE')) :
         public function need_woocommerce()
         {
             $error = sprintf(
-                __("WooCommerce MyParcel BE requires %sWooCommerce%s to be installed & activated!",
+                // TRANSLATORS: %1$s link to WooCommerce plugin, $2$s closing tag
+                __('WooCommerce MyParcel BE requires %1$sWooCommerce%2$s to be installed & activated!',
                     "woocommerce-myparcelbe"
                 ),
                 '<a href="http://wordpress.org/extend/plugins/woocommerce/">',
                 '</a>'
             );
 
-            $message = '<div class="error"><p>' . $error . '</p></div>';
+            echo '<div class="error"><p>', wp_kses($error, array('a'=>array('href'))), '</p></div>';
+        }
 
-            echo $message;
+        public function need_woocommerce_version()
+        {
+            $error = str_replace(
+                '{WC_VERSION}',
+                self::WC_VERSION_REQUIRED,
+                __('WooCommerce MyParcel BE requires WooCommerce {WC_VERSION} or higher.', 'woocommerce-myparcelbe')
+            );
+
+            echo '<div class="error"><p>', esc_html($error), '</p></div>';
         }
 
         /**
@@ -229,15 +248,11 @@ if (! class_exists('WCMYPABE')) :
             $error = __("WooCommerce MyParcel BE requires PHP {PHP_VERSION} or higher.", "woocommerce-myparcelbe");
             $error = str_replace('{PHP_VERSION}', self::PHP_VERSION_REQUIRED, $error);
 
-            $how_to_update = __("How to update your PHP version", "woocommerce-myparcelbe");
-            $message       = sprintf(
-                '<div class="error"><p>%s</p><p><a href="%s">%s</a></p></div>',
-                $error,
-                'http://docs.wpovernight.com/general/how-to-update-your-php-version/',
-                $how_to_update
-            );
-
-            echo $message;
+            echo '<div class="error"><p>';
+            echo esc_html($error);
+            echo '</p><p><a href="http://docs.wpovernight.com/general/how-to-update-your-php-version/">';
+            echo esc_html__('How to update your PHP version', 'woocommerce-myparcelbe');
+            echo '</a></p></div>';
         }
 
         /** Lifecycle methods *******************************************************

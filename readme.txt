@@ -1,9 +1,9 @@
-=== Plugin Name ===
+=== WC MyParcel Belgium ===
 Contributors: richardperdaan
 Tags: woocommerce, export, myparcel Belgium
-Requires at least: 5.2.0 & WooCommerce 5.1.0
-Tested up to: 6.1
-Stable tag: 4.5.5
+Requires at least: 5.2
+Tested up to: 6.8
+Stable tag: 4.5.6
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.opensource.org/licenses/gpl-license.php
@@ -86,6 +86,11 @@ function wcmyparcelbe_new_email_text($track_trace_tekst) {
 4. MyParcel BE actions on the order overview page
 5. MyParcel BE information on the order details page
 
+
+== Changelog ==
+= 4.5.6 (2025-05-01) =
+* Fix(security): prevent reflected xss vulnerability
+* Fix(checkout): prevent CRITICAL Uncaught TypeError
 
 == Changelog ==
 = 4.5.5 (2023-07-15) =

@@ -56,7 +56,7 @@ class WCMPBE_Frontend_Track_Trace
             return sprintf('<a href="%s">%s</a>', $trackTrace["url"], $trackTrace["link"]);
         };
 
-        printf(
+        echo wp_kses_post(sprintf(
             '<p>%s %s</p>',
             apply_filters(
                 "wcmyparcelbe_email_text",
@@ -67,7 +67,7 @@ class WCMPBE_Frontend_Track_Trace
                 '<br />',
                 array_map($createLinkCallback, $trackTraceLinks)
             )
-        );
+        ));
     }
 
     /**
