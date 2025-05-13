@@ -125,7 +125,8 @@ class WCMPBE_Checkout
             'wc-myparcel-frontend',
             'wcmpbe',
             [
-                "ajax_url" => admin_url("admin-ajax.php"),
+                'ajax_url' => admin_url('admin-ajax.php'),
+                'nonce'    => wp_create_nonce('wcmpbe_frontend'),
             ]
         );
 
@@ -341,7 +342,7 @@ class WCMPBE_Checkout
     public static function save_delivery_options(int $orderId): void
     {
         if (isset($_POST['shipping_method'])) {
-            wp_verify_nonce('_wpnonce');
+            check_ajax_referer( 'woocommerce-process_checkout', 'woocommerce-process-checkout-nonce' );
         }
 
         $order                = WCX::get_order($orderId);

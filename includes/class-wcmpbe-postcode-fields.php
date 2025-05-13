@@ -30,11 +30,6 @@ class WCMPBE_Postcode_Fields
 
     public function __construct()
     {
-        $this->postedValues = wp_unslash(filter_input_array(INPUT_POST));
-        if ($this->postedValues) {
-            wp_verify_nonce('_wpnonce');
-        }
-
         // Load styles
         add_action('wp_enqueue_scripts', [&$this, 'add_styles_scripts']);
 
@@ -614,8 +609,9 @@ class WCMPBE_Postcode_Fields
      */
     public function customer_details_ajax($customer_data)
     {
-        $user_id      = (int) trim(stripslashes($this->postedValues['user_id']));
-        $type_to_load = esc_attr(trim(stripslashes($this->postedValues['type_to_load'])));
+        $postedValues = $this->getPostedValues();
+        $user_id      = (int) trim(stripslashes($postedValues['user_id']));
+        $type_to_load = esc_attr(trim(stripslashes($postedValues['type_to_load'])));
 
         $custom_data = [
             $type_to_load . '_street_name'         => get_user_meta($user_id, $type_to_load . '_street_name', true),
@@ -640,17 +636,18 @@ class WCMPBE_Postcode_Fields
     public function save_custom_fields($post_id): void
     {
         $post_type = get_post_type($post_id);
-        if (($post_type == 'shop_order' || $post_type == 'shop_order_refund') && ! empty($this->postedValues)) {
+        $postedValues = $this->getPostedValues();
+        if (('shop_order' === $post_type || 'shop_order_refund' === $post_type) && ! empty($postedValues)) {
             $order          = WCX::get_order($post_id);
             $addresses      = ['billing', 'shipping'];
             $address_fields = ['street_name', 'house_number', 'house_number_suffix'];
             foreach ($addresses as $address) {
                 foreach ($address_fields as $address_field) {
-                    if (isset($this->postedValues["_{$address}_{$address_field}"])) {
+                    if (isset($postedValues["_{$address}_{$address_field}"])) {
                         WCX_Order::update_meta_data(
                             $order,
                             "_{$address}_{$address_field}",
-                            stripslashes($this->postedValues["_{$address}_{$address_field}"])
+                            stripslashes($postedValues["_{$address}_{$address_field}"])
                         );
                     }
                 }
@@ -667,26 +664,28 @@ class WCMPBE_Postcode_Fields
      */
     public function merge_street_number_suffix($order_id): void
     {
+        $postedValues                   = $this->getPostedValues();
         $order                          = WCX::get_order($order_id);
-        $billingHasCustomAddressFields  = self::isCountryWithSplitAddressFields($this->postedValues['billing_country']);
-        $shippingHasCustomAddressFields = self::isCountryWithSplitAddressFields($this->postedValues['shipping_country']);
+        $billingHasCustomAddressFields  = self::isCountryWithSplitAddressFields($postedValues['billing_country']);
+        $shippingHasCustomAddressFields = self::isCountryWithSplitAddressFields($postedValues['shipping_country']);
+        $postedValues = $this->getPostedValues();
 
         if (version_compare(WOOCOMMERCE_VERSION, '2.1', '<=')) {
             // old versions use 'shiptobilling'
-            $shipToDifferentAddress = ! isset($this->postedValues['shiptobilling']);
+            $shipToDifferentAddress = ! isset($postedValues['shiptobilling']);
         } else {
             // WC2.1
-            $shipToDifferentAddress = isset($this->postedValues['ship_to_different_address']);
+            $shipToDifferentAddress = isset($postedValues['ship_to_different_address']);
         }
 
         if ($billingHasCustomAddressFields) {
             // concatenate street & house number & copy to 'billing_address_1'
-            $suffix = ! empty($this->postedValues['billing_house_number_suffix'])
-                ? '-' . $this->postedValues['billing_house_number_suffix']
+            $suffix = ! empty($postedValues['billing_house_number_suffix'])
+                ? '-' . $postedValues['billing_house_number_suffix']
                 : '';
 
-            $billingHouseNumber = $this->postedValues['billing_house_number'] . $suffix;
-            $billingAddress1    = $this->postedValues['billing_street_name'] . ' ' . $billingHouseNumber;
+            $billingHouseNumber = $postedValues['billing_house_number'] . $suffix;
+            $billingAddress1    = $postedValues['billing_street_name'] . ' ' . $billingHouseNumber;
             WCX_Order::set_address_prop($order, 'address_1', 'billing', $billingAddress1);
 
             if (! $shipToDifferentAddress && $this->cart_needs_shipping_address()) {
@@ -697,12 +696,12 @@ class WCMPBE_Postcode_Fields
 
         if ($shippingHasCustomAddressFields && $shipToDifferentAddress) {
             // concatenate street & house number & copy to 'shipping_address_1'
-            $suffix = ! empty($this->postedValues['shipping_house_number_suffix'])
-                ? '-' . $this->postedValues['shipping_house_number_suffix']
+            $suffix = ! empty($postedValues['shipping_house_number_suffix'])
+                ? '-' . $postedValues['shipping_house_number_suffix']
                 : '';
 
-            $shippingHouseNumber = $this->postedValues['shipping_house_number'] . $suffix;
-            $shippingAddress1    = $this->postedValues['shipping_street_name'] . ' ' . $shippingHouseNumber;
+            $shippingHouseNumber = $postedValues['shipping_house_number'] . $suffix;
+            $shippingAddress1    = $postedValues['shipping_street_name'] . ' ' . $shippingHouseNumber;
             WCX_Order::set_address_prop($order, 'address_1', 'shipping', $shippingAddress1);
         }
     }
@@ -756,10 +755,11 @@ class WCMPBE_Postcode_Fields
      */
     public function clean_billing_postcode()
     {
-        if ($this->postedValues['billing_country'] == 'BE') {
-            $billing_postcode = preg_replace('/[^a-zA-Z0-9]/', '', $this->postedValues['billing_postcode']);
+        $postedValues = $this->getPostedValues();
+        if ('BE' === $postedValues['billing_country']) {
+            $billing_postcode = preg_replace('/[^a-zA-Z0-9]/', '', $postedValues['billing_postcode']);
         } else {
-            $billing_postcode = $this->postedValues['billing_postcode'];
+            $billing_postcode = $postedValues['billing_postcode'];
         }
 
         return $billing_postcode;
@@ -767,10 +767,11 @@ class WCMPBE_Postcode_Fields
 
     public function clean_shipping_postcode()
     {
-        if ($this->postedValues['billing_country'] == 'BE') {
-            $shipping_postcode = preg_replace('/[^a-zA-Z0-9]/', '', $this->postedValues['shipping_postcode']);
+        $postedValues = $this->getPostedValues();
+        if ('BE' === $postedValues['billing_country']) {
+            $shipping_postcode = preg_replace('/[^a-zA-Z0-9]/', '', $postedValues['shipping_postcode']);
         } else {
-            $shipping_postcode = $this->postedValues['shipping_postcode'];
+            $shipping_postcode = $postedValues['shipping_postcode'];
         }
 
         return $shipping_postcode;
@@ -1045,6 +1046,27 @@ class WCMPBE_Postcode_Fields
                 null,
                 true
             );
+    }
+
+
+    private function getPostedValues():array
+    {
+        $input = filter_input_array(INPUT_POST);
+        if (! $input) { // handles false, null and empty array
+            return [];
+        }
+        $postedValues = wp_unslash($input);
+        /**
+         * Can be accessed by WooCommerce update order review ajax as well as our own frontend.
+         */
+        if ($postedValues
+            && false === wp_verify_nonce($postedValues['security'], 'update-order-review')
+            && false === wp_verify_nonce($postedValues['wcmpbe_nonce'], 'wcmpbe_frontend')
+            && false === wp_verify_nonce($postedValues['woocommerce-process-checkout-nonce'], 'woocommerce-process_checkout')
+        ) {
+            _ajax_wp_die_handler('Invalid nonce.');
+        }
+        return $postedValues;
     }
 
     /**
