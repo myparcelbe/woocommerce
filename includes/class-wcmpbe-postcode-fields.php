@@ -1060,9 +1060,10 @@ class WCMPBE_Postcode_Fields
          * Can be accessed by WooCommerce update order review ajax as well as our own frontend.
          */
         if ($postedValues
-            && false === wp_verify_nonce($postedValues['security'], 'update-order-review')
-            && false === wp_verify_nonce($postedValues['wcmpbe_nonce'], 'wcmpbe_frontend')
-            && false === wp_verify_nonce($postedValues['woocommerce-process-checkout-nonce'], 'woocommerce-process_checkout')
+            && false === wp_verify_nonce($postedValues['security'] ?? '', 'update-order-review')
+            && false === wp_verify_nonce($postedValues['wcmpbe_nonce'] ?? '', 'wcmpbe_frontend')
+            && false === wp_verify_nonce($postedValues['woocommerce-process-checkout-nonce'] ?? '', 'woocommerce-process_checkout')
+            && false === wp_verify_nonce($postedValues['_wpnonce'] ?? '', 'update-post_' . ($postedValues['post_ID'] ?? '0'))
         ) {
             _ajax_wp_die_handler('Invalid nonce.');
         }
