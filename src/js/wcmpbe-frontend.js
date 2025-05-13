@@ -589,6 +589,7 @@ jQuery(($) => {
         async: false,
         data: {
           action: 'get_highest_shipping_class',
+          wcmpbe_nonce: wcmpbe.nonce,
         },
         success(data) {
           shippingClass = data;
@@ -610,6 +611,7 @@ jQuery(($) => {
         async: false,
         data: {
           action: 'wcmpbe_get_delivery_options_config',
+          wcmpbe_nonce: wcmpbe.nonce,
         },
         success(data) {
           const {config} = JSON.parse(data);
