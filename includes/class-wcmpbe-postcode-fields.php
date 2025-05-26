@@ -367,7 +367,7 @@ class WCMPBE_Postcode_Fields
 
         // Create reordered array and fill with old array values
         foreach ($order_keys as $key) {
-            $new_order[$key] = $fields[$key];
+            $new_order[$key] = $fields[$key] ?? '';
         }
 
         // Merge (&overwrite) field array
