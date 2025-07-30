@@ -636,20 +636,24 @@ class WCMPBE_Postcode_Fields
     public function save_custom_fields($post_id): void
     {
         $post_type = get_post_type($post_id);
+        if ('shop_order' !== $post_type && 'shop_order_refund' !== $post_type) {
+            return;
+        }
         $postedValues = $this->getPostedValues();
-        if (('shop_order' === $post_type || 'shop_order_refund' === $post_type) && ! empty($postedValues)) {
-            $order          = WCX::get_order($post_id);
-            $addresses      = ['billing', 'shipping'];
-            $address_fields = ['street_name', 'house_number', 'house_number_suffix'];
-            foreach ($addresses as $address) {
-                foreach ($address_fields as $address_field) {
-                    if (isset($postedValues["_{$address}_{$address_field}"])) {
-                        WCX_Order::update_meta_data(
-                            $order,
-                            "_{$address}_{$address_field}",
-                            stripslashes($postedValues["_{$address}_{$address_field}"])
-                        );
-                    }
+        if (empty($postedValues)) {
+            return;
+        }
+        $order          = WCX::get_order($post_id);
+        $addresses      = ['billing', 'shipping'];
+        $address_fields = ['street_name', 'house_number', 'house_number_suffix'];
+        foreach ($addresses as $address) {
+            foreach ($address_fields as $address_field) {
+                if (isset($postedValues["_{$address}_{$address_field}"])) {
+                    WCX_Order::update_meta_data(
+                        $order,
+                        "_{$address}_{$address_field}",
+                        stripslashes($postedValues["_{$address}_{$address_field}"])
+                    );
                 }
             }
         }
@@ -668,7 +672,6 @@ class WCMPBE_Postcode_Fields
         $order                          = WCX::get_order($order_id);
         $billingHasCustomAddressFields  = self::isCountryWithSplitAddressFields($postedValues['billing_country']);
         $shippingHasCustomAddressFields = self::isCountryWithSplitAddressFields($postedValues['shipping_country']);
-        $postedValues = $this->getPostedValues();
 
         if (version_compare(WOOCOMMERCE_VERSION, '2.1', '<=')) {
             // old versions use 'shiptobilling'
