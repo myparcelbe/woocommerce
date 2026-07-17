@@ -1126,3 +1126,15 @@ msgstr "Date:"
 
 msgid "N/A"
 msgstr "N/A"
+
+msgid "notice_v6_upgrade_title"
+msgstr "MyParcel for WooCommerce 6 is available"
+
+msgid "notice_v6_upgrade_body"
+msgstr ""
+"Version 6 of the MyParcel for WooCommerce plugin is a major update with "
+"support for more carriers and many other shipment features. %s to prepare "
+"before you install it."
+
+msgid "notice_v6_upgrade_link"
+msgstr "Read the migration guide"
