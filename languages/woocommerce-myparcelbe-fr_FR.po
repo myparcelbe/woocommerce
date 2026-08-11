@@ -748,7 +748,7 @@ msgstr "Pays d'origine par défaut"
 msgid "setting_country_of_origin_help_text"
 msgstr ""
 "Le pays d'origine est requis pour les expéditions internationales. Par "
-"défaut, il s'agit du pays d'origine de la boutique."
+"défaut, il s'agit du pays de base de la boutique."
 
 msgid "setting_export_automatic_status"
 msgstr "Export automatique suivant l'état de commande"
