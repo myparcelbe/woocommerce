@@ -1,4 +1,4 @@
-# Copyright (C) 2025 WooCommerce MyParcel BE
+# Copyright (C) 2026 WooCommerce MyParcel BE
 # This file is distributed under the same license as the WooCommerce MyParcel BE package.
 msgid ""
 msgstr ""
@@ -20,19 +20,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. translators: %1$s link to WooCommerce plugin, $2$s closing tag
-#: woocommerce-myparcel.php:221
+#: woocommerce-myparcel.php:222
 msgid "WooCommerce MyParcel BE requires %1$sWooCommerce%2$s to be installed & activated!"
 msgstr ""
 
-#: woocommerce-myparcel.php:236
+#: woocommerce-myparcel.php:237
 msgid "WooCommerce MyParcel BE requires WooCommerce {WC_VERSION} or higher."
 msgstr ""
 
-#: woocommerce-myparcel.php:248
+#: woocommerce-myparcel.php:249
 msgid "WooCommerce MyParcel BE requires PHP {PHP_VERSION} or higher."
 msgstr ""
 
-#: woocommerce-myparcel.php:254
+#: woocommerce-myparcel.php:255
 msgid "How to update your PHP version"
 msgstr ""
 
@@ -76,35 +76,35 @@ msgstr ""
 msgid "DPD"
 msgstr ""
 
-#: includes/class-wcmpbe-postcode-fields.php:323, includes/class-wcmpbe-postcode-fields.php:502, includes/class-wcmpbe-postcode-fields.php:529
+#: includes/class-wcmpbe-postcode-fields.php:318, includes/class-wcmpbe-postcode-fields.php:497, includes/class-wcmpbe-postcode-fields.php:524
 msgid "street_name"
 msgstr ""
 
-#: includes/class-wcmpbe-postcode-fields.php:331, includes/class-wcmpbe-postcode-fields.php:507, includes/class-wcmpbe-postcode-fields.php:534
+#: includes/class-wcmpbe-postcode-fields.php:326, includes/class-wcmpbe-postcode-fields.php:502, includes/class-wcmpbe-postcode-fields.php:529
 msgid "No."
 msgstr ""
 
-#: includes/class-wcmpbe-postcode-fields.php:340, includes/class-wcmpbe-postcode-fields.php:512, includes/class-wcmpbe-postcode-fields.php:539
+#: includes/class-wcmpbe-postcode-fields.php:335, includes/class-wcmpbe-postcode-fields.php:507, includes/class-wcmpbe-postcode-fields.php:534
 msgid "suffix"
 msgstr ""
 
-#: includes/class-wcmpbe-postcode-fields.php:553, includes/class-wcmpbe-postcode-fields.php:567
+#: includes/class-wcmpbe-postcode-fields.php:548, includes/class-wcmpbe-postcode-fields.php:562
 msgid "Street"
 msgstr ""
 
-#: includes/class-wcmpbe-postcode-fields.php:557, includes/class-wcmpbe-postcode-fields.php:571
+#: includes/class-wcmpbe-postcode-fields.php:552, includes/class-wcmpbe-postcode-fields.php:566
 msgid "Number"
 msgstr ""
 
-#: includes/class-wcmpbe-postcode-fields.php:561, includes/class-wcmpbe-postcode-fields.php:575
+#: includes/class-wcmpbe-postcode-fields.php:556, includes/class-wcmpbe-postcode-fields.php:570
 msgid "Suffix"
 msgstr ""
 
-#: includes/class-wcmpbe-postcode-fields.php:736
+#: includes/class-wcmpbe-postcode-fields.php:738
 msgid "Please enter a valid billing address."
 msgstr ""
 
-#: includes/class-wcmpbe-postcode-fields.php:747
+#: includes/class-wcmpbe-postcode-fields.php:749
 msgid "Please enter a valid shipping address."
 msgstr ""
 
@@ -361,6 +361,22 @@ msgstr ""
 msgid "(Unknown)"
 msgstr ""
 
+#: includes/admin/class-wcmypabe-upgrade-banner.php:58
+msgid "notice_v6_upgrade_link"
+msgstr ""
+
+#: includes/admin/class-wcmypabe-upgrade-banner.php:64, includes/admin/settings/class-wcmpbe-settings.php:275
+msgid "Hide this message"
+msgstr ""
+
+#: includes/admin/class-wcmypabe-upgrade-banner.php:69
+msgid "notice_v6_upgrade_title"
+msgstr ""
+
+#: includes/admin/class-wcmypabe-upgrade-banner.php:71
+msgid "notice_v6_upgrade_body"
+msgstr ""
+
 #: includes/admin/OrderSettingsRows.php:98
 msgid "Carrier"
 msgstr ""
@@ -425,39 +441,39 @@ msgstr ""
 msgid "Disabled"
 msgstr ""
 
-#: includes/frontend/class-wcmpbe-checkout.php:221
+#: includes/frontend/class-wcmpbe-checkout.php:222
 msgid "Address details are not entered"
 msgstr ""
 
-#: includes/frontend/class-wcmpbe-checkout.php:222
+#: includes/frontend/class-wcmpbe-checkout.php:223
 msgid "City"
 msgstr ""
 
-#: includes/frontend/class-wcmpbe-checkout.php:223
+#: includes/frontend/class-wcmpbe-checkout.php:224
 msgid "Closed"
 msgstr ""
 
-#: includes/frontend/class-wcmpbe-checkout.php:229
+#: includes/frontend/class-wcmpbe-checkout.php:230
 msgid "House number"
 msgstr ""
 
-#: includes/frontend/class-wcmpbe-checkout.php:231
+#: includes/frontend/class-wcmpbe-checkout.php:232
 msgid "Opening hours"
 msgstr ""
 
-#: includes/frontend/class-wcmpbe-checkout.php:232
+#: includes/frontend/class-wcmpbe-checkout.php:233
 msgid "Pick up from"
 msgstr ""
 
-#: includes/frontend/class-wcmpbe-checkout.php:234
+#: includes/frontend/class-wcmpbe-checkout.php:235
 msgid "Postcode"
 msgstr ""
 
-#: includes/frontend/class-wcmpbe-checkout.php:235
+#: includes/frontend/class-wcmpbe-checkout.php:236
 msgid "Retry"
 msgstr ""
 
-#: includes/frontend/class-wcmpbe-checkout.php:237
+#: includes/frontend/class-wcmpbe-checkout.php:238
 msgid "Postcode/city combination unknown"
 msgstr ""
 
@@ -1053,10 +1069,6 @@ msgstr ""
 #. translators: %s is the name of the plugin in the WordPress plugin repository
 #: includes/admin/settings/class-wcmpbe-settings.php:266
 msgid "It looks like your shop is based in Netherlands. This plugin is for MyParcel Belgium. If you are using MyParcel Netherlands, download the %s plugin instead!"
-msgstr ""
-
-#: includes/admin/settings/class-wcmpbe-settings.php:275
-msgid "Hide this message"
 msgstr ""
 
 #: includes/admin/views/html-modal-result-page.php:10
