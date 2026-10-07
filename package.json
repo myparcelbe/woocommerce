@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/myparcel/woocommerce#readme",
   "dependencies": {
-    "@myparcel/delivery-options": "^4.4.0"
+    "@myparcel/delivery-options": "^6.22.0"
   },
   "devDependencies": {
     "@babel/core": "^7.29.7",
