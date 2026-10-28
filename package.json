@@ -33,7 +33,7 @@
     "download": "^8.0.0",
     "gettext-parser": "^4.0.4",
     "glob": "^7.1.6",
-    "gulp": "^4.0.2",
+    "gulp": "^5.0.1",
     "gulp-clean": "^0.4.0",
     "gulp-po-sync": "^0.1.0",
     "gulp-postcss": "^9.0.0",
